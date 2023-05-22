@@ -9,7 +9,7 @@ const Navbar = () => {
         <nav className='w-full flex py-6 justify-between items-center navbar'>
             <Link to='/home' className='sm:flex hidden font-poppins font-bold text-[22px] text-black'>{nameLT.title}</Link>
             <Link to='/home' className='sm:hidden font-poppins font-bold text-[18px] text-black'>{nameLT.title}</Link>
-            <ul className='list-none sm:flex hidden justify-end items-center flex-1'>
+            <ul className='list-none md:flex hidden justify-end items-center flex-1'>
                 {navLinksLT.map((nav, index) => (
                     <li
                         key={nav.id}
@@ -20,7 +20,7 @@ const Navbar = () => {
                     </li>
                 ))}
             </ul>
-            <div className='sm:hidden flex flex-1 justify-end items-center'>
+            <div className='md:hidden flex flex-1 justify-end items-center'>
                 <img src={toggle ? close : menu}
                     alt='menu'
                     className='w-[26px] h-[20px] object-contain'

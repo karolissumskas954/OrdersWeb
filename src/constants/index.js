@@ -84,3 +84,60 @@ export const priceDetailsLT = [
     title: "Kainos nurodytos be PVM mokesčio."
   },
 ]
+
+export const contactsLT = [
+  {
+    title: "Firmos pavadinimas"
+  },
+  {
+    title: "Deimantinis gręžimas"
+  },
+  {
+    title: "Adresas"
+  },
+  {
+    title: "Vilniaus g. 15a 24 ,Trakai"
+  },
+  {
+    title: "Mob. telefonas"
+  },
+  {
+    title: "+370 61585683"
+  },
+  {
+    title: "El.​paštas"
+  },
+  {
+    title: "d.​grezimas@​inbox.​lt"
+  },
+  {
+    title: "Įmonės kodas"
+  },
+  {
+    title: "302046597"
+  },
+  {
+    title: "PVM kodas"
+  },
+  {
+    title: "LT100004395010"
+  },
+  {
+    title: "Atsiskait. sąskaitos"
+  },
+  {
+    title: "AB SEB Vilniaus bankas \n LT36 7044 0600 0656 1403"
+  }
+]
+
+export const footerLT = [
+  {
+    title: "Kontaktai"
+  },
+  {
+    title: "Kainoraštis"
+  },
+  {
+    title: "Deimantinis Gręžimas"
+  }
+]
