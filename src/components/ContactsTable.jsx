@@ -3,8 +3,8 @@ import { contactsLT } from "../constants"
 
 const ContactsTable = () => {
     return (
-            <div className={`flex flex-col ${styles.paddingY} max-w-[95%]`}>
-                <h1 className="text-center font-poppins text-[20px] sm:text-[30px]">Kontaktai</h1>
+            <div className={`flex flex-col max-w-[95%]`}>
+                <h1 className="text-center font-poppins text-[20px] sm:text-[30px] mb-4">Kontaktai</h1>
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                         <div className="">

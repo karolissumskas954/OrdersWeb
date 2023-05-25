@@ -10,10 +10,12 @@ import { Viewer } from '@react-pdf-viewer/core';
 import { getFilePlugin } from '@react-pdf-viewer/get-file';
 import { printPlugin } from '@react-pdf-viewer/print';
 import { toolbarPlugin } from '@react-pdf-viewer/toolbar';
+import { zoomPlugin } from '@react-pdf-viewer/zoom';
 
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/print/lib/styles/index.css';
 import '@react-pdf-viewer/toolbar/lib/styles/index.css';
+import '@react-pdf-viewer/zoom/lib/styles/index.css';
 
 
 
@@ -28,6 +30,9 @@ const PDFDisplay = () => {
 
     const toolbarPluginInstance = toolbarPlugin();
     const { Toolbar } = toolbarPluginInstance;
+
+    const zoomPluginInstance = zoomPlugin();
+    const { ZoomInButton, ZoomOutButton, ZoomPopover } = zoomPluginInstance;
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
@@ -53,9 +58,11 @@ const PDFDisplay = () => {
                         padding: '4px',
                     }}
                 >
-                    {/* <DownloadButton />
-                    <PrintButton /> */}
-                    <Toolbar />
+                    <DownloadButton />
+                    <PrintButton />
+                    <ZoomOutButton />
+                    <ZoomPopover />
+                    <ZoomInButton />
                 </div>
                 <div
                     style={{
@@ -63,7 +70,7 @@ const PDFDisplay = () => {
                         overflow: 'hidden',
                     }}
                 >
-                    <Viewer fileUrl={pdf} plugins={[toolbarPluginInstance]} />
+                    <Viewer fileUrl={pdf} plugins={[printPluginInstance, getFilePluginInstance, zoomPluginInstance]} />
                 </div>
 
             </div>
