@@ -6,7 +6,6 @@ const NotFound404 = () => {
             <div className='border w-full h-full justify-center items-center'>
                 <h1>404</h1>
             </div>
-
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { close, menu, logo } from '../assets';
+import { close, menu} from '../assets';
 import { navLinksLT, nameLT } from '../constants';
 import { Link } from 'react-router-dom';
 

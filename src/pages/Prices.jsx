@@ -30,8 +30,8 @@ const Prices = () => (
 
       <div className={`bg-background ${styles.flexStart} sm:hidden`}>
         <div className={`${styles.boxWidth} flex flex-col mx-3`}>
-            <PDFDisplay />
             <PriceDetails/>
+            <PDFDisplay />
         </div>
       </div>
     </section>
