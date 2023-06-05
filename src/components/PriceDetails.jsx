@@ -64,15 +64,7 @@ const PriceDetails = () => {
                     <p className='max-w-[95%] font-poppins font-regular underline text-greyDarker text-[16px]'>Žiūrėti internete</p>
                 </div>
             </div>
-
-
-
-
         </>
-
-
-
-
     )
 }
 

@@ -1,5 +1,4 @@
 import styles from "../style";
-
 import { Navbar, Footer, ContactsTable } from "../components";
 
 const Contacts = () => (

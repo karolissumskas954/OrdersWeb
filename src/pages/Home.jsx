@@ -1,5 +1,4 @@
 import styles from "../style";
-
 import { Navbar, Hero, Stats, Questions, Footer } from "../components";
 
 const App = () => (

@@ -16,28 +16,22 @@ const Footer = () => {
         <div className='flex flex-row justify-center items-center w-1/2 '>
           <h1 className='p-4 md:flex hidden font-poppins text-white text-[30px]'>{footerLT[2].title}</h1>
           <h1 className='p-4 md:hidden font-poppins text-white text-[20px]'>{footerLT[2].title}</h1>
-          {/* <h1 className='p-4 md:flex hidden font-poppins text-white text-[30px]'>+370 61585683</h1>
-          <h1 className='p-2 md:hidden font-poppins text-white text-[20px]'>+370 61585683</h1> */}
         </div>
         <div className='flex flex-row justify-end w-1/4 mr-4'>
           <img src={facebook} className='md:flex hidden w-full max-w-[40px] mx-2' />
           <img src={twitter} className='md:flex hidden w-full max-w-[40px] mx-2' />
           <img src={instagram} className='md:flex hidden w-full max-w-[40px] mx-2' />
           <img src={messenger} className='md:flex hidden w-full max-w-[40px] mx-2' />
-
           <img src={facebook} className='md:hidden w-full max-w-[30px] mx-1' />
           <img src={twitter} className='md:hidden w-full max-w-[30px] mx-1' />
           <img src={instagram} className='md:hidden w-full max-w-[30px] mx-1' />
           <img src={messenger} className='md:hidden w-full max-w-[30px] mx-1' />
         </div>
       </div>
-
-
       <div className='bg-black h-[100%] rounded-[20px] sm:hidden mt-[-35px] flex justify-center items-center'>
         <div className="flex justify-center items-center mb-1 w-full">
           <div className='flex flex-row justify-center mt-1'>
           <h1 className='p-2 font-poppins text-white text-[16px] '>{footerLT[2].title}</h1>
-          {/* <h1 className='p-2 font-poppins text-white text-[16px] '>+370 61585683</h1> */}
           <img src={facebook} className='w-full max-w-[28px] min-w-[15px] mx-2' />
           <img src={twitter} className='w-full max-w-[28px] min-w-[15px] mx-2' />
           <img src={instagram} className='w-full max-w-[28px] min-w-[15px] mx-2' />

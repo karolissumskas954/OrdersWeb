@@ -1,4 +1,3 @@
-import styles from "../style"
 import { contactsLT } from "../constants"
 
 const ContactsTable = () => {

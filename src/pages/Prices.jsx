@@ -1,5 +1,4 @@
 import styles from "../style";
-
 import { Navbar, PDFDisplay, PriceDetails, Footer } from "../components";
 
 const Prices = () => (

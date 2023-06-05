@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import pdf from '../assets/kainorastis.pdf'
-// import { Document, Page } from "react-pdf";
-// import { pdfjs } from 'react-pdf/dist/esm/entry.vite';
-// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-
 import { Worker } from '@react-pdf-viewer/core';
 import { Viewer } from '@react-pdf-viewer/core';
 
@@ -46,9 +42,6 @@ const PDFDisplay = () => {
             </Worker>
 
             <div className='overflow-hidden mx-5 my-2'>
-                {/* <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
-                    <Page pageNumber={1} renderTextLayer={false} />
-                </Document> */}
                 <div
                     style={{
                         alignItems: 'center',

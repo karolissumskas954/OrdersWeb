@@ -13,7 +13,6 @@ const Stats = () => {
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
-  // Function to update active slide index when Swiper slide changes
   const handleSlideChange = (swiper) => {
     setActiveSlideIndex(swiper.activeIndex);
   };
@@ -21,30 +20,6 @@ const Stats = () => {
   return (
     // Desktop
     <section className={`${styles.paddingX1}`}>
-      {/* <div className="flex-1 flex-col mt-5 max-md:hidden">
-        <div className='grid grid-cols-4 gap-4 '>
-          <div className='w-[80%] h-[100%] bg-white rounded-[10px] shadow-2xl relative'>
-            <br />
-            <p className='p-4 font-poppins font-regular text-black text-[20px]' dangerouslySetInnerHTML={{ __html: statsLT[0].title.replace(/\n/g, '<br>') }}></p>
-            <img src={shield} className='w-[23%] absolute top-2 right-2' />
-          </div>
-          <div className='w-[80%] h-[100%] bg-white rounded-[10px] shadow-2xl relative'>
-            <br />
-            <p className='p-4 font-poppins font-regular text-black text-[20px]' dangerouslySetInnerHTML={{ __html: statsLT[1].title.replace(/\n/g, '<br>') }}></p>
-            <img src={plus} className='w-[23%] absolute top-2 right-2' />
-          </div>
-          <div className='w-[80%] h-[100%] bg-white rounded-[10px] shadow-2xl relative'>
-            <br />
-            <p className='p-4 font-poppins font-regular text-black text-[20px]'>{statsLT[2].title}</p>
-            <img src={check} className='w-[23%] absolute top-2 right-2' />
-          </div>
-          <div className='w-[80%] h-[100%] bg-white rounded-[10px] shadow-2xl relative'>
-            <br />
-            <p className='p-4 font-poppins font-regular text-black text-[20px]'>{statsLT[3].title}</p>
-            <img src={person} className='w-[23%] absolute top-2 right-2' />
-          </div>
-        </div>
-      </div> */}
 
       {/* //Tablet */}
       <div className="swiper-container  max-sm:hidden">
@@ -96,9 +71,6 @@ const Stats = () => {
         <div className={`swiper-icon ${activeSlideIndex === 2 ? 'active' : ''} mx-2`}>
           <img src={activeSlideIndex === 2 ? icon_active : icon} alt="Icon 3" />
         </div>
-        {/* <div className={`swiper-icon ${activeSlideIndex === 3 ? 'active' : ''} mx-2`}>
-          <img src={activeSlideIndex === 3 ? icon_active : icon} alt="Icon 4" />
-        </div> */}
       </div>
     </div>
 

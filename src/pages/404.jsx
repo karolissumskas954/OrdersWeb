@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 const NotFound404 = () => {
     return (
         <div className='w-screen h-screen bg-background justify-center items-center border'>

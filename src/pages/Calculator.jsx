@@ -1,5 +1,4 @@
 import styles from "../style";
-
 import { Navbar,Footer, CalcTable } from "../components";
 
 const Calculator = () => (
