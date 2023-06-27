@@ -66,59 +66,58 @@ const CalcTable = () => {
             setType(type);
         }
 
-        function calculateRowPrice() {
-            setTotal(0)
-            var num = 0
-            if (type === prices[0].title) {
+        function calculateRowPrice() { // Sumos skaičiavimas
+            setTotal(0) // Nustatome sumos kainą į 0, nes jei įvyksta klaida gautume sumą 0
+            var num = 0 // Atributas kuris parodo kurį tipą naudojame skaičiavimui
+            if (type === prices[0].title) { // Jei tipas yra "Plytos, Mūras, Tinkas"
                 var num = 0;
             }
-            else if (type === prices[1].title) {
+            else if (type === prices[1].title) {// Jei tipas yra "Abrazyvinis betonas, Gelžbetonis"
                 var num = 1;
             }
-            else if (type === prices[2].title) {
+            else if (type === prices[2].title) {// Jei tipas yra "Stipriai armuotas betonas, Akmuo"
                 var num = 2;
             }
-
-            var percent = 0;
-            var percent1 = 0;
-            if (box1) {
-                percent = 10;
-                if (box2) {
-                    percent1 = 30;
-                } else if (box3) {
-                    percent1 = 40;
-                } else if (box4) {
-                    percent1 = 100;
+            var percent = 0; // Procentai papildomoms paslaugoms
+            var percent1 = 0; // Procentai jei papildomos paslaugos yra kelios
+            if (box1) { // Jei pažymėta pirma paslauga "Gręžimas virš 2 metrų horizontaliai"
+                percent = 10; // Procentai patampa 10 ty.: 10%
+                if (box2) { // Jei pažymėta antra paslauga "Gręžimas su purvo nusiurbimu"
+                    percent1 = 30; // Procentai antram skaičiavimui patampa 30 ty.: 30%
+                } else if (box3) { // Jei pažymėta antra paslauga "Plytų, mūro, tinko gręžimas sausai"
+                    percent1 = 40;// Procentai antram skaičiavimui patampa 40 ty.: 40%
+                } else if (box4) {// Jei pažymėta antra paslauga "Monolito gręžimas sausai"
+                    percent1 = 100;// Procentai antram skaičiavimui patampa 100 ty.: 100%
                 }
-            } else if (box2) {
-                percent = 30;
-            } else if (box3) {
-                percent = 40;
-            } else if (box4) {
-                percent = 100;
+            } else if (box2) {// Jei pažymėta pirma paslauga "Gręžimas su purvo nusiurbimu"
+                percent = 30;// Procentai patampa 30 ty.: 30%
+            } else if (box3) {// Jei pažymėta pirma paslauga "Plytų, mūro, tinko gręžimas sausai"
+                percent = 40;// Procentai patampa 40 ty.: 40%
+            } else if (box4) {// Jei pažymėta pirma paslauga "Monolito gręžimas sausai"
+                percent = 100;// Procentai patampa 100 ty.: 100%
             }
 
-            Object.entries(prices[num].prices).map(([key, value]) => {
-                if (percent > 0 && percent1 > 0) {
-                    if (diameter == key && diameter > 11 && depth > 0) {
-                        let temp = (value * Number(depth)) * amount;
-                        let tempTotal = (temp + ((temp) / 100) * percent);
-                        let tempPercent = (tempTotal + ((tempTotal) / 100) * percent1)
-                        setTotal(tempPercent);
-                        sets(numberIndex, tempPercent);
+            Object.entries(prices[num].prices).map(([key, value]) => { // Peržiūrimas kainoraštis su sumomis ir diametrais
+                if (percent > 0 && percent1 > 0) { // Jei abi paslaugos yra pažymėtos
+                    if (diameter == key && diameter > 11 && depth > 0) { // Jei diametras ir gylis yra tinkamas
+                        let temp = (value * Number(depth)) * amount; // Suskaičiuojama suma
+                        let tempTotal = (temp + ((temp) / 100) * percent); // Sumai pridedami pirmos paslaugos procentai
+                        let tempPercent = (tempTotal + ((tempTotal) / 100) * percent1) // Sumai pridedami antros paslaugos procentai
+                        setTotal(tempPercent); // Sumos atributas atnaujinamas
+                        sets(numberIndex, tempPercent); // Masyvas rowPrice atnaujinamas.
                     }
-                } else if (percent > 0) {
-                    if (diameter == key && diameter > 11 && depth > 0) {
-                        let temp1 = (value * Number(depth)) * amount;
-                        let tempTotal1 = (temp1 + ((temp1) / 100) * percent);
-                        setTotal(tempTotal1);
-                        sets(numberIndex, tempTotal1);
+                } else if (percent > 0) { // Jei pažymeta tik viena paslauga
+                    if (diameter == key && diameter > 11 && depth > 0) {// Jei diametras ir gylis yra tinkamas
+                        let temp1 = (value * Number(depth)) * amount;// Suskaičiuojama suma
+                        let tempTotal1 = (temp1 + ((temp1) / 100) * percent);// Sumai pridedami pirmos paslaugos procentai
+                        setTotal(tempTotal1);// Sumos atributas atnaujinamas
+                        sets(numberIndex, tempTotal1);// Masyvas rowPrice atnaujinamas.
                     }
-                } else if (percent == 0) {
-                    if (diameter == key && diameter > 11 && depth > 0) {
-                        let temp2 = (value * Number(depth)) * amount;
-                        setTotal((value * Number(depth)) * amount)
-                        sets(numberIndex, temp2);
+                } else if (percent == 0) { // Jei paslaugų nėra
+                    if (diameter == key && diameter > 11 && depth > 0) {// Jei diametras ir gylis yra tinkamas
+                        let temp2 = (value * Number(depth)) * amount;// Suskaičiuojama suma
+                        setTotal((value * Number(depth)) * amount)// Sumos atributas atnaujinamas
+                        sets(numberIndex, temp2);// Masyvas rowPrice atnaujinamas.
                     }
                 }
             })
