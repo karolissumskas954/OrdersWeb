@@ -96,37 +96,37 @@ export const contactsLT = [
     title: "Adresas"
   },
   {
-    title: "Vilniaus g. 15a 24 ,Trakai"
+    title: "Zaibo g. 8a 7 ,Peter"
   },
   {
     title: "Mob. telefonas"
   },
   {
-    title: "+370 61585683"
+    title: "+650 451321123"
   },
   {
     title: "El.​paštas"
   },
   {
-    title: "d.​grezimas@​inbox.​lt"
+    title: "web@gmail.​com"
   },
   {
     title: "Įmonės kodas"
   },
   {
-    title: "302046597"
+    title: "1321231"
   },
   {
     title: "PVM kodas"
   },
   {
-    title: "LT100004395010"
+    title: "Eu32123123156"
   },
   {
     title: "Atsiskait. sąskaitos"
   },
   {
-    title: "AB SEB Vilniaus bankas \n LT36 7044 0600 0656 1403"
+    title: "EU HUH Svui Bank \n EU5245 1205 2585 4552"
   }
 ]
 
