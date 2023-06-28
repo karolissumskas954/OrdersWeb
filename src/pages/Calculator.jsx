@@ -2,7 +2,7 @@ import styles from "../style";
 import { Navbar,Footer, CalcTable } from "../components";
 
 const Calculator = () => (
-  <div className="bg-background w-full overflow-hidden h-screen">
+  <div className="bg-background w-full overflow-hidden ">
     <div className={`${styles.paddingX} ${styles.flexCenter}`}>
       <div className={`${styles.boxWidth}`}>
         <Navbar />
@@ -31,7 +31,7 @@ const Calculator = () => (
 
     <div className={`bg-background ${styles.paddingX} ${styles.flexStart} `}>
       <div className={`${styles.boxWidth}  `}>
-        <div className={`${styles.paddingY1} xl:max-w-[1280px] w-full  h-screen`}>
+        <div className={`${styles.paddingY1} xl:max-w-[1280px] w-full`}>
           <div className="sm:hidden sticky top-[90vh] w-full">
           <Footer />
           </div>
