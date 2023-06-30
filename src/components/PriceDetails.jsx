@@ -1,7 +1,13 @@
 import React from 'react'
 import { priceDetailsLT } from '../constants'
+import { kainorastis } from '../assets'
 
 const PriceDetails = () => {
+    function onResumeClick() {
+        window.open(kainorastis);
+      }
+
+
     return (
         <>
             <div className='mb-10 flex flex-col justify-center items-center'>
@@ -60,8 +66,8 @@ const PriceDetails = () => {
                 </div>
 
                 <div className='w-full flex flex-col justify-start items-start mt-5 max-sm:hidden'>
-                    <p className='max-w-[95%] font-poppins font-regular underline text-greyDarker text-[16px]'>Siųstis</p>
-                    <p className='max-w-[95%] font-poppins font-regular underline text-greyDarker text-[16px]'>Žiūrėti internete</p>
+                    <a href={kainorastis} download="Deimantinis_Grezimas_Kainorastis" target='_blank' rel='noreferrer'><p className='max-w-[95%] font-poppins font-regular underline text-greyDarker text-[16px] cursor-pointer'>Siųstis</p></a>
+                    <p onClick={() => {onResumeClick()}} className='max-w-[95%] font-poppins font-regular underline text-greyDarker text-[16px] cursor-pointer'>Žiūrėti internete</p>
                 </div>
             </div>
         </>
