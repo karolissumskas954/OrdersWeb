@@ -1,7 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import { prices } from "../constants"
+import {
+    Button,
+    Dialog,
+    DialogBody,
+    DialogFooter,
+    Typography,
+} from "@material-tailwind/react";
 
 const CalcTable = () => {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => {
+        setOpen(!open);
+    }
 
     function containsOnlyNumbers(str) {
         return /^([0-9]+)*([0-9]+)$/.test(str);
@@ -306,15 +317,44 @@ const CalcTable = () => {
                         </div>
 
                         <div className='justify-end w-[45%]'>
-                            <button onClick={() => totalSum()} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mb-10 mt-1" type='button'>Skaičiuoti</button>
-                            <p className='text-black font-poppins text-[20px]'>Suma be PVM: {priceWithoutPVM.toFixed(2)} €</p>
+
+                            <p className='text-black font-poppins text-[20px] mt-32'>Suma be PVM: {priceWithoutPVM.toFixed(2)} €</p>
                             <p className='text-black font-poppins text-[20px]'>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
+                            <div className='flex flex-row'>
+                                <button onClick={() => totalSum()} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5 mr-4" type='button'>Skaičiuoti</button>
+                                <button onClick={() => handleOpen()} className="text-white bg-green hover:bg-darkGreen font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5" type='button'>Užsisakyti</button>
+                            </div>
+
                         </div>
 
                     </div>
 
                 </div>
             </div>
+            <div>
+                <Fragment >
+                    <Dialog open={open} handler={handleOpen} className='w-[90%] sm:w-[40%]'>
+                        <DialogBody divider className="grid place-items-center gap-4">
+                            <Typography color="red" variant="h4" className="font-poppins">
+                                Jūsų užsakymas pateiktas!
+                            </Typography>
+                            <Typography className="text-center font-poppins">
+                                Netrukus su jumis susisieksime.
+                            </Typography>
+                        </DialogBody>
+                        <DialogFooter className="space-x-2 items-center">
+                            <Button variant="text" color="gray" onClick={handleOpen} className='font-poppins outline-red'>
+                                Išeiti
+                            </Button>
+                            <Button variant="text" color="white" onClick={handleOpen} className='font-poppins bg-green outline-none'>
+                                TĘSTI
+                            </Button>
+                        </DialogFooter>
+                    </Dialog>
+                </Fragment>
+            </div>
+
+
         </div>
     )
 }

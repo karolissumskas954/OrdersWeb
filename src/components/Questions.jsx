@@ -93,7 +93,7 @@ const Questions = () => {
               </Typography>
             </DialogBody>
             <DialogFooter className="space-x-2 items-center">
-            <Button variant="text" color="grey" onClick={handleOpen} className='font-poppins outline-red'>
+            <Button variant="text" color="gray" onClick={handleOpen} className='font-poppins outline-red'>
                 Išeiti
               </Button>
               <Button variant="text" color="white" onClick={handleOpen} className='font-poppins bg-green outline-none'>
