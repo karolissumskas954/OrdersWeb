@@ -1,18 +1,13 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import { questionLT } from '../constants'
-import {
-  Button,
-  Dialog,
-  DialogBody,
-  DialogFooter,
-  Typography,
-} from "@material-tailwind/react";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Questions = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [text, setText] = useState('');
-  const [open, setOpen] = useState(false);
 
   const handleName = event => {
     setName(event.target.value);
@@ -24,10 +19,19 @@ const Questions = () => {
     setText(event.target.value);
   };
   const handleOpen = () => {
-    setOpen(!open);
     setName("");
     setEmail("");
     setText("");
+    toast.success('Jūsų žinutė sėkmingai išsiųsta!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark", //colored
+      });
   }
   return (
     <>
@@ -80,29 +84,7 @@ const Questions = () => {
           <p onClick={handleOpen} className='p-4 font-poppins cursor-pointer font-regular underline text-white text-[16px] mx-[12%] mt-[-16px] mb-8'>Siųsti</p>
         </div>
       </div>
-
-      <div>
-        <Fragment >
-          <Dialog open={open} handler={handleOpen} className='w-[90%] sm:w-[40%]'>
-            <DialogBody divider className="grid place-items-center gap-4">
-              <Typography color="red" variant="h4" className="font-poppins">
-                Jūsų žinutė sėkmingai išsiųsta!
-              </Typography>
-              <Typography className="text-center font-poppins">
-                Netrukus su jumis susisieksime.
-              </Typography>
-            </DialogBody>
-            <DialogFooter className="space-x-2 items-center">
-            <Button variant="text" color="gray" onClick={handleOpen} className='font-poppins outline-red'>
-                Išeiti
-              </Button>
-              <Button variant="text" color="white" onClick={handleOpen} className='font-poppins bg-green outline-none'>
-                TĘSTI
-              </Button>
-            </DialogFooter>
-          </Dialog>
-        </Fragment>
-      </div>
+      <ToastContainer/>
     </>
   )
 }

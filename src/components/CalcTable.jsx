@@ -1,17 +1,21 @@
-import React, { useEffect, useState, Fragment } from 'react'
+import React, { useEffect, useState } from 'react'
 import { prices } from "../constants"
-import {
-    Button,
-    Dialog,
-    DialogBody,
-    DialogFooter,
-    Typography,
-} from "@material-tailwind/react";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CalcTable = () => {
-    const [open, setOpen] = useState(false);
     const handleOpen = () => {
-        setOpen(!open);
+        toast.success('Užsakymas pateiktas!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark", //colored
+            });
     }
 
     function containsOnlyNumbers(str) {
@@ -331,7 +335,7 @@ const CalcTable = () => {
 
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <Fragment >
                     <Dialog open={open} handler={handleOpen} className='w-[90%] sm:w-[40%]'>
                         <DialogBody divider className="grid place-items-center gap-4">
@@ -352,9 +356,9 @@ const CalcTable = () => {
                         </DialogFooter>
                     </Dialog>
                 </Fragment>
-            </div>
+            </div> */}
 
-
+            <ToastContainer/>
         </div>
     )
 }
