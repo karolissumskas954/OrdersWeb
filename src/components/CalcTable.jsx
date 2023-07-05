@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { prices } from "../constants"
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,7 +15,7 @@ const CalcTable = () => {
             draggable: true,
             progress: undefined,
             theme: "dark", //colored
-            });
+        });
     }
 
     function containsOnlyNumbers(str) {
@@ -179,6 +179,18 @@ const CalcTable = () => {
             setDepth(event.target.value);
 
         };
+        // Auto closing
+        const menu = useRef(null)
+        const closeOpenMenus = (e)=>{
+            if(menu.current && toggle && !menu.current.contains(e.target)){
+              setToggle(false)
+            }
+            else if(menu.current && toggleBox && !menu.current.contains(e.target)){
+                setToggleBox(false)
+              }
+        }
+        document.addEventListener('mousedown',closeOpenMenus)
+
         const [toggle, setToggle] = useState(false)
         const [toggleBox, setToggleBox] = useState(false)
         const [type, setType] = useState(prices[0].title)
@@ -198,15 +210,17 @@ const CalcTable = () => {
         }, [depth, diameter, amount, type, box1, box2, box3, box4])
 
         return (
+
             <tr
+            ref={menu}
                 className="border-b">
-                <td className="max-w-[60px] min-w-[60px]">
-                    <input type="text" placeholder="" onChange={handleAmount} value={amount} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full ${isValidAmount ? 'text-black' : 'text-red'}`} />
+                <td className="max-w-[60px] min-w-[60px] ">
+                    <input type="text" placeholder="" onChange={handleAmount} value={amount} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full  ${isValidAmount ? 'text-black' : 'text-red'}`} />
                 </td>
                 <td className="max-w-[60px] min-w-[60px]">
                     <input type="text" placeholder="" onChange={handleDiameter} value={diameter} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'} `} />
                 </td>
-                <td className="max-w-[290px] min-w-[290px]">
+                <td  className="max-w-[290px] min-w-[290px]">
                     <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg text-[16px] px-4 py-2.5 text-center inline-flex items-center  w-full" type="button">{type}<svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div className={`${toggle ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[250px] `}>
                         <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
@@ -225,7 +239,7 @@ const CalcTable = () => {
                 <td className="max-w-[80px] min-w-[80px]">
                     <input type="text" placeholder="" onChange={handleDepth} value={depth} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`} />
                 </td>
-                <td className="max-w-[80px] min-w-[80px]">
+                <td  className="max-w-[80px] min-w-[80px]">
                     <button onClick={() => setToggleBox((prev) => !prev)} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg text-[16px] px-4 py-2.5 text-center inline-flex items-center w-full" type="button">Paslaugos<svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div className={`${toggleBox ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[90px]`}>
                         <ul className="p-3 space-y-3 text-sm text-gray-700" aria-labelledby="dropdownCheckboxButton">
@@ -260,6 +274,7 @@ const CalcTable = () => {
                     <p className='whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full '>{total.toFixed(2)} €</p>
                 </td>
             </tr>
+
         )
     }
 
@@ -273,7 +288,7 @@ const CalcTable = () => {
                             <tr
                                 className="border-b">
                                 <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Kiekis</td>
-                                <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Diametras(ø)</td>
+                                <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Diametras(ø mm)</td>
                                 <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Tipas</td>
                                 <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Gylis(cm)</td>
                                 <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Papildomos paslaugos</td>
@@ -358,7 +373,7 @@ const CalcTable = () => {
                 </Fragment>
             </div> */}
 
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     )
 }
