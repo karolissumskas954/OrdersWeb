@@ -15,6 +15,7 @@ import twitter from './Twitter.svg';
 import instagram from './Instagram.svg'
 import messenger from './Messenger.svg';
 import kainorastis from './kainorastis.pdf';
+import waterDrop from './waterDrop.svg';
 
 export {
     check,
@@ -33,5 +34,6 @@ export {
     twitter,
     instagram,
     messenger,
-    kainorastis
+    kainorastis,
+    waterDrop
 };

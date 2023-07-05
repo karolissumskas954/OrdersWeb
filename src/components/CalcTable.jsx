@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { prices } from "../constants"
+import { waterDrop } from '../assets';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -181,15 +182,15 @@ const CalcTable = () => {
         };
         // Auto closing
         const menu = useRef(null)
-        const closeOpenMenus = (e)=>{
-            if(menu.current && toggle && !menu.current.contains(e.target)){
-              setToggle(false)
+        const closeOpenMenus = (e) => {
+            if (menu.current && toggle && !menu.current.contains(e.target)) {
+                setToggle(false)
             }
-            else if(menu.current && toggleBox && !menu.current.contains(e.target)){
+            else if (menu.current && toggleBox && !menu.current.contains(e.target)) {
                 setToggleBox(false)
-              }
+            }
         }
-        document.addEventListener('mousedown',closeOpenMenus)
+        document.addEventListener('mousedown', closeOpenMenus)
 
         const [toggle, setToggle] = useState(false)
         const [toggleBox, setToggleBox] = useState(false)
@@ -212,66 +213,71 @@ const CalcTable = () => {
         return (
 
             <tr
-            ref={menu}
+                ref={menu}
                 className="border-b">
-                <td className="max-w-[60px] min-w-[60px] ">
-                    <input type="text" placeholder="" onChange={handleAmount} value={amount} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full  ${isValidAmount ? 'text-black' : 'text-red'}`} />
+                <td className="max-w-[20px] min-w-[20px] ">
+                    <input type="text" placeholder="" onChange={handleAmount} value={amount} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full  ${isValidAmount ? 'text-black' : 'text-red'}`} />
                 </td>
-                <td className="max-w-[60px] min-w-[60px]">
-                    <input type="text" placeholder="" onChange={handleDiameter} value={diameter} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'} `} />
+                <td className="max-w-[160px] min-w-[160px]">
+                    <input type="text" placeholder="" onChange={handleDiameter} value={diameter} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'} `} />
                 </td>
-                <td  className="max-w-[290px] min-w-[290px]">
-                    <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg text-[16px] px-4 py-2.5 text-center inline-flex items-center  w-full" type="button">{type}<svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                <td className="max-w-[300px] min-w-[300px]">
+                    <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-greyDarker hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center  w-full" type="button">{type}<svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div className={`${toggle ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[250px] `}>
                         <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
                             <li>
-                                <a href="#" onClick={() => setDropdown(prices[0].title)} className="block px-4 py-2 font-poppins text-[16px] hover:bg-gray-200">{prices[0].title}</a>
+                                <a href="#" onClick={() => setDropdown(prices[0].title)} className="block px-4 py-2 font-poppins text-sm hover:bg-gray-200">{prices[0].title}</a>
                             </li>
                             <li>
-                                <a href="#" onClick={() => setDropdown(prices[1].title)} className="block px-4 py-2 font-poppins text-[16px] hover:bg-gray-200">{prices[1].title}</a>
+                                <a href="#" onClick={() => setDropdown(prices[1].title)} className="block px-4 py-2 font-poppins text-sm hover:bg-gray-200">{prices[1].title}</a>
                             </li>
                             <li>
-                                <a href="#" onClick={() => setDropdown(prices[2].title)} className="block px-4 py-2 font-poppins text-[16px] hover:bg-gray-200">{prices[2].title}</a>
+                                <a href="#" onClick={() => setDropdown(prices[2].title)} className="block px-4 py-2 font-poppins text-sm hover:bg-gray-200">{prices[2].title}</a>
                             </li>
                         </ul>
                     </div>
                 </td>
-                <td className="max-w-[80px] min-w-[80px]">
-                    <input type="text" placeholder="" onChange={handleDepth} value={depth} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`} />
+                <td className="max-w-[100px] min-w-[100px]">
+                    <input type="text" placeholder="" onChange={handleDepth} value={depth} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`} />
                 </td>
-                <td  className="max-w-[80px] min-w-[80px]">
-                    <button onClick={() => setToggleBox((prev) => !prev)} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg text-[16px] px-4 py-2.5 text-center inline-flex items-center w-full" type="button">Paslaugos<svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                <td className="max-w-[220px] min-w-[220px]">
+                    <button onClick={() => setToggleBox((prev) => !prev)} className="text-white bg-greyDarker hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full" type="button">
+                        <p className='mr-2'>Paslaugos</p> 
+                        {/* {<p className='px-1 py-1 rounded-xl bg-green text-white'>💧</p>} */}
+                        {/* {<img src={waterDrop} className='px-1 py-1 rounded-xl  max-w-[28px] min-w-[15px]'/>} */}
+                        
+                        <svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div className={`${toggleBox ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[90px]`}>
                         <ul className="p-3 space-y-3 text-sm text-gray-700" aria-labelledby="dropdownCheckboxButton">
                             <li>
                                 <div className="flex items-center w-full">
                                     <input onClick={() => setBox1((prev) => !prev)} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 " />
-                                    <label className="px-2 py-1 font-poppins text-[16px] ">Gręžimas virš 2 metrų horizontaliai</label>
+                                    <label className="px-2 py-1 font-poppins text-sm ">Gręžimas virš 2 metrų horizontaliai</label>
                                 </div>
                             </li>
                             <li>
                                 <div className="flex items-center w-full">
                                     <input onClick={() => setBox2((prev) => !prev)} disabled={box3 || box4} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 " />
-                                    <label className="px-2 py-1 font-poppins text-[16px]">Gręžimas su purvo nusiurbimu</label>
+                                    <label className="px-2 py-1 font-poppins text-sm">Gręžimas su purvo nusiurbimu</label>
                                 </div>
                             </li>
                             <li>
                                 <div className={`flex items-center w-full ${type != prices[0].title ? 'hidden' : 'flex'}`}>
                                     <input onClick={() => setBox3((prev) => !prev)} disabled={box2} type="checkbox" value="" className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 `} />
-                                    <label className="px-2 py-1 font-poppins text-[16px] ">Plytų, mūro, tinko gręžimas sausai</label>
+                                    <label className="px-2 py-1 font-poppins text-sm ">Plytų, mūro, tinko gręžimas sausai</label>
                                 </div>
                             </li>
                             <li>
                                 <div className={`flex items-center w-full ${type != prices[2].title ? 'hidden' : 'flex'} `}>
                                     <input onClick={() => setBox4((prev) => !prev)} disabled={box2} type="checkbox" value="" className={` w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 `} />
-                                    <label className="px-2 py-1 font-poppins text-[16px] ">Monolito gręžimas sausai</label>
+                                    <label className="px-2 py-1 font-poppins text-sm ">Monolito gręžimas sausai</label>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </td>
                 <td className="max-w-[150px] min-w-[150px]">
-                    <p className='whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2 w-full '>{total.toFixed(2)} €</p>
+                    <p className='whitespace-nowrap border-l font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-8 sm:py-2 w-full text-black'>{total.toFixed(2)} €</p>
                 </td>
             </tr>
 
@@ -279,11 +285,11 @@ const CalcTable = () => {
     }
 
     return (
-        <div className="overflow-x-auto sm:-mx-6 mx-8 lg:-mx-8 items-center">
+        <div className=" sm:-mx-6 mx-8 lg:-mx-8 items-center">
 
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div className="">
-                    <table className="min-w-full border text-left text-sm font-light bg-white ">
+                    {/* <table className="table-auto min-w-full border text-left text-sm font-light bg-white ">
                         <thead className="border-b">
                             <tr
                                 className="border-b">
@@ -303,7 +309,42 @@ const CalcTable = () => {
                             {tableRow(4)}
                             {tableRow(5)}
                         </tbody>
-                    </table>
+                    </table> */}
+                    <div className="shadow-md sm:rounded-lg">
+                        <table className="w-full text-sm text-left text-blue-100">
+                            <thead className="text-sm text-white  bg-black border-b">
+                                <tr>
+                                    <th scope="col" className="px-2 py-3 font-poppins">
+                                        Kiekis
+                                    </th>
+                                    <th scope="col" className="px-2 py-3 font-poppins">
+                                    Diametras(ø mm)
+                                    </th>
+                                    <th scope="col" className="px-2 py-3 font-poppins">
+                                    Tipas
+                                    </th>
+                                    <th scope="col" className="px-2 py-3 font-poppins">
+                                    Gylis(cm)
+                                    </th>
+                                    <th scope="col" className="px-2 py-3 font-poppins">
+                                    Papildomos paslaugos
+                                    </th>
+                                    <th scope="col" className="px-2 py-3 font-poppins">
+                                    Suma
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                    {tableRow(0)}
+                                    {tableRow(1)}
+                                    {tableRow(2)}
+                                    {tableRow(3)}
+                                    {tableRow(4)}
+                                    {tableRow(5)}
+                            </tbody>
+                        </table>
+                    </div>
                     <div className='my-8  flex justify-end w-full'>
                         <div className=' justify-start w-full'>
                             <h3 className="mb-4 font-poppins text-black text-[20px]">Papildomos paslaugos:</h3>
