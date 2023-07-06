@@ -9,29 +9,73 @@ const Questions = () => {
   const [email, setEmail] = useState('')
   const [text, setText] = useState('');
 
+  const [isValidName, setIsValidName] = useState(false)
+  const [isValidEmail, setIsValidEmail] = useState(false)
+  const [isValidText, setIsValidText] = useState(false)
+
   const handleName = event => {
     setName(event.target.value);
+    setIsValidName(false);
   };
   const handleEmail = event => {
     setEmail(event.target.value);
+    setIsValidEmail(false);
   };
   const handleText = event => {
     setText(event.target.value);
+    setIsValidText(false);
   };
   const handleOpen = () => {
-    setName("");
-    setEmail("");
-    setText("");
-    toast.success('Jūsų žinutė sėkmingai išsiųsta!', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark", //colored
+
+    if (name == '' || email == '' || text == '') {
+      setIsValidName(true);
+      setIsValidEmail(true);
+      setIsValidText(true);
+      if (name != '') {
+        setIsValidName(false);
+      } 
+      if (email != '') {
+        setIsValidEmail(false);
+      } 
+      if (text != '') {
+        setIsValidText(false);
+      }
+
+      toast.warn('Užpildykite visus laukus', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
       });
+
+    } else {
+      setIsValidName(false);
+      setIsValidEmail(false);
+      setIsValidText(false);
+      setName("");
+      setEmail("");
+      setText("");
+
+      toast.success('Jūsų žinutė sėkmingai išsiųsta!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark", //colored
+      });
+    }
+
+    // setName("");
+    // setEmail("");
+    // setText("");
+
   }
   return (
     <>
@@ -44,13 +88,13 @@ const Questions = () => {
           <div className="flex justify-center items-center">
             <div className="w-1/2 text-right mx-1">
 
-              <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className="border border-gray-300 p-2 rounded-md w-[70%]" />
+              <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2  rounded-md w-[70%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
             <div className="w-1/2 text-left mx-1">
-              <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className="border border-gray-300 p-2 rounded-md w-[70%]" />
+              <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 rounded-md w-[70%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
           </div>
-          <textarea onChange={handleText} value={text} className="my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border border-gray-300 rounded appearance-none focus:outline-blue focus:bg-white " rows="3" placeholder="Tekstas"></textarea>
+          <textarea onChange={handleText} value={text} className={`my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
           <p onClick={handleOpen} className='p-4 font-poppins cursor-pointer font-regular underline text-white text-[20px] text-left mx-[13%] mt-[-25px]'>Siųsti</p>
         </div>
       </div>
@@ -64,13 +108,13 @@ const Questions = () => {
           <div className="flex justify-center items-center">
             <div className="w-1/2 text-right mx-1">
 
-              <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className="border border-gray-300 p-2 rounded-md w-[70%]" />
+              <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2 rounded-md w-[70%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
             <div className="w-1/2 text-left mx-1">
-              <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className="border border-gray-300 p-2 rounded-md w-[70%]" />
+              <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 rounded-md w-[70%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
           </div>
-          <textarea onChange={handleText} value={text} className="my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border border-gray-300 rounded appearance-none focus:outline-blue focus:bg-white " rows="3" placeholder="Tekstas"></textarea>
+          <textarea onChange={handleText} value={text} className={`my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
           <p onClick={handleOpen} className='p-4 font-poppins cursor-pointer font-regular underline text-white text-[16px] text-left mx-[12%] mt-[-25px]'>Siųsti</p>
         </div>
       </div>
@@ -78,13 +122,13 @@ const Questions = () => {
         <h1 className='p-4 font-poppins font-bold text-white text-[30px]'>{questionLT[0].title}</h1>
         <p className='p-4 font-poppins font-regular text-white text-[18px] mt-[-30px]'>{questionLT[1].title}</p>
         <div className='flex flex-col items-center mx-3 w-[85%]'>
-          <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className="my-2 border border-gray-300 p-2 rounded-md w-[95%]" />
-          <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className="border border-gray-300 p-2 rounded-md w-[95%]" />
-          <textarea onChange={handleText} value={text} className="my-2 block w-[95%]  px-2 py-2 leading-tight border border-gray-300 rounded appearance-none focus:outline-blue focus:bg-white " rows="3" placeholder="Tekstas"></textarea>
+          <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`my-2 border-2 p-2 rounded-md w-[95%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+          <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 rounded-md w-[95%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+          <textarea onChange={handleText} value={text} className={`my-2 block w-[95%]  px-2 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
           <p onClick={handleOpen} className='p-4 font-poppins cursor-pointer font-regular underline text-white text-[16px] mx-[12%] mt-[-16px] mb-8'>Siųsti</p>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   )
 }
