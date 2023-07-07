@@ -13,6 +13,10 @@ const Questions = () => {
   const [isValidEmail, setIsValidEmail] = useState(false)
   const [isValidText, setIsValidText] = useState(false)
 
+  function emailCheck(str) {
+    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi.test(str);
+  }
+
   const handleName = event => {
     setName(event.target.value);
     setIsValidName(false);
@@ -27,18 +31,32 @@ const Questions = () => {
   };
   const handleOpen = () => {
 
-    if (name == '' || email == '' || text == '') {
+    if (name == '' || email == '' || text == '' || !emailCheck(email)) {
       setIsValidName(true);
       setIsValidEmail(true);
       setIsValidText(true);
       if (name != '') {
         setIsValidName(false);
-      } 
-      if (email != '') {
-        setIsValidEmail(false);
-      } 
+      }
       if (text != '') {
         setIsValidText(false);
+      }
+      if (email != '') {
+        if (emailCheck(email)){
+          setIsValidEmail(false);
+        }else {
+          toast.warn('Neteisingas el. pašto formatas', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          return;
+        }
       }
 
       toast.warn('Užpildykite visus laukus', {
@@ -71,11 +89,6 @@ const Questions = () => {
         theme: "dark", //colored
       });
     }
-
-    // setName("");
-    // setEmail("");
-    // setText("");
-
   }
   return (
     <>

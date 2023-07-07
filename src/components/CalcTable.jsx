@@ -73,6 +73,7 @@ const CalcTable = () => {
     function totalSum() {
         var result = data.reduce((total, currentValue) => total = total + currentValue.prix, 0)
         setPriceWithoutPVM(result)
+        
     }
 
     function tableRow(numberIndex) {
@@ -137,6 +138,11 @@ const CalcTable = () => {
                     }
                 }
             })
+
+            if (total == 0 || isNaN(total)){
+                sets(numberIndex, 0);
+            }
+
         }
 
         function diameterCheck(diam) {
@@ -289,27 +295,6 @@ const CalcTable = () => {
 
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div className="">
-                    {/* <table className="table-auto min-w-full border text-left text-sm font-light bg-white ">
-                        <thead className="border-b">
-                            <tr
-                                className="border-b">
-                                <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Kiekis</td>
-                                <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Diametras(ø mm)</td>
-                                <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Tipas</td>
-                                <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Gylis(cm)</td>
-                                <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Papildomos paslaugos</td>
-                                <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-6 sm:py-2">Suma</td>
-                            </tr>
-                        </thead>
-                        <tbody className="border-b">
-                            {tableRow(0)}
-                            {tableRow(1)}
-                            {tableRow(2)}
-                            {tableRow(3)}
-                            {tableRow(4)}
-                            {tableRow(5)}
-                        </tbody>
-                    </table> */}
                     <div className="shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-left text-blue-100">
                             <thead className="text-sm text-white  bg-black border-b">
