@@ -2,7 +2,7 @@ import styles from "../style";
 import { Navbar,Footer, CalcTable } from "../components";
 
 const Calculator = () => (
-  <div className="bg-background w-full overflow-hidden ">
+  <div className="bg-background w-full ">
     <div className={`${styles.paddingX} ${styles.flexCenter}`}>
       <div className={`${styles.boxWidth}`}>
         <Navbar />
@@ -24,7 +24,7 @@ const Calculator = () => (
       </div>
 
       <div className={`bg-background ${styles.flexStart} sm:hidden`}>
-        <div className={`${styles.boxWidth} flex flex-col mx-3`}>
+        <div className={`${styles.boxWidth} flex flex-col mx-3 overflow-x-auto`}>
         <CalcTable/>
         </div>
       </div>

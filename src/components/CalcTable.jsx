@@ -292,11 +292,10 @@ const CalcTable = () => {
 
     return (
         <div className=" sm:-mx-6 mx-8 lg:-mx-8 items-center">
-
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                <div className="">
-                    <div className="shadow-md sm:rounded-lg">
-                        <table className="w-full text-sm text-left text-blue-100">
+                    <div className="shadow-md sm:rounded-lg ">
+                        <div className='overflow-x-auto'>
+                        <table className="w-full text-sm text-left text-blue-100 min-w-full">
                             <thead className="text-sm text-white  bg-black border-b">
                                 <tr>
                                     <th scope="col" className="px-2 py-3 font-poppins">
@@ -319,7 +318,7 @@ const CalcTable = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className='whitespace-no-wrap'>
                                
                                     {tableRow(0)}
                                     {tableRow(1)}
@@ -329,6 +328,7 @@ const CalcTable = () => {
                                     {tableRow(5)}
                             </tbody>
                         </table>
+                        </div>
                     </div>
                     <div className='my-8  flex justify-end w-full'>
                         <div className=' justify-start w-full'>
@@ -373,8 +373,6 @@ const CalcTable = () => {
                         </div>
 
                     </div>
-
-                </div>
             </div>
             {/* <div>
                 <Fragment >
