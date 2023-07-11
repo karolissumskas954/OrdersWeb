@@ -29,6 +29,17 @@ const Questions = () => {
     setText(event.target.value);
     setIsValidText(false);
   };
+
+  async function sendEmail(){
+    await fetch ('api/email', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: "Brian"
+      })
+    })
+
+  }
+
   const handleOpen = () => {
 
     if (name == '' || email == '' || text == '' || !emailCheck(email)) {
@@ -71,6 +82,10 @@ const Questions = () => {
       });
 
     } else {
+
+
+      sendEmail();
+
       setIsValidName(false);
       setIsValidEmail(false);
       setIsValidText(false);
