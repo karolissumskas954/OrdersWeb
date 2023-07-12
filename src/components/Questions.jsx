@@ -31,15 +31,19 @@ const Questions = () => {
   };
 
   async function sendEmail(){
-    await fetch ('api/email', {
+    await fetch(import.meta.env.VITE_API_REQUEST, {
       method: 'POST',
       body: JSON.stringify({
-        name: "Brian"
-      })
+        name : name
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+     },
+    }).catch((error)=> {
+      console.log(error.message);
     })
 
   }
-
   const handleOpen = () => {
 
     if (name == '' || email == '' || text == '' || !emailCheck(email)) {

@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 package-lock.json
+route.ts
+index.ts
+server.ts
+.react-email

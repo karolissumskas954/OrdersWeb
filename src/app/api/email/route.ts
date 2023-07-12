@@ -1,17 +1,23 @@
 import { Resend } from 'resend';
-import Email from '../../../emails/Email';
+// import Email from '../../../emails/Email';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(request: Request){
-    const {name} = await request.json();
-    resend.sendEmail({
-        from: 'mail@email.test.dev',
+export async function POST(){
+    // const {name} = await request.json();
+
+    
+
+    try {
+      const data = await resend.sendEmail({
+        from: 'onboarding@resend.dev',
         to: 'ex@gmail.com',
         subject: 'hello world',
-        react: Email({
-            name
-        })
+        // react: Email()
       });
-      return console.log(name)
+      return console.log(data)
+    }catch(error){
+      console.error(error);
+    }
+
 }
