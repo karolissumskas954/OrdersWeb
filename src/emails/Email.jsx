@@ -1,70 +1,58 @@
 import {
   Body,
+  Button,
   Container,
   Head,
-  Heading,
+  Hr,
   Html,
   Img,
-  Link,
   Preview,
+  Section,
   Text,
+  Heading
 } from '@react-email/components';
 import * as React from 'react';
+
 
 export const Email = () => (
   <Html>
     <Head />
-    <Preview>Log in with this magic link</Preview>
+    <Preview>
+      The sales intelligence platform that helps you uncover qualified leads.
+    </Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Welcome</Heading>
-        {/* <Link
-          href="https://notion.so"
-          target="_blank"
-          style={{
-            ...link,
-            display: 'block',
-            marginBottom: '16px',
-          }}
-        >
-          Click here to log in with this magic link
-        </Link> */}
-        <Text style={{ ...text, marginBottom: '14px' }}>
-          Pranesiams issiustas
+        {/* <Img
+          src=""
+          // width="170"
+          // height="50"
+          // alt="Deimantinis "
+          // style={logo}
+        /> */}
+        <Heading style={heading}>
+        Deimantinis gręžimas
+        </Heading>
+        <Text style={paragraph}>Sveiki,</Text>
+        <Text style={paragraph}>
+          Jūsų pranešimą gavome. <br />
+          Netrukus su Jumis susisieksime.
         </Text>
-        <code style={code}></code>
-        <Text
-          style={{
-            ...text,
-            color: '#ababab',
-            marginTop: '14px',
-            marginBottom: '16px',
-          }}
-        >
-          If you didn&apos;t try to login, you can safely ignore this email.
-        </Text>
-        <Text
-          style={{
-            ...text,
-            color: '#ababab',
-            marginTop: '12px',
-            marginBottom: '38px',
-          }}
-        >
-          Hint: You can set a permanent password in Settings & members → My
-          account.
-        </Text>
-        <Text style={footer}>
-          <Link
-            href="https://notion.so"
-            target="_blank"
-            style={{ ...link, color: '#898989' }}
-          >
-            Notion.so
-          </Link>
-          , the all-in-one-workspace
+        <Section style={btnContainer}>
+          {/* <Button pX={12} pY={12} style={button} href="https://www.google.com/">
+            Grįžti į puslapį
+          </Button> */}
+        </Section>
+        <Text style={paragraph}>
+          Pagarbiai,
           <br />
-          for your notes, tasks, wikis, and databases.
+          Deimantinis gręžimas
+        </Text>
+        <Hr style={hr} />
+        <Text style={footer}>Zaibo g. 350d ,Peter <br />
+          +650 451321123 <br />
+
+
+
         </Text>
       </Container>
     </Body>
@@ -75,57 +63,54 @@ export default Email;
 
 const main = {
   backgroundColor: '#ffffff',
+  fontFamily:
+    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
 };
 
 const container = {
-  paddingLeft: '12px',
-  paddingRight: '12px',
+  margin: '0 auto',
+  padding: '20px 0 48px',
+};
+
+const logo = {
   margin: '0 auto',
 };
 
-const h1 = {
-  color: '#333',
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-  fontSize: '24px',
-  fontWeight: 'bold',
-  margin: '40px 0',
-  padding: '0',
+const paragraph = {
+  fontSize: '16px',
+  lineHeight: '26px',
 };
 
-const link = {
-  color: '#2754C5',
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-  fontSize: '14px',
-  textDecoration: 'underline',
+const btnContainer = {
+  textAlign: 'center',
 };
 
-const text = {
-  color: '#333',
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-  fontSize: '14px',
-  margin: '24px 0',
+const button = {
+  backgroundColor: '#0e902e',
+  borderRadius: '3px',
+  color: '#fff',
+  fontSize: '16px',
+  textDecoration: 'none',
+  textAlign: 'center',
+  display: 'block',
+};
+
+const hr = {
+  borderColor: '#cccccc',
+  margin: '20px 0',
 };
 
 const footer = {
-  color: '#898989',
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  color: '#8898aa',
   fontSize: '12px',
-  lineHeight: '22px',
-  marginTop: '12px',
-  marginBottom: '24px',
 };
 
-const code = {
-  display: 'inline-block',
-  padding: '16px 4.5%',
-  width: '90.5%',
-  backgroundColor: '#f4f4f4',
-  borderRadius: '5px',
-  border: '1px solid #eee',
-  color: '#333',
+const  heading = {
+  fontSize: '32px',
+  lineHeight: '1.3',
+  fontWeight: '700',
+  textAlign: 'center',
+  letterSpacing: '-1px',
+  color: 'linear-gradient(rgba(222, 53, 76, 0.8), rgba(226, 123, 27, 0.8))'
 };
 

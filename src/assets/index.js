@@ -35,5 +35,5 @@ export {
     instagram,
     messenger,
     kainorastis,
-    waterDrop
+    waterDrop,
 };
