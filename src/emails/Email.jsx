@@ -48,7 +48,7 @@ export const Email = () => (
           Deimantinis gręžimas
         </Text>
         <Hr style={hr} />
-        <Text style={footer}>Zaibo g. 350d ,Peter <br />
+        <Text style={footer}>Zaibo g. 350 ,Peter <br />
           +650 451321123 <br />
 
 

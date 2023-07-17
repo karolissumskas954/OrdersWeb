@@ -42,7 +42,7 @@ async function sendEmail() {
       const data = await resend.emails.send({
         from: 'x@x.dev', //need change
         to: 'x@gmail.com', //change this
-        subject: 'Hello World', //change
+        subject: 'Deimantinis gręžimas', //change
         react: Email(),
       });
       console.log(data);
