@@ -72,6 +72,7 @@ const CalcTable = () => {
 
     function totalSum() {
         var result = data.reduce((total, currentValue) => total = total + currentValue.prix, 0)
+        console.log(data)
         setPriceWithoutPVM(result)
         
     }
@@ -85,6 +86,7 @@ const CalcTable = () => {
 
         function calculateRowPrice() { // Sumos skaičiavimas
             setTotal(0) // Nustatome sumos kainą į 0, nes jei įvyksta klaida gautume sumą 0
+
             var num = 0 // Atributas kuris parodo kurį tipą naudojame skaičiavimui
             if (type === prices[0].title) { // Jei tipas yra "Plytos, Mūras, Tinkas"
                 var num = 0;
@@ -138,8 +140,7 @@ const CalcTable = () => {
                     }
                 }
             })
-
-            if (total == 0 || isNaN(total)){
+            if (!isValidDiameter || isNaN(total) || !isValidDepth || !isValidAmount){
                 sets(numberIndex, 0);
             }
 
@@ -212,8 +213,8 @@ const CalcTable = () => {
         const [box4, setBox4] = useState(false)
 
         useEffect(() => {
-            calculateRowPrice();
             diameterCheck(diameter);
+            calculateRowPrice();
         }, [depth, diameter, amount, type, box1, box2, box3, box4])
 
         return (
@@ -222,10 +223,10 @@ const CalcTable = () => {
                 ref={menu}
                 className="border-b">
                 <td className="max-w-[20px] min-w-[20px] ">
-                    <input type="text" placeholder="" onChange={handleAmount} value={amount} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full  ${isValidAmount ? 'text-black' : 'text-red'}`} />
+                    <input type="text" placeholder="" onChange={handleAmount} value={amount} className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full  ${isValidAmount ? 'text-black' : 'text-red'}`} />
                 </td>
                 <td className="max-w-[160px] min-w-[160px]">
-                    <input type="text" placeholder="" onChange={handleDiameter} value={diameter} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'} `} />
+                    <input type="text" placeholder="" onChange={handleDiameter} value={diameter} className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'} `} />
                 </td>
                 <td className="max-w-[300px] min-w-[300px]">
                     <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-greyDarker hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center  w-full" type="button">{type}<svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
@@ -244,14 +245,11 @@ const CalcTable = () => {
                     </div>
                 </td>
                 <td className="max-w-[100px] min-w-[100px]">
-                    <input type="text" placeholder="" onChange={handleDepth} value={depth} className={`whitespace-nowrap border-r font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`} />
+                    <input type="text" placeholder="" onChange={handleDepth} value={depth} className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`} />
                 </td>
                 <td className="max-w-[220px] min-w-[220px]">
-                    <button onClick={() => setToggleBox((prev) => !prev)} className="text-white bg-greyDarker hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full" type="button">
+                    <button onClick={() => setToggleBox((prev) => !prev)} className={`text-white hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full ${box1 || box2 || box3 || box4 ? 'bg-black' : 'bg-greyDarker'}`} type="button">
                         <p className='mr-2'>Paslaugos</p> 
-                        {/* {<p className='px-1 py-1 rounded-xl bg-green text-white'>💧</p>} */}
-                        {/* {<img src={waterDrop} className='px-1 py-1 rounded-xl  max-w-[28px] min-w-[15px]'/>} */}
-                        
                         <svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div className={`${toggleBox ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[90px]`}>
                         <ul className="p-3 space-y-3 text-sm text-gray-700" aria-labelledby="dropdownCheckboxButton">
@@ -283,7 +281,7 @@ const CalcTable = () => {
                     </div>
                 </td>
                 <td className="max-w-[150px] min-w-[150px]">
-                    <p className='whitespace-nowrap border-l font-poppins text-[14px] sm:text-[18px] px-2 py-1 sm:px-8 sm:py-2 w-full text-black'>{total.toFixed(2)} €</p>
+                    <p className='whitespace-nowrap border-l font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-8 sm:py-2 w-full text-black'>{total.toFixed(2)} €</p>
                 </td>
             </tr>
 
@@ -291,7 +289,8 @@ const CalcTable = () => {
     }
 
     return (
-        <div className=" sm:-mx-6 mx-8 lg:-mx-8 items-center">
+        <>
+        <div className=" sm:-mx-6 mx-8 lg:-mx-8 items-center ">
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className="shadow-md sm:rounded-lg ">
                         <div className='overflow-x-auto'>
@@ -330,7 +329,7 @@ const CalcTable = () => {
                         </table>
                         </div>
                     </div>
-                    <div className='my-8  flex justify-end w-full'>
+                    <div className='my-8  flex justify-end w-full max-sm:hidden'>
                         <div className=' justify-start w-full'>
                             <h3 className="mb-4 font-poppins text-black text-[20px]">Papildomos paslaugos:</h3>
                             <ul className="w-[70%] font-poppins text-black bg-white border border-gray-200 rounded-lg ">
@@ -356,6 +355,50 @@ const CalcTable = () => {
                                     <div className="flex items-center pl-3 w-full">
                                         <label className="w-[70%] py-3 ml-2 text-[18px] font-poppins text-black">Monolito gręžimas sausai</label>
                                         <label className="w-[30%] py-3 ml-2 text-[18px] font-poppins text-white bg-black rounded-lg text-center">+100% Sumos</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className='justify-end w-[45%]'>
+
+                            <p className='text-black font-poppins text-[20px] mt-32'>Suma be PVM: {priceWithoutPVM.toFixed(2)} €</p>
+                            <p className='text-black font-poppins text-[20px]'>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
+                            <div className='flex flex-row'>
+                                <button onClick={() => totalSum()} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5 mr-4" type='button'>Skaičiuoti</button>
+                                <button onClick={() => handleOpen()} className="text-white bg-green hover:bg-darkGreen font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5" type='button'>Užsisakyti</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div className='my-8  flex justify-end w-full sm:hidden'>
+                        <div className=' justify-start w-full'>
+                            <h3 className="mb-4 font-poppins text-black text-[16px]">Papildomos paslaugos:</h3>
+                            <ul className="w-[70%] font-poppins text-black bg-white border border-gray-200 rounded-lg ">
+                                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                                    <div className="flex items-center pl-3 w-full">
+                                        <label className="w-[70%] py-3 ml-2 text-sm font-poppins text-black">Gręžimas virš 2 metrų horizontaliai</label>
+                                        <label className="w-[30%] py-3 ml-2 text-sm font-poppins text-white bg-black rounded-lg text-center">+10% Sumos</label>
+                                    </div>
+                                </li>
+                                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                                    <div className="flex items-center pl-3 w-full">
+                                        <label className="w-[70%] py-3 ml-2 text-sm font-poppins text-black">Gręžimas su purvo nusiurbimu</label>
+                                        <label className="w-[30%] py-3 ml-2 text-sm font-poppins text-white bg-black rounded-lg text-center">+30% Sumos</label>
+                                    </div>
+                                </li>
+                                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                                    <div className="flex items-center pl-3 w-full">
+                                        <label className="w-[70%] py-3 ml-2 text-sm font-poppins text-black">Plytų, mūro, tinko gręžimas sausai</label>
+                                        <label className="w-[30%] py-3 ml-2 text-sm font-poppins text-white bg-black rounded-lg text-center">+40% Sumos</label>
+                                    </div>
+                                </li>
+                                <li className="w-full border-b border-gray-200 rounded-t-lg ">
+                                    <div className="flex items-center pl-3 w-full">
+                                        <label className="w-[70%] py-3 ml-2 text-sm font-poppins text-black">Monolito gręžimas sausai</label>
+                                        <label className="w-[30%] py-3 ml-2 text-sm font-poppins text-white bg-black rounded-lg text-center">+100% Sumos</label>
                                     </div>
                                 </li>
                             </ul>
@@ -399,6 +442,10 @@ const CalcTable = () => {
 
             <ToastContainer />
         </div>
+
+        </>
+
+        
     )
 }
 
