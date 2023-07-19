@@ -16,7 +16,7 @@ const Prices = () => (
     </div>
 
     <section>
-      <div className={`bg-background ${styles.flexStart} max-sm:hidden`}>
+      <div className={`bg-background ${styles.flexStart} max-md:hidden`}>
         <div className={`${styles.boxWidth} flex flex-row`}>
           <div className=" w-1/2">
             <PriceDetails/>
@@ -27,15 +27,15 @@ const Prices = () => (
         </div>
       </div>
 
-      <div className={`bg-background ${styles.flexStart} sm:hidden`}>
-        <div className={`${styles.boxWidth} flex flex-col mx-3`}>
+      <div className={`bg-background ${styles.flexStart} md:hidden`}>
+        <div className={`${styles.boxWidth} flex flex-col mx-3 mb-5`}>
             <PriceDetails/>
             <PDFDisplay />
         </div>
       </div>
     </section>
 
-    <div className={`bg-background ${styles.paddingX} ${styles.flexStart}`}>
+    <div className={`bg-background  ${styles.flexStart}`}>
       <div className={`${styles.boxWidth} `}>
         <div className={`${styles.paddingY1}`}>
           <Footer />

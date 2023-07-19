@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styles from '../style'
 import { check, shield, plus, person, icon, icon_active } from '../assets'
 import { statsLT } from '../constants'
-
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
@@ -10,17 +9,13 @@ import 'swiper/swiper.min.css';
 SwiperCore.use([Navigation, Pagination]);
 
 const Stats = () => {
-
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-
   const handleSlideChange = (swiper) => {
     setActiveSlideIndex(swiper.activeIndex);
   };
-
   return (
     // Desktop
     <section className={`${styles.paddingX1}`}>
-
       {/* //Tablet */}
       <div className="swiper-container  max-sm:hidden">
       <Swiper
@@ -73,8 +68,6 @@ const Stats = () => {
         </div>
       </div>
     </div>
-
-
     {/* Phone */}
     <div className="swiper-container  sm:hidden">
       <Swiper
@@ -130,7 +123,6 @@ const Stats = () => {
         </div>
       </div>
     </div>
-
     </section>
   )
 }

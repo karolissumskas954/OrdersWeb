@@ -1,5 +1,5 @@
 import styles from "../style"
-import { heroImage, smallHero, smallHero2} from "../assets"
+import { heroImage, smallHero2} from "../assets"
 import { navLinksLT, headlineLT, headlineBottomLT, contactsLT } from '../constants';
 import { Link } from "react-router-dom";
 

@@ -5,8 +5,6 @@ import menu from './menu.svg';
 import person from './person1.svg';
 import plus from './plus1.svg';
 import shield from './shield1.svg';
-import logo from './logo.svg';
-import smallHero from './smallHero.png'
 import smallHero2 from './smallHero2.svg'
 import icon from './icon.svg';
 import icon_active from './icon-active.svg';
@@ -15,7 +13,6 @@ import twitter from './Twitter.svg';
 import instagram from './Instagram.svg'
 import messenger from './Messenger.svg';
 import kainorastis from './kainorastis.pdf';
-import waterDrop from './waterDrop.svg';
 
 export {
     check,
@@ -25,8 +22,6 @@ export {
     person,
     plus,
     shield,
-    logo,
-    smallHero,
     smallHero2,
     icon,
     icon_active,
@@ -35,5 +30,4 @@ export {
     instagram,
     messenger,
     kainorastis,
-    waterDrop,
 };

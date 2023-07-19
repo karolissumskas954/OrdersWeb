@@ -29,7 +29,7 @@ const Calculator = () => (
         </div>
       </div>
 
-    <div className={`bg-background ${styles.paddingX} ${styles.flexStart} `}>
+    <div className={`bg-background  ${styles.flexStart} `}>
       <div className={`${styles.boxWidth}  `}>
         <div className={`${styles.paddingY1} xl:max-w-[1280px] w-full`}>
           <div className="sm:hidden sticky top-[90vh] w-full">

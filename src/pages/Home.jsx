@@ -15,10 +15,10 @@ const App = () => (
       </div>
     </div>
 
-    <div className={`bg-background ${styles.paddingX} ${styles.flexStart}`}>
+    <div className={`bg-background ${styles.flexStart}`}>
       <div className={`${styles.boxWidth} `}>
         <Stats />
-        <div className={`${styles.paddingY1}`}>
+        <div className={`${styles.paddingY1} `}>
           <Questions />
           <Footer />
         </div>

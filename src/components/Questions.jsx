@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { questionLT } from '../constants'
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -16,7 +15,6 @@ const Questions = () => {
   function emailCheck(str) {
     return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi.test(str);
   }
-
   const handleName = event => {
     setName(event.target.value);
     setIsValidName(false);
@@ -42,10 +40,8 @@ const Questions = () => {
     }).catch((error)=> {
       console.log(error.message);
     })
-
   }
   const handleOpen = () => {
-
     if (name == '' || email == '' || text == '' || !emailCheck(email)) {
       setIsValidName(true);
       setIsValidEmail(true);
@@ -73,7 +69,6 @@ const Questions = () => {
           return;
         }
       }
-
       toast.warn('Užpildykite visus laukus', {
         position: "top-right",
         autoClose: 5000,
@@ -84,19 +79,14 @@ const Questions = () => {
         progress: undefined,
         theme: "dark",
       });
-
     } else {
-
-
       sendEmail();
-
       setIsValidName(false);
       setIsValidEmail(false);
       setIsValidText(false);
       setName("");
       setEmail("");
       setText("");
-
       toast.success('Jūsų žinutė sėkmingai išsiųsta!', {
         position: "top-right",
         autoClose: 5000,
@@ -119,7 +109,6 @@ const Questions = () => {
         <div className="w-1/2 text-center">
           <div className="flex justify-center items-center">
             <div className="w-1/2 text-right mx-1">
-
               <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2  rounded-md w-[70%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
             <div className="w-1/2 text-left mx-1">
@@ -130,10 +119,8 @@ const Questions = () => {
           <div className='flex'>
           <a onClick={handleOpen} className='p-4 font-poppins cursor-pointer underline text-white text-[20px] text-left mx-[13%] mt-[-25px]'>Siųsti</a>
           </div>
-         
         </div>
       </div>
-
       <div className="flex justify-center items-center bg-green-gradient rounded-[20px] h-[200%] max-sm:hidden min-[1060px]:hidden ">
         <div className="w-1/2 text-left">
           <h1 className='p-4 font-poppins font-bold max-w-[80%] text-white text-[50px] ml-12 mt-10'>{questionLT[0].title}</h1>
@@ -153,13 +140,8 @@ const Questions = () => {
           <div className='flex'>
           <a onClick={handleOpen} className='p-4 font-poppins cursor-pointer underline text-white text-[16px] text-left mx-[12%] mt-[-25px]'>Siųsti</a>
           </div>
-         
-          
-
-          
         </div>
       </div>
-      
       <div className="flex flex-col justify-center items-center bg-green-gradient rounded-[28px] h-[200%] sm:hidden ">
         <h1 className='p-4 font-poppins font-bold text-white text-[30px]'>{questionLT[0].title}</h1>
         <p className='p-4 font-poppins font-regular text-white text-[18px] mt-[-30px]'>{questionLT[1].title}</p>

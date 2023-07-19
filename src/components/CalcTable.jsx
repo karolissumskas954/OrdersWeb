@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { prices } from "../constants"
-import { waterDrop } from '../assets';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,11 +16,9 @@ const CalcTable = () => {
             theme: "dark", //colored
         });
     }
-
     function containsOnlyNumbers(str) {
         return /^([0-9]+)*([0-9]+)$/.test(str);
     }
-
     var rowPrice = [
         {
             id: 0,
@@ -72,9 +68,8 @@ const CalcTable = () => {
 
     function totalSum() {
         var result = data.reduce((total, currentValue) => total = total + currentValue.prix, 0)
-        console.log(data)
         setPriceWithoutPVM(result)
-        
+
     }
 
     function tableRow(numberIndex) {
@@ -140,7 +135,7 @@ const CalcTable = () => {
                     }
                 }
             })
-            if (!isValidDiameter || isNaN(total) || !isValidDepth || !isValidAmount){
+            if (!isValidDiameter || isNaN(total) || !isValidDepth || !isValidAmount) {
                 sets(numberIndex, 0);
             }
 
@@ -218,234 +213,208 @@ const CalcTable = () => {
         }, [depth, diameter, amount, type, box1, box2, box3, box4])
 
         return (
-
-            <tr
-                ref={menu}
-                className="border-b">
-                <td className="max-w-[20px] min-w-[20px] ">
-                    <input type="text" placeholder="" onChange={handleAmount} value={amount} className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full  ${isValidAmount ? 'text-black' : 'text-red'}`} />
+            <tr ref={menu} className="border-b ">
+                <td className="min-w-[20px]">
+                    <input
+                        type="text"
+                        placeholder=""
+                        onChange={handleAmount}
+                        value={amount}
+                        className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidAmount ? 'text-black' : 'text-red'}`}
+                    />
                 </td>
-                <td className="max-w-[160px] min-w-[160px]">
-                    <input type="text" placeholder="" onChange={handleDiameter} value={diameter} className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'} `} />
+                <td className="min-w-[160px]">
+                    <input
+                        type="text"
+                        placeholder=""
+                        onChange={handleDiameter}
+                        value={diameter}
+                        className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'}`}
+                    />
                 </td>
-                <td className="max-w-[300px] min-w-[300px]">
-                    <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-greyDarker hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center  w-full" type="button">{type}<svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                    <div className={`${toggle ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[250px] `}>
+                <td className="min-w-[300px]">
+                    <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-greyDarker hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full" type="button">
+                        {type}
+                        <svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div className={`${toggle ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[250px]`}>
                         <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
-                            <li>
-                                <a href="#" onClick={() => setDropdown(prices[0].title)} className="block px-4 py-2 font-poppins text-sm hover:bg-gray-200">{prices[0].title}</a>
-                            </li>
-                            <li>
-                                <a href="#" onClick={() => setDropdown(prices[1].title)} className="block px-4 py-2 font-poppins text-sm hover:bg-gray-200">{prices[1].title}</a>
-                            </li>
-                            <li>
-                                <a href="#" onClick={() => setDropdown(prices[2].title)} className="block px-4 py-2 font-poppins text-sm hover:bg-gray-200">{prices[2].title}</a>
-                            </li>
+                            {prices.map((price, index) => (
+                                <li key={index}>
+                                    <a href="#" onClick={() => setDropdown(price.title)} className="block px-4 py-2 font-poppins text-sm hover:bg-gray-200">
+                                        {price.title}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </td>
-                <td className="max-w-[100px] min-w-[100px]">
-                    <input type="text" placeholder="" onChange={handleDepth} value={depth} className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`} />
+                <td className="min-w-[100px]">
+                    <input
+                        type="text"
+                        placeholder=""
+                        onChange={handleDepth}
+                        value={depth}
+                        className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`}
+                    />
                 </td>
-                <td className="max-w-[220px] min-w-[220px]">
-                    <button onClick={() => setToggleBox((prev) => !prev)} className={`text-white hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full ${box1 || box2 || box3 || box4 ? 'bg-black' : 'bg-greyDarker'}`} type="button">
-                        <p className='mr-2'>Paslaugos</p> 
-                        <svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                    <div className={`${toggleBox ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[90px]`}>
+                <td className="min-w-[220px]">
+                    <button
+                        onClick={() => setToggleBox((prev) => !prev)}
+                        className={`text-white hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full ${box1 || box2 || box3 || box4 ? 'bg-black' : 'bg-greyDarker'}`}
+                        type="button"
+                    >
+                        <p className="mr-2">Paslaugos</p>
+                        <svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div className={`${toggleBox ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[90px] `}>
                         <ul className="p-3 space-y-3 text-sm text-gray-700" aria-labelledby="dropdownCheckboxButton">
                             <li>
                                 <div className="flex items-center w-full">
-                                    <input onClick={() => setBox1((prev) => !prev)} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 " />
+                                    <input
+                                        onClick={() => setBox1((prev) => !prev)}
+                                        type="checkbox"
+                                        value=""
+                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                    />
                                     <label className="px-2 py-1 font-poppins text-sm ">Gręžimas virš 2 metrų horizontaliai</label>
                                 </div>
                             </li>
                             <li>
                                 <div className="flex items-center w-full">
-                                    <input onClick={() => setBox2((prev) => !prev)} disabled={box3 || box4} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 " />
+                                    <input
+                                        onClick={() => setBox2((prev) => !prev)}
+                                        disabled={box3 || box4}
+                                        type="checkbox"
+                                        value=""
+                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                    />
                                     <label className="px-2 py-1 font-poppins text-sm">Gręžimas su purvo nusiurbimu</label>
                                 </div>
                             </li>
                             <li>
-                                <div className={`flex items-center w-full ${type != prices[0].title ? 'hidden' : 'flex'}`}>
-                                    <input onClick={() => setBox3((prev) => !prev)} disabled={box2} type="checkbox" value="" className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 `} />
+                                <div className={`flex items-center w-full ${type !== prices[0].title ? 'hidden' : 'flex'}`}>
+                                    <input
+                                        onClick={() => setBox3((prev) => !prev)}
+                                        disabled={box2}
+                                        type="checkbox"
+                                        value=""
+                                        className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2`}
+                                    />
                                     <label className="px-2 py-1 font-poppins text-sm ">Plytų, mūro, tinko gręžimas sausai</label>
                                 </div>
                             </li>
                             <li>
-                                <div className={`flex items-center w-full ${type != prices[2].title ? 'hidden' : 'flex'} `}>
-                                    <input onClick={() => setBox4((prev) => !prev)} disabled={box2} type="checkbox" value="" className={` w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 `} />
+                                <div className={`flex items-center w-full ${type !== prices[2].title ? 'hidden' : 'flex'}`}>
+                                    <input
+                                        onClick={() => setBox4((prev) => !prev)}
+                                        disabled={box2}
+                                        type="checkbox"
+                                        value=""
+                                        className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2`}
+                                    />
                                     <label className="px-2 py-1 font-poppins text-sm ">Monolito gręžimas sausai</label>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </td>
-                <td className="max-w-[150px] min-w-[150px]">
-                    <p className='whitespace-nowrap border-l font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-8 sm:py-2 w-full text-black'>{total.toFixed(2)} €</p>
+                <td className="min-w-[150px]">
+                    <p className="whitespace-nowrap border-l font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-8 sm:py-2 w-full text-black">
+                        {total.toFixed(2)} €
+                    </p>
                 </td>
             </tr>
-
         )
     }
 
     return (
         <>
-        <div className=" sm:-mx-6 mx-8 lg:-mx-8 items-center ">
-            <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div className=" sm:-mx-6 mx-8 lg:-mx-8 items-center ">
+                <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className="shadow-md sm:rounded-lg ">
                         <div className='overflow-x-auto'>
-                        <table className="w-full text-sm text-left text-blue-100 min-w-full">
-                            <thead className="text-sm text-white  bg-black border-b">
-                                <tr>
-                                    <th scope="col" className="px-2 py-3 font-poppins">
-                                        Kiekis
-                                    </th>
-                                    <th scope="col" className="px-2 py-3 font-poppins">
-                                    Diametras(ø mm)
-                                    </th>
-                                    <th scope="col" className="px-2 py-3 font-poppins">
-                                    Tipas
-                                    </th>
-                                    <th scope="col" className="px-2 py-3 font-poppins">
-                                    Gylis(cm)
-                                    </th>
-                                    <th scope="col" className="px-2 py-3 font-poppins">
-                                    Papildomos paslaugos
-                                    </th>
-                                    <th scope="col" className="px-2 py-3 font-poppins">
-                                    Suma
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className='whitespace-no-wrap'>
-                               
+                            <table className="w-full text-sm text-left text-blue-100 min-w-full">
+                                <thead className="text-sm text-white  bg-black border-b">
+                                    <tr>
+                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                            Kiekis
+                                        </th>
+                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                            Diametras(ø mm)
+                                        </th>
+                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                            Tipas
+                                        </th>
+                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                            Gylis(cm)
+                                        </th>
+                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                            Papildomos paslaugos
+                                        </th>
+                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                            Suma
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className='whitespace-no-wrap'>
                                     {tableRow(0)}
                                     {tableRow(1)}
                                     {tableRow(2)}
                                     {tableRow(3)}
                                     {tableRow(4)}
                                     {tableRow(5)}
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div className='my-8  flex justify-end w-full max-sm:hidden'>
+                    <div className='my-8  flex justify-end w-full '>
                         <div className=' justify-start w-full'>
                             <h3 className="mb-4 font-poppins text-black text-[20px]">Papildomos paslaugos:</h3>
                             <ul className="w-[70%] font-poppins text-black bg-white border border-gray-200 rounded-lg ">
                                 <li className="w-full border-b border-gray-200 rounded-t-lg ">
-                                    <div className="flex items-center pl-3 w-full">
-                                        <label className="w-[70%] py-3 ml-2 text-[18px] font-poppins text-black">Gręžimas virš 2 metrų horizontaliai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-[18px] font-poppins text-white bg-black rounded-lg text-center">+10% Sumos</label>
+                                    <div className="flex items-center pl-3 w-full text-[18px] font-poppins">
+                                        <label className="w-[70%] py-3 ml-2 text-black">Gręžimas virš 2 metrų horizontaliai</label>
+                                        <label className="w-[30%] py-3 ml-2 text-white bg-black rounded-lg text-center">+10% Sumos</label>
                                     </div>
                                 </li>
                                 <li className="w-full border-b border-gray-200 rounded-t-lg ">
-                                    <div className="flex items-center pl-3 w-full">
-                                        <label className="w-[70%] py-3 ml-2 text-[18px] font-poppins text-black">Gręžimas su purvo nusiurbimu</label>
-                                        <label className="w-[30%] py-3 ml-2 text-[18px] font-poppins text-white bg-black rounded-lg text-center">+30% Sumos</label>
+                                    <div className="flex items-center pl-3 w-full text-[18px] font-poppins">
+                                        <label className="w-[70%] py-3 ml-2 text-black">Gręžimas su purvo nusiurbimu</label>
+                                        <label className="w-[30%] py-3 ml-2 text-white bg-black rounded-lg text-center">+30% Sumos</label>
                                     </div>
                                 </li>
                                 <li className="w-full border-b border-gray-200 rounded-t-lg ">
-                                    <div className="flex items-center pl-3 w-full">
-                                        <label className="w-[70%] py-3 ml-2 text-[18px] font-poppins text-black">Plytų, mūro, tinko gręžimas sausai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-[18px] font-poppins text-white bg-black rounded-lg text-center">+40% Sumos</label>
+                                    <div className="flex items-center pl-3 w-full text-[18px] font-poppins">
+                                        <label className="w-[70%] py-3 ml-2 text-black">Plytų, mūro, tinko gręžimas sausai</label>
+                                        <label className="w-[30%] py-3 ml-2 text-white bg-black rounded-lg text-center">+40% Sumos</label>
                                     </div>
                                 </li>
                                 <li className="w-full border-b border-gray-200 rounded-t-lg ">
-                                    <div className="flex items-center pl-3 w-full">
-                                        <label className="w-[70%] py-3 ml-2 text-[18px] font-poppins text-black">Monolito gręžimas sausai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-[18px] font-poppins text-white bg-black rounded-lg text-center">+100% Sumos</label>
+                                    <div className="flex items-center pl-3 w-full text-[18px] font-poppins">
+                                        <label className="w-[70%] py-3 ml-2 text-black">Monolito gręžimas sausai</label>
+                                        <label className="w-[30%] py-3 ml-2 text-white bg-black rounded-lg text-center">+100% Sumos</label>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-
                         <div className='justify-end w-[45%]'>
-
                             <p className='text-black font-poppins text-[20px] mt-32'>Suma be PVM: {priceWithoutPVM.toFixed(2)} €</p>
                             <p className='text-black font-poppins text-[20px]'>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
                             <div className='flex flex-row'>
                                 <button onClick={() => totalSum()} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5 mr-4" type='button'>Skaičiuoti</button>
                                 <button onClick={() => handleOpen()} className="text-white bg-green hover:bg-darkGreen font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5" type='button'>Užsisakyti</button>
                             </div>
-
                         </div>
-
                     </div>
-
-                    <div className='my-8  flex justify-end w-full sm:hidden'>
-                        <div className=' justify-start w-full'>
-                            <h3 className="mb-4 font-poppins text-black text-[16px]">Papildomos paslaugos:</h3>
-                            <ul className="w-[70%] font-poppins text-black bg-white border border-gray-200 rounded-lg ">
-                                <li className="w-full border-b border-gray-200 rounded-t-lg ">
-                                    <div className="flex items-center pl-3 w-full">
-                                        <label className="w-[70%] py-3 ml-2 text-sm font-poppins text-black">Gręžimas virš 2 metrų horizontaliai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-sm font-poppins text-white bg-black rounded-lg text-center">+10% Sumos</label>
-                                    </div>
-                                </li>
-                                <li className="w-full border-b border-gray-200 rounded-t-lg ">
-                                    <div className="flex items-center pl-3 w-full">
-                                        <label className="w-[70%] py-3 ml-2 text-sm font-poppins text-black">Gręžimas su purvo nusiurbimu</label>
-                                        <label className="w-[30%] py-3 ml-2 text-sm font-poppins text-white bg-black rounded-lg text-center">+30% Sumos</label>
-                                    </div>
-                                </li>
-                                <li className="w-full border-b border-gray-200 rounded-t-lg ">
-                                    <div className="flex items-center pl-3 w-full">
-                                        <label className="w-[70%] py-3 ml-2 text-sm font-poppins text-black">Plytų, mūro, tinko gręžimas sausai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-sm font-poppins text-white bg-black rounded-lg text-center">+40% Sumos</label>
-                                    </div>
-                                </li>
-                                <li className="w-full border-b border-gray-200 rounded-t-lg ">
-                                    <div className="flex items-center pl-3 w-full">
-                                        <label className="w-[70%] py-3 ml-2 text-sm font-poppins text-black">Monolito gręžimas sausai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-sm font-poppins text-white bg-black rounded-lg text-center">+100% Sumos</label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className='justify-end w-[45%]'>
-
-                            <p className='text-black font-poppins text-[20px] mt-32'>Suma be PVM: {priceWithoutPVM.toFixed(2)} €</p>
-                            <p className='text-black font-poppins text-[20px]'>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
-                            <div className='flex flex-row'>
-                                <button onClick={() => totalSum()} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5 mr-4" type='button'>Skaičiuoti</button>
-                                <button onClick={() => handleOpen()} className="text-white bg-green hover:bg-darkGreen font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5" type='button'>Užsisakyti</button>
-                            </div>
-
-                        </div>
-
-                    </div>
+                </div>
+                <ToastContainer />
             </div>
-            {/* <div>
-                <Fragment >
-                    <Dialog open={open} handler={handleOpen} className='w-[90%] sm:w-[40%]'>
-                        <DialogBody divider className="grid place-items-center gap-4">
-                            <Typography color="red" variant="h4" className="font-poppins">
-                                Jūsų užsakymas pateiktas!
-                            </Typography>
-                            <Typography className="text-center font-poppins">
-                                Netrukus su jumis susisieksime.
-                            </Typography>
-                        </DialogBody>
-                        <DialogFooter className="space-x-2 items-center">
-                            <Button variant="text" color="gray" onClick={handleOpen} className='font-poppins outline-red'>
-                                Išeiti
-                            </Button>
-                            <Button variant="text" color="white" onClick={handleOpen} className='font-poppins bg-green outline-none'>
-                                TĘSTI
-                            </Button>
-                        </DialogFooter>
-                    </Dialog>
-                </Fragment>
-            </div> */}
-
-            <ToastContainer />
-        </div>
-
         </>
-
-        
     )
 }
 
