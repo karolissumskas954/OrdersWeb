@@ -1,9 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, Fragment } from 'react'
 import { prices } from "../constants"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Dialog, Transition } from '@headlessui/react'
 
 const CalcTable = () => {
+
+    let [isOpen, setIsOpen] = useState(false)
+
+    function closeModal() {
+        setIsOpen(false)
+    }
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
     const handleOpen = () => {
         toast.success('Užsakymas pateiktas!', {
             position: "top-right",
@@ -233,7 +245,7 @@ const CalcTable = () => {
                     />
                 </td>
                 <td className="min-w-[300px]">
-                    <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-greyDarker hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full" type="button">
+                    <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-greyDarker hover:bg-gradient-to-r from-darkGreen to-mediumGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full" type="button">
                         {type}
                         <svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
@@ -263,7 +275,7 @@ const CalcTable = () => {
                 <td className="min-w-[220px]">
                     <button
                         onClick={() => setToggleBox((prev) => !prev)}
-                        className={`text-white hover:bg-darkGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full ${box1 || box2 || box3 || box4 ? 'bg-black' : 'bg-greyDarker'}`}
+                        className={`text-white hover:bg-gradient-to-r from-darkGreen to-mediumGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full ${box1 || box2 || box3 || box4 ? 'bg-black ' : 'bg-greyDarker'}`}
                         type="button"
                     >
                         <p className="mr-2">Paslaugos</p>
@@ -406,13 +418,71 @@ const CalcTable = () => {
                             <p className='text-black font-poppins text-[20px] mt-32'>Suma be PVM: {priceWithoutPVM.toFixed(2)} €</p>
                             <p className='text-black font-poppins text-[20px]'>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
                             <div className='flex flex-row'>
-                                <button onClick={() => totalSum()} className="text-white bg-blue-700 hover:bg-blue-800 font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5 mr-4" type='button'>Skaičiuoti</button>
-                                <button onClick={() => handleOpen()} className="text-white bg-green hover:bg-darkGreen font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5" type='button'>Užsisakyti</button>
+                                <button onClick={() => totalSum()} className="text-white bg-black hover:bg-gradient-to-r from-black to-greyDarker font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5 mr-4" type='button'>Skaičiuoti</button>
+                                <button onClick={() => openModal()} className="text-white bg-mediumGreen hover:bg-gradient-to-r from-mediumGreen to-black font-poppins rounded-lg px-4 py-2.5 text-center inline-flex items-center text-[18px] mt-5" type='button'>Užsisakyti</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <ToastContainer />
+
+                <Transition appear show={isOpen} as={Fragment}>
+                    <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <div className="fixed inset-0 bg-black bg-opacity-50" />
+                        </Transition.Child>
+
+                        <div className="fixed inset-0 overflow-y-auto">
+                            <div className="flex min-h-full items-center justify-center p-4 text-center">
+                                <Transition.Child
+                                    as={Fragment}
+                                    enter="ease-out duration-300"
+                                    enterFrom="opacity-0 scale-95"
+                                    enterTo="opacity-100 scale-100"
+                                    leave="ease-in duration-200"
+                                    leaveFrom="opacity-100 scale-100"
+                                    leaveTo="opacity-0 scale-95"
+                                >
+                                    <Dialog.Panel className="w-full max-w-[70%] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                        {/* <Dialog.Title
+                                            as="h3"
+                                            className="text-lg font-medium leading-6 text-gray-900 text-center"
+                                        >
+                                            Užsakymas
+                                        </Dialog.Title> */}
+                                        <div className="mt-2">
+                                            <p className="text-sm text-gray-500">
+                                                Your payment has been successfully submitted. We’ve sent
+                                                you an email with all of the details of your order.
+                                            </p>
+                                        </div>
+
+                                        <div className="mt-4">
+                                            <button
+                                                type="button"
+                                                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                                onClick={closeModal}
+                                            >
+                                                Got it, thanks!
+                                            </button>
+                                        </div>
+                                    </Dialog.Panel>
+                                </Transition.Child>
+                            </div>
+                        </div>
+                    </Dialog>
+                </Transition>
+
+
+
             </div>
         </>
     )

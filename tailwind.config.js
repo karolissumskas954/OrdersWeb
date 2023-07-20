@@ -18,7 +18,9 @@ module.exports = {
         white: "#f5f5f7",
         greyLighter: "#c7c7c7",
         red: "#d74b4b",
-        lightRed: "#db5d5d"
+        lightRed: "#db5d5d",
+        lightGreen: '#56b16c',
+        mediumGreen: '#397748'
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

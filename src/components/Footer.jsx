@@ -13,8 +13,8 @@ const Footer = () => {
     <>
       <div className='bg-black h-[100%] rounded-[20px] max-sm:hidden mt-[-35px] flex flex-row justify-center'>
         <div className='flex flex-row justify-start items-center w-1/4 ml-4'>
-        <Link to='/contacts' className='p-4 md:flex hidden font-poppins text-greyLighter text-[18px]'>{footerLT[0].title}</Link>
-        <Link to='/prices' className='p-4 md:flex hidden font-poppins text-greyLighter text-[18px]'>{footerLT[1].title}</Link>
+        <Link to='/contacts' className='p-4 md:flex hidden font-poppins text-greyLighter hover:text-mediumGreen text-[18px]'>{footerLT[0].title}</Link>
+        <Link to='/prices' className='p-4 md:flex hidden font-poppins text-greyLighter hover:text-mediumGreen text-[18px]'>{footerLT[1].title}</Link>
         <Link to='/contacts' className='p-2 md:hidden font-poppins text-greyLighter text-[16px]'>{footerLT[0].title}</Link>
         <Link to='/prices' className='p-2 md:hidden font-poppins text-greyLighter text-[16px]'>{footerLT[1].title}</Link>
         </div>

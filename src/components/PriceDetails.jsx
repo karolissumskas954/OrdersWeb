@@ -26,7 +26,7 @@ const PriceDetails = () => {
                     <div className='w-[70%] h-[90%] bg-white rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
                         <p className='p-2 max-w-[95%] font-poppins font-regular text-black text-[16px] sm:text-[18px]'>{priceDetailsLT[3].title}</p>
                     </div>
-                    <div className='w-[30%] h-[90%] bg-green rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
+                    <div className='w-[30%] h-[90%] bg-green-gradient rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
                         <p className='p-2 max-w-[95%] font-poppins font-regular text-white text-[16px] sm:text-[18px]'>+10% sumos.</p>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ const PriceDetails = () => {
                     <div className='w-[70%] h-[90%] bg-white rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
                         <p className='p-2 max-w-[95%] font-poppins font-regular text-black text-[16px] sm:text-[18px]'>{priceDetailsLT[4].title}</p>
                     </div>
-                    <div className='w-[30%] h-[90%] bg-green rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
+                    <div className='w-[30%] h-[90%] bg-green-gradient rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
                         <p className='p-2 max-w-[95%] font-poppins font-regular text-white text-[16px] sm:text-[18px]'>+30% sumos.</p>
                     </div>
                 </div>
@@ -42,7 +42,7 @@ const PriceDetails = () => {
                     <div className='w-[70%] h-[90%] bg-white rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
                         <p className='p-2 max-w-[95%] font-poppins font-regular text-black text-[16px] sm:text-[18px]'>{priceDetailsLT[5].title}</p>
                     </div>
-                    <div className='w-[30%] h-[90%] bg-green rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
+                    <div className='w-[30%] h-[90%] bg-green-gradient rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
                         <p className='p-2 max-w-[95%] font-poppins font-regular text-white text-[16px] sm:text-[18px]'>+40% sumos.</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ const PriceDetails = () => {
                     <div className='w-[70%] h-[90%] bg-white rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
                         <p className='p-2 max-w-[95%] font-poppins font-regular text-black text-[17px] sm:text-[18px]'>{priceDetailsLT[6].title}</p>
                     </div>
-                    <div className='w-[30%] h-[90%] bg-green rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
+                    <div className='w-[30%] h-[90%] bg-green-gradient rounded-[10px] shadow-xl  flex my-2 justify-center items-center'>
                         <p className='p-2 max-w-[95%] font-poppins font-regular text-white text-[16px] sm:text-[18px]'>+100% sumos.</p>
                     </div>
                 </div>
