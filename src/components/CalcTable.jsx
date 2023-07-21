@@ -391,25 +391,25 @@ const CalcTable = () => {
                                 <li className="w-full border-b border-gray-200 rounded-t-lg ">
                                     <div className="flex items-center pl-3 w-full text-[18px] font-poppins">
                                         <label className="w-[70%] py-3 ml-2 text-black">Gręžimas virš 2 metrų horizontaliai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-white bg-black rounded-lg text-center">+10% Sumos</label>
+                                        <label className="w-[30%] py-3 ml-2 text-white bg-dark-gradient rounded-lg text-center">+10% Sumos</label>
                                     </div>
                                 </li>
                                 <li className="w-full border-b border-gray-200 rounded-t-lg ">
                                     <div className="flex items-center pl-3 w-full text-[18px] font-poppins">
                                         <label className="w-[70%] py-3 ml-2 text-black">Gręžimas su purvo nusiurbimu</label>
-                                        <label className="w-[30%] py-3 ml-2 text-white bg-black rounded-lg text-center">+30% Sumos</label>
+                                        <label className="w-[30%] py-3 ml-2 text-white bg-dark-gradient rounded-lg text-center">+30% Sumos</label>
                                     </div>
                                 </li>
                                 <li className="w-full border-b border-gray-200 rounded-t-lg ">
                                     <div className="flex items-center pl-3 w-full text-[18px] font-poppins">
                                         <label className="w-[70%] py-3 ml-2 text-black">Plytų, mūro, tinko gręžimas sausai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-white bg-black rounded-lg text-center">+40% Sumos</label>
+                                        <label className="w-[30%] py-3 ml-2 text-white bg-dark-gradient rounded-lg text-center">+40% Sumos</label>
                                     </div>
                                 </li>
                                 <li className="w-full border-b border-gray-200 rounded-t-lg ">
                                     <div className="flex items-center pl-3 w-full text-[18px] font-poppins">
                                         <label className="w-[70%] py-3 ml-2 text-black">Monolito gręžimas sausai</label>
-                                        <label className="w-[30%] py-3 ml-2 text-white bg-black rounded-lg text-center">+100% Sumos</label>
+                                        <label className="w-[30%] py-3 ml-2 text-white bg-dark-gradient rounded-lg text-center">+100% Sumos</label>
                                     </div>
                                 </li>
                             </ul>
@@ -441,7 +441,33 @@ const CalcTable = () => {
                         </Transition.Child>
 
                         <div className="fixed inset-0 overflow-y-auto">
-                            <div className="flex min-h-full items-center justify-center p-4 text-center">
+                            <div className='flex items-center justify-center text-center mt-[10%]'>
+                                <ol className="flex items-center w-[60%]">
+                                    <li className="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
+                                        <span className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
+                                            <svg className="w-3.5 h-3.5 text-blue-600 lg:w-4 lg:h-4 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+                                        <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                                            <svg className="w-4 h-4 text-gray-500 lg:w-5 lg:h-5 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                                <path d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.157-.625A3.427 3.427 0 0 1 6.5 9.571a3.426 3.426 0 0 1 3.322 2.805l.159.622-6.967.023ZM16 12h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                    <li className="flex items-center w-full">
+                                        <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                                            <svg className="w-4 h-4 text-gray-500 lg:w-5 lg:h-5 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                                <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z" />
+                                            </svg>
+                                        </span>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div className="flex items-center justify-center p-4 text-center">
+
                                 <Transition.Child
                                     as={Fragment}
                                     enter="ease-out duration-300"
@@ -451,18 +477,52 @@ const CalcTable = () => {
                                     leaveFrom="opacity-100 scale-100"
                                     leaveTo="opacity-0 scale-95"
                                 >
+
                                     <Dialog.Panel className="w-full max-w-[70%] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                                        {/* <Dialog.Title
-                                            as="h3"
-                                            className="text-lg font-medium leading-6 text-gray-900 text-center"
-                                        >
-                                            Užsakymas
-                                        </Dialog.Title> */}
                                         <div className="mt-2">
+
+                                            <div className="overflow-x-auto mb-10">
+                                                <table className="table table-xl">
+                                                    <thead>
+                                                        <tr className='font-bold  text-sm'>
+                                                            <th>Medžiaga</th>
+                                                            <th>Diametras (mm)</th>
+                                                            <th>Gręžimo gylis (cm)</th>
+                                                            <th>Kiaurymių skaičius (kiekis)</th>
+                                                            <th>Suma be PVM</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody className=''>
+                                                        <tr >
+                                                            <td>Plytos, Mūras, Tinkas</td>
+                                                            <td>22</td>
+                                                            <td>10</td>
+                                                            <td>2</td>
+                                                            <td>12/16/2020</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Abrazyvinis betonas, Gelžbetonis</td>
+                                                            <td>50</td>
+                                                            <td>100</td>
+                                                            <td>1</td>
+                                                            <td>12/16/2020</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Stipriai armuotas betonas, Akmuo</td>
+                                                            <td>500</td>
+                                                            <td>5000</td>
+                                                            <td>8</td>
+                                                            <td>12/16/2020</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <p className="text-sm text-gray-500">
-                                                Your payment has been successfully submitted. We’ve sent
-                                                you an email with all of the details of your order.
+                                                * Į šią sumą nėra iskaičiuotas transportavimas ir darbo vietos paruošimas.
                                             </p>
+                                        </div>
+                                        <div className='flex justify-end'>
+                                            <p className=''>Suma be PVM</p>
                                         </div>
 
                                         <div className="mt-4">
