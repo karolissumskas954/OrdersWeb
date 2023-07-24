@@ -29,7 +29,7 @@ app.get(process.env.VITE_API, (req, res) => {
 app.post(process.env.VITE_API, (req, res) => {
     const data = req.body;
     console.log(data.name);
-    // sendEmail();
+    sendEmail();
     res.send();
 })
 app.listen(port, () => {
@@ -40,8 +40,8 @@ app.listen(port, () => {
 async function sendEmail() {
     try {
       const data = await resend.emails.send({
-        from: 'x@x.dev', //need change
-        to: 'x@gmail.com', //change this
+        from: 'xg@x.dev', //need change
+        to: 'x@x.com', //change this
         subject: 'Deimantinis gręžimas', //change
         react: Email(),
       });

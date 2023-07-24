@@ -13,6 +13,7 @@ const CalcTable = () => {
     }
 
     function openModal() {
+        totalSum()
         setIsOpen(true)
     }
 
@@ -34,52 +35,165 @@ const CalcTable = () => {
     var rowPrice = [
         {
             id: 0,
-            prix: 0
+            totalPrice: 0,
+            diameter: 0,
+            depth: 0,
+            amount: 0,
+            service1: 0,
+            service2: 0,
+            type: 0
         },
         {
             id: 1,
-            prix: 0
+            totalPrice: 0,
+            diameter: 0,
+            depth: 0,
+            amount: 0,
+            service1: 0,
+            service2: 0,
+            type: 0
         },
         {
             id: 2,
-            prix: 0
+            totalPrice: 0,
+            diameter: 0,
+            depth: 0,
+            amount: 0,
+            service1: 0,
+            service2: 0,
+            type: 0
         },
         {
             id: 3,
-            prix: 0
+            totalPrice: 0,
+            diameter: 0,
+            depth: 0,
+            amount: 0,
+            service1: 0,
+            service2: 0,
+            type: 0
         },
         {
             id: 4,
-            prix: 0
+            totalPrice: 0,
+            diameter: 0,
+            depth: 0,
+            amount: 0,
+            service1: 0,
+            service2: 0,
+            type: 0
         },
         {
             id: 5,
-            prix: 0
+            totalPrice: 0,
+            diameter: 0,
+            depth: 0,
+            amount: 0,
+            service1: 0,
+            service2: 0,
+            type: 0
         },
     ];
 
-    function sets(numberIndex, total) {
+    function modalTableRow(numberIndex) {
+        var totalPrice = 0;
+        var diameter = "";
+        var depth = "";
+        var amount = "";
+        var service1 = '-';
+        var service2 = '';
+        var type = "";
+        data.map(array => {
+            if (array.id == numberIndex) {
+                totalPrice = array.totalPrice;
+                diameter = array.diameter;
+                depth = array.depth;
+                amount = array.amount;
+
+                if (array.type == 0) {
+                    type = 'Plytos, Mūras, Tinkas'
+                } else if (array.type == 1) {
+                    type = 'Abrazyvinis betonas, Gelžbetonis'
+                } else if (array.type == 2) {
+                    type = 'Stipriai armuotas betonas, Akmuo'
+                }
+
+                if (array.service1 != 0) {
+                    if (array.service1 == 10) {
+                        service1 = 'Gręžimas virš 2 metrų horizontaliai'
+                    }
+                    else if (array.service1 == 30) {
+                        service1 = 'Gręžimas su purvo nusiurbimu'
+                    }
+                    else if (array.service1 == 40) {
+                        service1 = 'Plytų, mūro, tinko gręžimas sausai'
+                    }
+                    else if (array.service1 == 100) {
+                        service1 = 'Monolito gręžimas sausai'
+                    }
+                }
+                if (array.service2 != 0) {
+                    if (array.service2 == 10) {
+                        service2 = 'Gręžimas virš 2 metrų horizontaliai'
+                    }
+                    else if (array.service2 == 30) {
+                        service2 = 'Gręžimas su purvo nusiurbimu'
+                    }
+                    else if (array.service2 == 40) {
+                        service2 = 'Plytų, mūro, tinko gręžimas sausai'
+                    }
+                    else if (array.service2 == 100) {
+                        service1 = 'Monolito gręžimas sausai'
+                    }
+                }
+            }
+        })
+
+        if (totalPrice == 0) {
+            return
+        } else {
+            return (
+                <tr >
+                    <td className='border-y-2'>{type}</td>
+                    <td className='border-y-2'>{service1} <br /> {service2}</td>
+                    <td className='border-y-2'>{diameter}</td>
+                    <td className='border-y-2'>{depth}</td>
+                    <td className='border-y-2'>{amount}</td>
+                    <td className='border-y-2'>{totalPrice.toFixed(2)} €</td>
+                </tr>
+            )
+        }
+    }
+
+    function sets(numberIndex, total, diam, depth, amount, service1, service2, type) {
         const newPrices = data.map(price => {
             if (price.id == numberIndex) {
-                if (price.prix == total) {
+                if (price.totalPrice == total) {
                     return price;
                 } else {
                     return {
                         id: numberIndex,
-                        prix: total
+                        totalPrice: total,
+                        diameter: diam,
+                        depth: depth,
+                        amount: amount,
+                        service1: service1,
+                        service2: service2,
+                        type: type
                     };
                 }
             } else {
                 return price;
             }
         })
+        // console.log(newPrices)
         setData(newPrices);
     }
     const [data, setData] = useState(rowPrice);
     const [priceWithoutPVM, setPriceWithoutPVM] = useState(0)
 
     function totalSum() {
-        var result = data.reduce((total, currentValue) => total = total + currentValue.prix, 0)
+        var result = data.reduce((total, currentValue) => total = total + currentValue.totalPrice, 0)
         setPriceWithoutPVM(result)
 
     }
@@ -130,27 +244,26 @@ const CalcTable = () => {
                         let tempTotal = (temp + ((temp) / 100) * percent); // Sumai pridedami pirmos paslaugos procentai
                         let tempPercent = (tempTotal + ((tempTotal) / 100) * percent1) // Sumai pridedami antros paslaugos procentai
                         setTotal(tempPercent); // Sumos atributas atnaujinamas
-                        sets(numberIndex, tempPercent); // Masyvas rowPrice atnaujinamas.
+                        sets(numberIndex, tempPercent, diameter, depth, amount, percent, percent1, num); // Masyvas rowPrice atnaujinamas.
                     }
                 } else if (percent > 0) { // Jei pažymeta tik viena paslauga
                     if (diameter == key && diameter > 11 && depth > 0) {// Jei diametras ir gylis yra tinkamas
                         let temp1 = (value * Number(depth)) * amount;// Suskaičiuojama suma
                         let tempTotal1 = (temp1 + ((temp1) / 100) * percent);// Sumai pridedami pirmos paslaugos procentai
                         setTotal(tempTotal1);// Sumos atributas atnaujinamas
-                        sets(numberIndex, tempTotal1);// Masyvas rowPrice atnaujinamas.
+                        sets(numberIndex, tempTotal1, diameter, depth, amount, percent, percent1, num);// Masyvas rowPrice atnaujinamas.
                     }
                 } else if (percent == 0) { // Jei paslaugų nėra
                     if (diameter == key && diameter > 11 && depth > 0) {// Jei diametras ir gylis yra tinkamas
                         let temp2 = (value * Number(depth)) * amount;// Suskaičiuojama suma
                         setTotal((value * Number(depth)) * amount)// Sumos atributas atnaujinamas
-                        sets(numberIndex, temp2);// Masyvas rowPrice atnaujinamas.
+                        sets(numberIndex, temp2, diameter, depth, amount, percent, percent1, num);// Masyvas rowPrice atnaujinamas.
                     }
                 }
             })
             if (!isValidDiameter || isNaN(total) || !isValidDepth || !isValidAmount) {
                 sets(numberIndex, 0);
             }
-
         }
 
         function diameterCheck(diam) {
@@ -446,7 +559,7 @@ const CalcTable = () => {
                                     <li className="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
                                         <span className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
                                             <svg className="w-3.5 h-3.5 text-blue-600 lg:w-4 lg:h-4 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
                                             </svg>
                                         </span>
                                     </li>
@@ -486,34 +599,20 @@ const CalcTable = () => {
                                                     <thead>
                                                         <tr className='font-bold  text-sm'>
                                                             <th>Medžiaga</th>
+                                                            <th>Paslaugos</th>
                                                             <th>Diametras (mm)</th>
                                                             <th>Gręžimo gylis (cm)</th>
                                                             <th>Kiaurymių skaičius (kiekis)</th>
-                                                            <th>Suma be PVM</th>
+                                                            <th>Suma</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody className=''>
-                                                        <tr >
-                                                            <td>Plytos, Mūras, Tinkas</td>
-                                                            <td>22</td>
-                                                            <td>10</td>
-                                                            <td>2</td>
-                                                            <td>12/16/2020</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Abrazyvinis betonas, Gelžbetonis</td>
-                                                            <td>50</td>
-                                                            <td>100</td>
-                                                            <td>1</td>
-                                                            <td>12/16/2020</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Stipriai armuotas betonas, Akmuo</td>
-                                                            <td>500</td>
-                                                            <td>5000</td>
-                                                            <td>8</td>
-                                                            <td>12/16/2020</td>
-                                                        </tr>
+                                                        {modalTableRow(0)}
+                                                        {modalTableRow(1)}
+                                                        {modalTableRow(2)}
+                                                        {modalTableRow(3)}
+                                                        {modalTableRow(4)}
+                                                        {modalTableRow(5)}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -522,7 +621,11 @@ const CalcTable = () => {
                                             </p>
                                         </div>
                                         <div className='flex justify-end'>
-                                            <p className=''>Suma be PVM</p>
+                                            <p className=''>Suma be PVM {priceWithoutPVM.toFixed(2)} €</p>
+
+                                        </div>
+                                        <div className='flex justify-end'>
+                                            <p>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
                                         </div>
 
                                         <div className="mt-4">
