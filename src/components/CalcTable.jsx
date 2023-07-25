@@ -2,9 +2,12 @@ import React, { useEffect, useState, useRef, Fragment } from 'react'
 import { prices } from "../constants"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition, Tab } from '@headlessui/react'
+
 
 const CalcTable = () => {
+
+    let [selectedIndex, setSelectedIndex] = useState(1)
 
     let [isOpen, setIsOpen] = useState(false)
 
@@ -538,7 +541,6 @@ const CalcTable = () => {
                     </div>
                 </div>
                 <ToastContainer />
-
                 <Transition appear show={isOpen} as={Fragment}>
                     <Dialog as="div" className="relative z-10" onClose={closeModal}>
                         <Transition.Child
@@ -555,29 +557,7 @@ const CalcTable = () => {
 
                         <div className="fixed inset-0 overflow-y-auto">
                             <div className='flex items-center justify-center text-center mt-[10%]'>
-                                <ol className="flex items-center w-[60%]">
-                                    <li className="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
-                                        <span className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
-                                            <svg className="w-3.5 h-3.5 text-blue-600 lg:w-4 lg:h-4 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
-                                            </svg>
-                                        </span>
-                                    </li>
-                                    <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
-                                        <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-                                            <svg className="w-4 h-4 text-gray-500 lg:w-5 lg:h-5 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                                <path d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.157-.625A3.427 3.427 0 0 1 6.5 9.571a3.426 3.426 0 0 1 3.322 2.805l.159.622-6.967.023ZM16 12h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Z" />
-                                            </svg>
-                                        </span>
-                                    </li>
-                                    <li className="flex items-center w-full">
-                                        <span className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-                                            <svg className="w-4 h-4 text-gray-500 lg:w-5 lg:h-5 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                                <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z" />
-                                            </svg>
-                                        </span>
-                                    </li>
-                                </ol>
+
                             </div>
                             <div className="flex items-center justify-center p-4 text-center">
 
@@ -592,59 +572,120 @@ const CalcTable = () => {
                                 >
 
                                     <Dialog.Panel className="w-full max-w-[70%] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                                        <div className="mt-2">
 
-                                            <div className="overflow-x-auto mb-10">
-                                                <table className="table table-xl">
-                                                    <thead>
-                                                        <tr className='font-bold  text-sm'>
-                                                            <th>Medžiaga</th>
-                                                            <th>Paslaugos</th>
-                                                            <th>Diametras (mm)</th>
-                                                            <th>Gręžimo gylis (cm)</th>
-                                                            <th>Kiaurymių skaičius (kiekis)</th>
-                                                            <th>Suma</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody className=''>
-                                                        {modalTableRow(0)}
-                                                        {modalTableRow(1)}
-                                                        {modalTableRow(2)}
-                                                        {modalTableRow(3)}
-                                                        {modalTableRow(4)}
-                                                        {modalTableRow(5)}
-                                                    </tbody>
-                                                </table>
+
+
+
+                                        <div className='w-full flex justify-center items-center  ml-[15%]'>
+                                            <div className='w-[33%]'>
+                                                <li className={`flex w-full items-center text-blue-600  after:content-[''] after:w-full after:h-1 after:border-b  ${selectedIndex == 1 ? 'after:border-gray-300' : 'after:border-blue-100'} after:border-4 after:inline-block`}>
+                                                    <span className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12  shrink-0">
+                                                        {
+                                                            selectedIndex == 2 ?
+                                                                <svg className="w-3.5 h-3.5 text-blue-600 lg:w-4 lg:h-4 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                                                                </svg>
+                                                                :
+
+                                                                <svg className="w-5 h-5 text-blue-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                                                    <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z" />
+                                                                </svg>
+                                                        }
+                                                    </span>
+                                                </li>
                                             </div>
-                                            <p className="text-sm text-gray-500">
-                                                * Į šią sumą nėra iskaičiuotas transportavimas ir darbo vietos paruošimas.
-                                            </p>
+                                            <div className='w-[33%]'>
+                                                <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-300 after:border-4 after:inline-block dark:after:border-gray-700">
+                                                    <span className="flex items-center justify-center w-10 h-10 bg-gray-300 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                                                        <svg className="w-4 h-4 text-gray-600 lg:w-5 lg:h-5 dark:text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                                            <path d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.157-.625A3.427 3.427 0 0 1 6.5 9.571a3.426 3.426 0 0 1 3.322 2.805l.159.622-6.967.023ZM16 12h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Z" />
+                                                        </svg>
+                                                    </span>
+                                                </li>
+                                            </div>
+                                            <div className='w-[33%]'>
+                                                <li className="flex items-center w-full">
+                                                    <span className="flex items-center justify-center w-10 h-10 bg-gray-300 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                                                        <svg className="w-4 h-4 text-gray-600 lg:w-5 lg:h-5 dark:text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                                            <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z" />
+                                                        </svg>
+                                                    </span>
+                                                </li>
+                                            </div>
                                         </div>
-                                        <div className='flex justify-end'>
-                                            <p className=''>Suma be PVM {priceWithoutPVM.toFixed(2)} €</p>
 
+
+
+                                        <div className="carousel w-full">
+                                            <div id="item1" className="carousel-item w-full flex flex-col">
+                                                <div className=" flex  mt-20 w-full">
+                                                    <div className="overflow-x-auto mb-10 w-full">
+                                                        <table className="table table-xl border-2 w-full">
+                                                            <thead>
+                                                                <tr className='font-bold  text-sm'>
+                                                                    <th>Medžiaga</th>
+                                                                    <th>Paslaugos</th>
+                                                                    <th>Diametras (mm)</th>
+                                                                    <th>Gręžimo gylis (cm)</th>
+                                                                    <th>Kiaurymių skaičius (kiekis)</th>
+                                                                    <th>Suma</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody className=''>
+                                                                {modalTableRow(0)}
+                                                                {modalTableRow(1)}
+                                                                {modalTableRow(2)}
+                                                                {modalTableRow(3)}
+                                                                {modalTableRow(4)}
+                                                                {modalTableRow(5)}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                                <div className='flex justify-end'>
+                                                    <p className=''>Suma be PVM {priceWithoutPVM.toFixed(2)} €</p>
+
+                                                </div>
+                                                <div className='flex justify-end'>
+                                                    <p>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
+                                                </div>
+                                                <p className="text-sm text-gray-500">
+                                                    * Į šią sumą nėra iskaičiuotas transportavimas ir darbo vietos paruošimas.
+                                                </p>
+                                                <div className="mt-4 flex justify-end">
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
+                                                        onClick={closeModal}>
+                                                        Got it, thanks!
+                                                    </button>
+                                                    <a href="#item2" onClick={() => { setSelectedIndex(2) }} className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">Testi</a>
+                                                </div>
+
+                                            </div>
+                                            <div id="item2" className="carousel-item w-full">
+                                                <p>content 2</p>
+                                            </div>
+                                            <div id="item3" className="carousel-item w-full">
+                                                <p>content 3</p>
+                                            </div>
                                         </div>
-                                        <div className='flex justify-end'>
-                                            <p>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
+                                        <div className="flex justify-center w-full py-2 gap-2">
+                                            <a href="#item1" onClick={() => { setSelectedIndex(1) }}  className="btn btn-xs">1</a>
+                                            <a href="#item2" className="btn btn-xs">2</a>
+                                            <a href="#item3" className="btn btn-xs">3</a>
                                         </div>
 
-                                        <div className="mt-4">
-                                            <button
-                                                type="button"
-                                                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                                onClick={closeModal}
-                                            >
-                                                Got it, thanks!
-                                            </button>
-                                        </div>
+
+
+
                                     </Dialog.Panel>
                                 </Transition.Child>
                             </div>
                         </div>
                     </Dialog>
                 </Transition>
-
-
 
             </div>
         </>
