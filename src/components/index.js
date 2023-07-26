@@ -7,7 +7,8 @@ import ContactsTable from "./ContactsTable";
 import PDFDisplay from "./PDFDisplay";
 import PriceDetails from "./PriceDetails";
 import CalcTable from "./CalcTable";
-
+import ModalFillForm from "./ModalFillForm";
+import ModalTable from "./ModalTable";
 export {
     Navbar,
     Footer,
@@ -17,5 +18,7 @@ export {
     ContactsTable,
     PDFDisplay,
     PriceDetails,
-    CalcTable
+    CalcTable,
+    ModalFillForm,
+    ModalTable
 };
