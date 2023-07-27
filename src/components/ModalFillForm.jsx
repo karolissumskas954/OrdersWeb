@@ -1,56 +1,187 @@
-import React, { useState } from 'react'
+import {
+    FiEdit,
+    FiChevronDown,
+    FiTrash,
+    FiShare,
+    FiPlusSquare,
+} from "react-icons/fi";
+import { motion } from "framer-motion";
+import React, { Dispatch, SetStateAction, useState } from "react";
+// import { IconType } from "react-icons";
 
 const ModalFillForm = ({ childToParent }) => {
+
+    const [open, setOpen] = useState(false);
+
     const [name, setName] = useState('')
     const handleName = event => {
         setName(event.target.value);
         childToParent(event.target.value)
     };
+
+
+    const Option = ({ text, Icon, setOpen }) => {
+        return (
+            <motion.li
+                variants={itemVariants}
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-1 w-full p-1 text-xs font-medium whitespace-nowrap rounded-md hover:bg-indigo-100 text-slate-700 hover:text-indigo-500 transition-colors cursor-pointer"
+            >
+                <motion.span variants={actionIconVariants}>
+                    <Icon />
+                </motion.span>
+                <span>{text}</span>
+            </motion.li>
+        );
+    };
+
     return (
-        <div className='bg-white '>
-            <p>Hello</p>
-            <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2  rounded-md w-[70%]`} />
-
-
-
+        <div className='bg-white mt-8'>
+            {/* <p>Hello</p> */}
+            {/* <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2  rounded-md w-[70%]`} /> */}
             <form className='bg-white'>
-                <div className="relative z-0 w-full mb-6 group">
-                    <input type="email" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    <label for="floating_email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">
-                    <input type="password" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    <label for="floating_password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">
-                    <input type="password" name="repeat_password" id="floating_repeat_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    <label for="floating_repeat_password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
-                </div>
-                <div className="grid md:grid-cols-2 md:gap-6">
-                    <div className="relative z-0 w-full mb-6 group">
-                        <input type="text" name="floating_first_name" id="floating_first_name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_first_name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
+
+                <div className="grid md:grid-cols-2 md:gap-6 ">
+                    <div className="relative z-0 w-full mb-6 flex justify-end">
+                        <div className='flex form-control w-[80%] items-end'>
+                            <label className="label w-[60%]">
+                                <span className="label-text">Vardas Pavarde</span>
+                            </label>
+                            <input type="text" placeholder='Vardas' className=" py-2.5 px-2 w-[60%] text-sm text-gray-900  border border-gray-300  rounded-md  focus:ring-0 " />
+                        </div>
                     </div>
-                    <div className="relative z-0 w-full mb-6 group">
-                        <input type="text" name="floating_last_name" id="floating_last_name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_last_name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
+                    <div className="relative z-0 w-full mb-6 mx-3">
+                        <div className='flex form-control w-[80%] '>
+                            <label className="label w-[60%]">
+                                <span className="label-text">Vardas Pavarde</span>
+                            </label>
+                            <input type="text" placeholder='Vardas' className=" py-2.5 px-2 w-[60%] text-sm text-gray-900  border border-gray-300  rounded-md  focus:ring-0 " />
+                        </div>
                     </div>
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
-                    <div className="relative z-0 w-full mb-6 group">
-                        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_phone" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (123-456-7890)</label>
+                    <div className="relative z-0 w-full mb-6 flex justify-end">
+                    <div className="flex items-center justify-center bg-white">
+                        {/* <motion.div animate={open ? "open" : "closed"} className="relative">
+                            <button
+                                onClick={() => setOpen((pv) => !pv)}
+                                className="flex items-center gap-2 px-3 py-2 rounded-md text-indigo-50 bg-indigo-500 hover:bg-indigo-500 transition-colors"
+                            >
+                                <span className="font-medium text-sm">Post actions</span>
+                                <motion.span variants={iconVariants}>
+                                    <FiChevronDown />
+                                </motion.span>
+                            </button>
+
+                            <motion.ul
+                                initial={wrapperVariants.closed}
+                                variants={wrapperVariants}
+                                style={{ originY: "top", translateX: "-50%" }}
+                                className="flex flex-col gap-1 p-1 rounded-lg bg-white shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
+                            >
+                                <Option setOpen={setOpen} Icon={FiEdit} text="Edit" />
+                                <Option setOpen={setOpen} Icon={FiPlusSquare} text="Duplicate" />
+                                <Option setOpen={setOpen} Icon={FiShare} text="Share" />
+                                <Option setOpen={setOpen} Icon={FiTrash} text="Remove" />
+                            </motion.ul>
+                        </motion.div> */}
                     </div>
-                    <div className="relative z-0 w-full mb-6 group">
-                        <input type="text" name="floating_company" id="floating_company" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_company" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company (Ex. Google)</label>
+                    </div>
+                    <div className="relative z-0 w-full mb-6 mx-3">
+                        <input type="text" placeholder='El.Pastas' className=" py-2.5 px-2 w-[60%] text-sm text-gray-900  border border-gray-300  rounded-md  focus:ring-0 " />
                     </div>
                 </div>
             </form>
 
+            <div className="grid md:grid-cols-2 md:gap-6">
+                <div className="relative z-0 w-full mb-6 flex justify-end">
+                <motion.div animate={open ? "open" : "closed"} className="relative">
+                            <button
+                                onClick={() => setOpen((pv) => !pv)}
+                                className="flex items-center gap-2 px-3 py-2 rounded-md text-indigo-50 bg-indigo-500 hover:bg-indigo-500 transition-colors"
+                            >
+                                <span className="font-medium text-sm">Post actions</span>
+                                <motion.span variants={iconVariants}>
+                                    <FiChevronDown />
+                                </motion.span>
+                            </button>
+
+                            {/* <motion.ul
+                                initial={wrapperVariants.closed}
+                                variants={wrapperVariants}
+                                style={{ originY: "top", translateX: "-50%" }}
+                                className="flex flex-col gap-1 p-1 rounded-lg bg-white shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
+                            >
+                                <Option setOpen={setOpen} Icon={FiEdit} text="Edit" />
+                                <Option setOpen={setOpen} Icon={FiPlusSquare} text="Duplicate" />
+                                <Option setOpen={setOpen} Icon={FiShare} text="Share" />
+                                <Option setOpen={setOpen} Icon={FiTrash} text="Remove" />
+                            </motion.ul> */}
+                        </motion.div>
+                </div>
+                <div className="relative z-0 w-full mb-6 mx-3">
+                    <input type="text" placeholder='El.Pastas' className=" py-2.5 px-2 w-[60%] text-sm text-gray-900  border border-gray-300  rounded-md  focus:ring-0 " />
+                </div>
+            </div>
 
         </div>
     )
+
+
+
+
+
+
 }
 
 export default ModalFillForm
+
+
+
+
+
+
+
+const wrapperVariants = {
+    open: {
+        scaleY: 1,
+        transition: {
+            when: "beforeChildren",
+            staggerChildren: 0.1,
+        },
+    },
+    closed: {
+        scaleY: 0,
+        transition: {
+            when: "afterChildren",
+            staggerChildren: 0.1,
+        },
+    },
+};
+
+const iconVariants = {
+    open: { rotate: 180 },
+    closed: { rotate: 0 },
+};
+
+const itemVariants = {
+    open: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            when: "beforeChildren",
+        },
+    },
+    closed: {
+        opacity: 0,
+        y: -15,
+        transition: {
+            when: "afterChildren",
+        },
+    },
+};
+
+const actionIconVariants = {
+    open: { scale: 1, y: 0 },
+    closed: { scale: 0, y: -7 },
+};
