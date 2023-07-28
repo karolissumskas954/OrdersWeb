@@ -570,7 +570,7 @@ const CalcTable = () => {
                                                 </div>
 
                                             </div>
-                                            <div id="item2" className="carousel-item w-full flex flex-col">
+                                            <div id="item2" className="carousel-item w-full flex flex-col ">
                                                 <ModalFillForm childToParent={childToParent} />
                                                 <p>{test}</p>
                                                 <div className="mt-4 flex justify-end">
