@@ -9,6 +9,7 @@ import PriceDetails from "./PriceDetails";
 import CalcTable from "./CalcTable";
 import ModalFillForm from "./ModalFillForm";
 import ModalTable from "./ModalTable";
+import ModalStepper from "./ModalStepper";
 export {
     Navbar,
     Footer,
@@ -20,5 +21,6 @@ export {
     PriceDetails,
     CalcTable,
     ModalFillForm,
-    ModalTable
+    ModalTable,
+    ModalStepper
 };

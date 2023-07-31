@@ -11,7 +11,6 @@ module.exports = {
         secondary: "#00f6ff",
         dimWhite: "rgba(255, 255, 255, 0.7)",
         dimBlue: "rgba(9, 151, 124, 0.1)",
-
         background: "#f5f8f3",
         black: "#1d1d1f",
         greyDarker: "#5e615c",
@@ -49,6 +48,19 @@ module.exports = {
         '900': '#424866',
         '950': '#2b2e40',
     },
+    white1: {
+      '50': '#ffffff',
+      '100': '#efefef',
+      '200': '#dcdcdc',
+      '300': '#bdbdbd',
+      '400': '#989898',
+      '500': '#7c7c7c',
+      '600': '#656565',
+      '700': '#525252',
+      '800': '#464646',
+      '900': '#3d3d3d',
+      '950': '#292929',
+  },
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

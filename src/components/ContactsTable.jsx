@@ -42,7 +42,7 @@ const ContactsTable = () => {
                                     <tr
                                         className="border-b">
                                         <td className="whitespace-nowrap border-r font-poppins text-[14px] sm:text-[20px] px-2 py-1 sm:px-6 sm:py-4">{contactsLT[12].title}</td>
-                                        <td className='whitespace-nowrap border-r font-poppins text-[14px] sm:text-[20px] px-2 py-1 sm:px-6 sm:py-4' dangerouslySetInnerHTML={{ __html: contactsLT[13].title.replace(/\n/g, '<br>') }}></td>
+                                        <td className='whitespace-nowrap border-r font-poppins text-[14px] sm:text-[20px] px-2 py-1 sm:px-6 sm:py-4'>{contactsLT[13].title.split('\n').map((item, key) => { return <><span>{item}</span><br/></>})}</td>
                                     </tr>
                                 </tbody>
                             </table>

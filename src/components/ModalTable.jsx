@@ -75,11 +75,11 @@ const ModalTable = ({ data }) => {
     }
     return (
         <div className="w-full flex flex-col">
-            <div className=" flex  mt-20 w-full">
+            <div className=" flex  mt-20 w-full ">
                 <div className="overflow-x-auto mb-10 w-full">
                     <table className="table table-xl border-2 w-full">
                         <thead>
-                            <tr className='font-bold  text-sm'>
+                            <tr className='font-bold text-sm bg-white1-100'>
                                 <th>Medžiaga</th>
                                 <th>Paslaugos</th>
                                 <th>Diametras (mm)</th>
@@ -88,7 +88,7 @@ const ModalTable = ({ data }) => {
                                 <th>Suma</th>
                             </tr>
                         </thead>
-                        <tbody className=''>
+                        <tbody className='bg-white1-50'>
                             {modalTableRow(0)}
                             {modalTableRow(1)}
                             {modalTableRow(2)}
@@ -106,7 +106,7 @@ const ModalTable = ({ data }) => {
             <div className='flex justify-end'>
                 <p>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
             </div>
-            <p className="text-[16px] text-gray-700">
+            <p className="text-[16px] text-gray-700 mt-4">
                 * Į šią sumą nėra iskaičiuotas transportavimas ir darbo vietos paruošimas.
             </p>
         </div>
