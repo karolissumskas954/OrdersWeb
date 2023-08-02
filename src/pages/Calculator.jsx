@@ -2,7 +2,7 @@ import styles from "../style";
 import { Navbar,Footer, CalcTable } from "../components";
 
 const Calculator = () => (
-  <div className="bg-background w-full ">
+  <div className="bg-background w-full">
     <div className={`${styles.paddingX} ${styles.flexCenter}`}>
       <div className={`${styles.boxWidth}`}>
         <Navbar />
@@ -41,7 +41,6 @@ const Calculator = () => (
         </div>  
       </div>
     </div>
-
   </div>
 );
 

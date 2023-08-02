@@ -1,5 +1,3 @@
-import React, { useState } from 'react'
-
 const Steps = { INFO: 1, DATA: 2, CONFIRM: 3 };
 
 const CheckSVG = ({ width, height, color }) => {
@@ -36,20 +34,20 @@ const ModalStepper = ({ selectedIndex }) => {
     return (
         <div className='w-full flex justify-center items-center ml-[15%]'>
             <div className='w-[33%]'>
-                <li className={`flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:mx-1  ${step === Steps.INFO ? 'after:border-gray-300' : 'after:border-shark-700'} after:border-4 after:inline-block`}>
-                    <span className="flex items-center text-shark-100 justify-center w-10 h-10 bg-shark-700 rounded-full lg:h-12 lg:w-12  shrink-0">
+                <li className={`flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:mx-1  ${step === Steps.INFO ? 'after:border-gray-300' : 'after:border-salem-700'} after:border-4 after:inline-block`}>
+                    <span className="flex items-center text-shark-100 justify-center w-10 h-10 bg-salem-700 rounded-full lg:h-12 lg:w-12  shrink-0">
                         {step === Steps.DATA || step === Steps.CONFIRM ? (
-                            <CheckSVG width='3.5' height='3.5' color='shark-100' />
+                            <CheckSVG width='5' height='5' color='shark-100' />
                         ) : (
                             <InfoSVG width='5' height='5' color='shark-100' />
                         )}
                     </span>
                 </li>
-                <p className={`font-poppins text-sm ml-[-3%] mt-1 text-black`}>Informacija</p>
+                <p className={`font-poppins text-sm ml-[-8%] md:ml-[-3%] mt-1 text-black`}>Informacija</p>
             </div>
             <div className='w-[33%]'>
-                <li className={`flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b  ${step === Steps.DATA || step === Steps.INFO ? 'after:border-gray-300' : 'after:border-shark-700'} after:border-4 after:inline-block  after:mx-1 `}>
-                    <span className={`flex items-center justify-center w-10 h-10  ${step === Steps.DATA || step === Steps.CONFIRM ? 'bg-shark-700' : 'bg-gray-300'} rounded-full lg:h-12 lg:w-12  shrink-0`}>
+                <li className={`flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b  ${step === Steps.DATA || step === Steps.INFO ? 'after:border-gray-300' : 'after:border-salem-700'} after:border-4 after:inline-block  after:mx-1 `}>
+                    <span className={`flex items-center justify-center w-10 h-10  ${step === Steps.DATA || step === Steps.CONFIRM ? 'bg-salem-700' : 'bg-gray-300'} rounded-full lg:h-12 lg:w-12  shrink-0`}>
                         {step === Steps.CONFIRM ? (
                             <CheckSVG width='5' height='5' color='shark-100' />
                         ) : (
@@ -57,15 +55,15 @@ const ModalStepper = ({ selectedIndex }) => {
                         )}
                     </span>
                 </li>
-                <p className={`font-poppins  text-sm ml-[-3%] mt-1 ${step === Steps.DATA || step === Steps.CONFIRM ? 'text-black' : 'text-gray-400'}`}>Duomenys</p>
+                <p className={`font-poppins  text-sm ml-[-8%] md:ml-[-3%] mt-1 ${step === Steps.DATA || step === Steps.CONFIRM ? 'text-black' : 'text-gray-400'}`}>Duomenys</p>
             </div>
             <div className='w-[33%]'>
                 <li className="flex items-center w-full">
-                    <span className={`flex items-center justify-center w-10 h-10  ${step === Steps.CONFIRM ? 'bg-shark-700' : 'bg-gray-300'} rounded-full lg:h-12 lg:w-12  shrink-0`}>
+                    <span className={`flex items-center justify-center w-10 h-10  ${step === Steps.CONFIRM ? 'bg-salem-700' : 'bg-gray-300'} rounded-full lg:h-12 lg:w-12  shrink-0`}>
                         <ConfirmSVG width='4' height='4' color={`${step === Steps.CONFIRM ? 'shark-100' : 'gray-600'}`}/>
                     </span>
                 </li>
-                <p className={`font-poppins  text-sm ml-[-3%] mt-1 ${step === Steps.CONFIRM ? 'text-black' : 'text-gray-400'}`}>Patvirtinimas</p>
+                <p className={`font-poppins  text-sm ml-[-8%] md:ml-[-3%] mt-1 ${step === Steps.CONFIRM ? 'text-black' : 'text-gray-400'}`}>Patvirtinimas</p>
             </div>
         </div>
     )

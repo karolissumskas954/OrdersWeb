@@ -10,6 +10,7 @@ import CalcTable from "./CalcTable";
 import ModalFillForm from "./ModalFillForm";
 import ModalTable from "./ModalTable";
 import ModalStepper from "./ModalStepper";
+import ModalConfirm from "./ModalConfirm";
 export {
     Navbar,
     Footer,
@@ -22,5 +23,6 @@ export {
     CalcTable,
     ModalFillForm,
     ModalTable,
-    ModalStepper
+    ModalStepper,
+    ModalConfirm
 };

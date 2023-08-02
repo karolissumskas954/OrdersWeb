@@ -117,7 +117,7 @@ const Questions = () => {
           </div>
           <textarea onChange={handleText} value={text} className={`my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
           <div className='flex'>
-          <a onClick={handleOpen} className='p-4 font-poppins cursor-pointer underline text-white text-[20px] text-left mx-[13%] mt-[-25px]'>Siųsti</a>
+          <a onClick={handleOpen} className='p-4 font-poppins cursor-pointer underline text-white text-[20px] text-left mx-[13%] mt-[-25px] hover:text-gray-300'>Siųsti</a>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@ const Questions = () => {
           </div>
           <textarea onChange={handleText} value={text} className={`my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
           <div className='flex'>
-          <a onClick={handleOpen} className='p-4 font-poppins cursor-pointer underline text-white text-[16px] text-left mx-[12%] mt-[-25px]'>Siųsti</a>
+          <a onClick={handleOpen} className='p-4 font-poppins cursor-pointer underline text-white text-[16px] text-left mx-[12%] mt-[-25px] hover:text-gray-300'>Siųsti</a>
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@ const Questions = () => {
           <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`my-2 border-2 p-2 rounded-md w-[95%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
           <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 rounded-md w-[95%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
           <textarea onChange={handleText} value={text} className={`my-2 block w-[95%]  px-2 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
-          <p onClick={handleOpen} className=' p-4 font-poppins cursor-pointer underline text-white text-[16px] mx-[12%] mt-[-16px] mb-8'>Siųsti</p>
+          <p onClick={handleOpen} className=' p-4 font-poppins cursor-pointer underline text-white text-[16px] mx-[12%] mt-[-16px] mb-8 hover:text-gray-900'>Siųsti</p>
         </div>
       </div>
       <ToastContainer />

@@ -323,3 +323,30 @@ export const prices = [
     }
   },
 ]
+
+export const types = [
+  {
+    title: 'Plytos, Mūras, Tinkas'
+  },
+  {
+    title: 'Abrazyvinis betonas, Gelžbetonis'
+  },
+  {
+    title: 'Stipriai armuotas betonas, Akmuo'
+  }
+]
+
+export const services = [
+  {
+    title: 'Gręžimas virš 2 metrų horizontaliai'
+  },
+  {
+    title: 'Gręžimas su purvo nusiurbimu'
+  },
+  {
+    title: 'Plytų, mūro, tinko gręžimas sausai'
+  },
+  {
+    title: 'Monolito gręžimas sausai'
+  }
+]

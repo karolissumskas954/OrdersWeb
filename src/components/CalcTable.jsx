@@ -3,14 +3,21 @@ import { prices } from "../constants"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Dialog, Transition, Tab } from '@headlessui/react'
-import { ModalFillForm, ModalTable, ModalStepper } from '../components'
+import { ModalFillForm, ModalTable, ModalStepper, ModalConfirm } from '../components'
 
 
 const CalcTable = () => {
 
-    let [test, setTest] = useState('')
+    let [test, setTest] = useState(false)
     const childToParent = (name) => {
         setTest(name)
+    }
+
+    function confirmOrder() {
+        if(test == true) {
+            setSelectedIndex(3)
+        } else if (test == false){
+        }
     }
 
     let [selectedIndex, setSelectedIndex] = useState(1)
@@ -25,9 +32,9 @@ const CalcTable = () => {
         setSelectedIndex(1);
         totalSum()
         checkModal();
-        
+
     }
-    function checkModal(){
+    function checkModal() {
         var result = data.reduce((total, currentValue) => total = total + currentValue.totalPrice, 0)
         if ((result + ((result) / 100) * 21).toFixed(2) > 0) {
             if ((result + ((result) / 100) * 21).toFixed(2) > 70) {
@@ -42,9 +49,9 @@ const CalcTable = () => {
                     draggable: true,
                     progress: undefined,
                     theme: "dark",
-                  });
+                });
             }
-        }else {
+        } else {
             toast.warn('Užpildykite lentelę norint užsisakyti', {
                 position: "top-right",
                 autoClose: 5000,
@@ -54,7 +61,7 @@ const CalcTable = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
-              });
+            });
         }
     }
 
@@ -522,7 +529,7 @@ const CalcTable = () => {
                         >
                             <div className="fixed inset-0 bg-black bg-opacity-50 " />
                         </Transition.Child>
-                        <div className="fixed inset-0 overflow-y-auto ">
+                        <div className="fixed inset-0 ">
                             <div className='flex items-center justify-center text-center mt-[10%]'>
                             </div>
                             <div className="flex items-center justify-center p-4 text-center">
@@ -535,48 +542,59 @@ const CalcTable = () => {
                                     leaveFrom="opacity-100 scale-100"
                                     leaveTo="opacity-0 scale-95"
                                 >
-                                    <Dialog.Panel className={`w-full max-w-[70%] transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all ${selectedIndex == 2 ? 'max-h-[520px]' : ''} `}>
+                                    <Dialog.Panel className={`w-full md:w-[70%] transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all ${selectedIndex == 3 ? 'max-h-[480px]' : ''} ${selectedIndex == 2 ? 'max-h-[520px]' : ''} `}>
                                         <ModalStepper selectedIndex={selectedIndex} />
-                                        <div className="carousel w-full">
-                                            <div id="item1" className={`carousel-item w-full flex flex-col ${selectedIndex == 1 ? '' : 'invisible'} `}>
+                                        <div className="carousel w-full overflow-x-hidden">
+                                            <div id="item1" className={`carousel-item w-full flex flex-col 
+
+                                            `}>
                                                 <ModalTable data={data} />
 
-                                                <div className={`mt-4 flex justify-end`}>
+                                                <div className={`mt-8 flex justify-end`}>
                                                     <button
                                                         type="button"
-                                                        className="inline-flex justify-center rounded-md border border-shark-700 bg-white px-6 py-2 text-md font-poppins text-shark-700 hover:bg-shark-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
+                                                        className="inline-flex justify-center rounded-md border border-gray-500 bg-white px-6 py-2 text-md font-poppins text-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
                                                         onClick={closeModal}>
                                                         Išeiti
                                                     </button>
                                                     <a
                                                         href="#item2"
                                                         onClick={() => { setSelectedIndex(2) }}
-                                                        className="inline-flex justify-center rounded-md border border-transparent bg-shark-600 px-6 py-2 text-md font-poppins text-white hover:bg-shark-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
-                                                        Tęsti
+                                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue1-600 px-6 py-2 text-md font-poppins text-white hover:bg-blue1-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
+                                                        Tęsti ➞
                                                     </a>
                                                 </div>
 
                                             </div>
-                                            <div id="item2" className="carousel-item w-full flex flex-col">
-                                                <ModalFillForm childToParent={childToParent} />
+                                            <div id="item2" className={`carousel-item w-full flex flex-col 
+                                           
+                                            `}>
+                                                <ModalFillForm childToParent={childToParent}/>
                                                 <p>{test}</p>
                                                 <div className="mt-4  flex justify-end">
                                                     <a
                                                         href="#item1"
-                                                        className="inline-flex justify-center rounded-md border border-shark-700 bg-white px-6 py-2 text-md font-poppins text-shark-700 hover:bg-shark-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
+                                                        className="inline-flex justify-center rounded-md border border-gray-500 bg-white px-6 py-2 text-md font-poppins text-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
                                                         onClick={() => { setSelectedIndex(1) }}>
-                                                        Grįžti
+                                                        ⬅ Grįžti
                                                     </a>
                                                     <a
-                                                        href="#item3"
-                                                        onClick={() => { setSelectedIndex(3) }}
-                                                        className="inline-flex justify-center rounded-md border border-transparent bg-shark-600 px-6 py-2 text-md font-poppins text-white hover:bg-shark-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
-                                                        Pateikti užsakymą
+                                                        href={`${ test === true ? '#item3': '#item2'}`}
+                                                        onClick={() => { confirmOrder() }}
+                                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue1-600 px-6 py-2 text-md font-poppins text-white hover:bg-blue1-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
+                                                        Pateikti užsakymą ✓
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div id="item3" className="carousel-item w-full">
-                                                <p>content 3</p>
+                                            <div id="item3" className={`carousel-item flex flex-col items-center w-full 
+
+                                            `}>
+                                                <ModalConfirm />
+                                                <button
+                                                    onClick={closeModal}
+                                                    className="rounded-md border border-white bg-blue1-600 text-white px-6 py-2 font-semibold font-poppins transition-all duration-300 hover:shadow-[4px_4px_0px_black] hover:translate-x-[-4px] hover:translate-y-[-4px] active:translate-x-[-0px] active:translate-y-[-0px] active:rounded-2xl active:shadow-[0px_0px_0px_black]">
+                                                    Grįžti į puslapį
+                                                </button>
                                             </div>
                                         </div>
                                     </Dialog.Panel>
