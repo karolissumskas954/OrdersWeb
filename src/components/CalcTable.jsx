@@ -3,7 +3,7 @@ import { prices } from "../constants"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Dialog, Transition, Tab } from '@headlessui/react'
-import { ModalFillForm, ModalTable, ModalStepper, ModalConfirm } from '../components'
+import { ModalFillForm, ModalTable, ModalStepper, ModalConfirm} from '../components'
 
 
 const CalcTable = () => {
@@ -32,6 +32,7 @@ const CalcTable = () => {
         setSelectedIndex(1);
         totalSum()
         checkModal();
+        console.log(isOpen)
 
     }
     function checkModal() {
@@ -50,8 +51,10 @@ const CalcTable = () => {
                     progress: undefined,
                     theme: "dark",
                 });
+                setIsOpen(false)
             }
-        } else {
+            
+        } else { 
             toast.warn('Užpildykite lentelę norint užsisakyti', {
                 position: "top-right",
                 autoClose: 5000,
@@ -62,7 +65,9 @@ const CalcTable = () => {
                 progress: undefined,
                 theme: "dark",
             });
+            setIsOpen(false)
         }
+        
     }
 
     const handleOpen = () => {
@@ -516,6 +521,8 @@ const CalcTable = () => {
                     </div>
                 </div>
                 <ToastContainer />
+
+
                 <Transition appear show={isOpen} as={Fragment}>
                     <Dialog as="div" className="relative z-10" onClose={closeModal}>
                         <Transition.Child
@@ -530,7 +537,7 @@ const CalcTable = () => {
                             <div className="fixed inset-0 bg-black bg-opacity-50 " />
                         </Transition.Child>
                         <div className="fixed inset-0 ">
-                            <div className='flex items-center justify-center text-center mt-[10%]'>
+                            <div className='flex items-center justify-center text-center mt-[8%]'>
                             </div>
                             <div className="flex items-center justify-center p-4 text-center">
                                 <Transition.Child
@@ -545,11 +552,8 @@ const CalcTable = () => {
                                     <Dialog.Panel className={`w-full md:w-[70%] transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all ${selectedIndex == 3 ? 'max-h-[480px]' : ''} ${selectedIndex == 2 ? 'max-h-[520px]' : ''} `}>
                                         <ModalStepper selectedIndex={selectedIndex} />
                                         <div className="carousel w-full overflow-x-hidden">
-                                            <div id="item1" className={`carousel-item w-full flex flex-col 
-
-                                            `}>
+                                            <div id="item1" className={`carousel-item w-full flex flex-col ${selectedIndex == 2 ? 'invisible' : ''}`}>
                                                 <ModalTable data={data} />
-
                                                 <div className={`mt-8 flex justify-end`}>
                                                     <button
                                                         type="button"
@@ -564,11 +568,8 @@ const CalcTable = () => {
                                                         Tęsti ➞
                                                     </a>
                                                 </div>
-
                                             </div>
-                                            <div id="item2" className={`carousel-item w-full flex flex-col 
-                                           
-                                            `}>
+                                            <div id="item2" className={`carousel-item w-full flex flex-col `}>
                                                 <ModalFillForm childToParent={childToParent}/>
                                                 <p>{test}</p>
                                                 <div className="mt-4  flex justify-end">
@@ -586,9 +587,7 @@ const CalcTable = () => {
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div id="item3" className={`carousel-item flex flex-col items-center w-full 
-
-                                            `}>
+                                            <div id="item3" className={`carousel-item flex flex-col items-center w-full `}>
                                                 <ModalConfirm />
                                                 <button
                                                     onClick={closeModal}
@@ -603,7 +602,6 @@ const CalcTable = () => {
                         </div>
                     </Dialog>
                 </Transition>
-
             </div>
         </>
     )
