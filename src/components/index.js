@@ -7,7 +7,6 @@ import ContactsTable from "./ContactsTable";
 import PDFDisplay from "./PDFDisplay";
 import PriceDetails from "./PriceDetails";
 import CalcTable from "./CalcTable";
-import ModalFillForm from "./ModalFillForm";
 import ModalTable from "./ModalTable";
 import ModalStepper from "./ModalStepper";
 import ModalConfirm from "./ModalConfirm";
@@ -22,7 +21,6 @@ export {
     PDFDisplay,
     PriceDetails,
     CalcTable,
-    ModalFillForm,
     ModalTable,
     ModalStepper,
     ModalConfirm,
