@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   SiFramer,
   SiTailwindcss,
@@ -8,26 +8,200 @@ import {
   SiCss3,
 } from "react-icons/si";
 
+import { BiLogOut } from "react-icons/bi";
+import { RiFilePaper2Line } from "react-icons/ri";
+import { LuMail } from "react-icons/lu";
+import { FaRegFilePdf } from "react-icons/fa";
+import { BsCalculator } from "react-icons/bs";
+
+
 const AdminHome = () => {
+  const [selected, setSelected] = useState(0);
+
+  const handleClick = (num) => {
+    setSelected(num);
+  };
+
+
   return (
-    <div className=" text-slate-100 flex">
-      <SideNav />
-      {/* <div className="w-full">
-        <div className="h-[35px] m-4 rounded border-2 border-dashed border-slate-600 bg-slate-800"></div>
-        <div className="h-[400px] m-4 rounded border-2 border-dashed border-slate-600 bg-slate-800"></div>
-      </div> */}
+    <div className="text-white flex bg-white">
+      <SideNav handleClick={handleClick} />
+      <div className="w-full">
+        {
+          selected == 0 ?
+            <div className="h-[45px] m-4 rounded-xl border-2  ">
+              <h1 className="text-2xl font-semibold font-poppins text-center my-1 text-black">Užsakymai</h1>
+              <div className="h-full w-full mt-10 rounded  ">
+                <div className="overflow-x-auto border-2 rounded-xl">
+                  <table className="table bg-white1-400 border-2">
+                    {/* head */}
+                    <thead>
+                      <tr className="text-md text-black">
+                        <th >
+                          <label>
+                            <input type="checkbox" className="checkbox" />
+                          </label>
+                        </th>
+                        <th>Informacija</th>
+                        <th>Job</th>
+                        <th>Favorite Color</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* row 1 */}
+                      <tr>
+                        <th>
+                          <label>
+                            <input type="checkbox" className="checkbox" />
+                          </label>
+                        </th>
+                        <td>
+                          <div className="flex items-center space-x-3">
+                            {/* <div className="avatar">
+                              <div className="mask mask-squircle w-12 h-12">
+                                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                              </div>
+                            </div> */}
+                            <div>
+                              <div className="font-bold">Hart Hagerty</div>
+                              <div className="text-sm opacity-50">Vilnius, zaibo g. 52 A</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          Zemlak, Daniel and Leannon
+                          <br />
+                          <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                        </td>
+                        <td>Purple</td>
+                        <th>
+                          <button className="btn btn-ghost btn-xs">details</button>
+                        </th>
+                      </tr>
+                      {/* row 2 */}
+                      <tr>
+                        <th>
+                          <label>
+                            <input type="checkbox" className="checkbox" />
+                          </label>
+                        </th>
+                        <td>
+                          <div className="flex items-center space-x-3">
+                            <div className="avatar">
+                              <div className="mask mask-squircle w-12 h-12">
+                                <img src="/tailwind-css-component-profile-3@56w.png" alt="Avatar Tailwind CSS Component" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-bold">Brice Swyre</div>
+                              <div className="text-sm opacity-50">China</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          Carroll Group
+                          <br />
+                          <span className="badge badge-ghost badge-sm">Tax Accountant</span>
+                        </td>
+                        <td>Red</td>
+                        <th>
+                          <button className="btn btn-ghost btn-xs">details</button>
+                        </th>
+                      </tr>
+                      {/* row 3 */}
+                      <tr>
+                        <th>
+                          <label>
+                            <input type="checkbox" className="checkbox" />
+                          </label>
+                        </th>
+                        <td>
+                          <div className="flex items-center space-x-3">
+                            <div className="avatar">
+                              <div className="mask mask-squircle w-12 h-12">
+                                <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-bold">Marjy Ferencz</div>
+                              <div className="text-sm opacity-50">Russia</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          Rowe-Schoen
+                          <br />
+                          <span className="badge badge-ghost badge-sm">Office Assistant I</span>
+                        </td>
+                        <td>Crimson</td>
+                        <th>
+                          <button className="btn btn-ghost btn-xs">details</button>
+                        </th>
+                      </tr>
+                      {/* row 4 */}
+                      <tr>
+                        <th>
+                          <label>
+                            <input type="checkbox" className="checkbox" />
+                          </label>
+                        </th>
+                        <td>
+                          <div className="flex items-center space-x-3">
+                            <div className="avatar">
+                              <div className="mask mask-squircle w-12 h-12">
+                                <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-bold">Yancy Tear</div>
+                              <div className="text-sm opacity-50">Brazil</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          Wyman-Ledner
+                          <br />
+                          <span className="badge badge-ghost badge-sm">Community Outreach Specialist</span>
+                        </td>
+                        <td>Indigo</td>
+                        <th>
+                          <button className="btn btn-ghost btn-xs">details</button>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+
+
+            </div>
+            : ''
+
+          // <div className="h-[400px] m-4 rounded border-2 border-dashed border-slate-600 bg-slate-800"></div>
+        }
+
+      </div>
     </div>
   );
 };
 
-const SideNav = () => {
+const SideNav = ({ handleClick }) => {
   const [selected, setSelected] = useState(0);
+
+  useEffect(() => {
+    handleClick(selected);
+  }, [selected])
+
 
   return (
     // NOTE: In prod, you'd likely set height to h-screen and fix to the viewport
-    <nav className="h-screen w-fit bg-slate-950 p-4 flex flex-col items-center gap-2">
-      {/* Temp logo from https://logoipsum.com/ */}
-      {/* <svg
+    <>
+      <nav className="h-screen w-fit bg-black p-4 flex flex-col items-center gap-4">
+        {/* Temp logo from https://logoipsum.com/ */}
+        {/* <svg
         width="40"
         height="28"
         viewBox="0 0 40 28"
@@ -42,29 +216,53 @@ const SideNav = () => {
           fill="#FFFFFF"
         ></path>
       </svg> */}
-      <NavItem selected={selected === 0} id={0} setSelected={setSelected}>
-        <SiTailwindcss />
-      </NavItem>
-      <NavItem selected={selected === 1} id={1} setSelected={setSelected}>
-        <SiReact />
-      </NavItem>
-      <NavItem selected={selected === 2} id={2} setSelected={setSelected}>
-        <SiJavascript />
-      </NavItem>
-      <NavItem selected={selected === 3} id={3} setSelected={setSelected}>
-        <SiFramer />
-      </NavItem>
-      <NavItem selected={selected === 4} id={4} setSelected={setSelected}>
-        <SiCss3 />
-      </NavItem>
-    </nav>
+        <NavItem selected={selected === 0} id={0} setSelected={setSelected}>
+          <div className="flex flex-row">
+            <RiFilePaper2Line />
+            <p className="mx-2 text-sm">Užsakymai</p>
+          </div>
+
+        </NavItem>
+        <NavItem selected={selected === 1} id={1} setSelected={setSelected}>
+          <div className="flex flex-row">
+            <LuMail />
+            <p className="mx-2 text-sm">Pranešimai</p>
+          </div>
+        </NavItem>
+        <NavItem selected={selected === 2} id={2} setSelected={setSelected}>
+          <div className="flex flex-row">
+            <BsCalculator />
+            <p className="mx-2 text-sm">Skaičiuoklė</p>
+          </div>
+
+        </NavItem>
+        <NavItem selected={selected === 3} id={3} setSelected={setSelected}>
+          <div className="flex flex-row">
+            <FaRegFilePdf />
+            <p className="mx-2 text-sm">PDF </p>
+          </div>
+        </NavItem>
+        <NavItem selected={selected === 4} id={4} setSelected={setSelected}>
+          <div className="flex flex-row">
+            <SiCss3 />
+            <p className="mx-2 text-sm">extra</p>
+          </div>
+        </NavItem>
+        <NavItem selected={selected === 5} id={5} setSelected={setSelected}>
+          <div className="flex flex-row">
+            <BiLogOut />
+            <a href='/home' className="mx-2 text-sm underline">Atsijungti</a>
+          </div>
+        </NavItem>
+      </nav>
+    </>
   );
 };
 
 const NavItem = ({ children, selected, id, setSelected }) => {
   return (
     <motion.button
-      className="p-3 text-xl bg-slate-800 hover:bg-slate-700 rounded-md transition-colors relative"
+      className="p-3 text-xl w-[100%] bg-zinc-800 hover:bg-tulip-600 rounded-md transition-colors relative"
       onClick={() => setSelected(id)}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -73,7 +271,7 @@ const NavItem = ({ children, selected, id, setSelected }) => {
       <AnimatePresence>
         {selected && (
           <motion.span
-            className="absolute inset-0 rounded-md bg-indigo-600 z-0"
+            className="absolute inset-0 rounded-md bg-jaffa-600  z-0 "
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}

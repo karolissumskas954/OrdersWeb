@@ -13,7 +13,8 @@ import twitter from './Twitter.svg';
 import instagram from './Instagram.svg'
 import messenger from './Messenger.svg';
 import kainorastis from './kainorastis.pdf';
-import cong from './cong.svg'
+import cong from './cong.svg';
+import dg from './dg.png';
 
 export {
     check,
@@ -32,4 +33,5 @@ export {
     messenger,
     kainorastis,
     cong,
+    dg
 };

@@ -4,6 +4,7 @@ import Calculator from "./pages/Calculator";
 import Contacts from "./pages/Contacts";
 import NotFound404 from "./pages/404";
 import Admin from './pages/Admin';
+import Login from './pages/Login';
 import { BrowserRouter,Routes, Route } from "react-router-dom";
 
 
@@ -19,6 +20,7 @@ const App = () => (
       <Route path="/contacts" element={<Contacts/>}></Route>
       <Route path="*" element={<NotFound404/>}></Route>
       <Route path='/admin' element={<Admin/>}></Route>
+      <Route path='/login' element={<Login/>}></Route>
     </Routes>
     </BrowserRouter>
   </div>

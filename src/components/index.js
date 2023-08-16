@@ -11,6 +11,7 @@ import ModalTable from "./ModalTable";
 import ModalStepper from "./ModalStepper";
 import ModalConfirm from "./ModalConfirm";
 import AdminHome from "./AdminHome";
+import LoginForm from "./LoginForm";
 export {
     Navbar,
     Footer,
@@ -24,5 +25,6 @@ export {
     ModalTable,
     ModalStepper,
     ModalConfirm,
-    AdminHome
+    AdminHome,
+    LoginForm
 };
