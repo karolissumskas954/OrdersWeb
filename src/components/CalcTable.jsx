@@ -636,7 +636,7 @@ const CalcTable = () => {
                                                             <div className="w-full mb-2 mx-3 flex-1/2">
                                                                 <div className='flex form-control'>
                                                                     <label className="label w-[100%]">
-                                                                        <span className="label-text">El. Paštas</span>
+                                                                        <span className="label-text">Elektroninio pašto adresas</span>
                                                                     </label>
                                                                     <input type="text" placeholder='El. Paštas' onChange={handleEmail} value={email} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0  ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                 </div>
@@ -646,7 +646,7 @@ const CalcTable = () => {
                                                             <div className="w-full mb-2 mx-3 flex-1/2 ">
                                                                 <div className='flex form-control'>
                                                                     <label className="label w-[100%]">
-                                                                        <span className="label-text">Tel. Nr</span>
+                                                                        <span className="label-text">Telefono numeris</span>
                                                                     </label>
                                                                     <input type="text" placeholder='+123 456 789 12' onChange={handlePhone} value={phone} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidPhone ? ' border-red' : 'border-gray-300'} ${isValidPhone ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                 </div>
@@ -654,7 +654,7 @@ const CalcTable = () => {
                                                             <div className="w-full mb-2 mx-3 flex-1/2">
                                                                 <div className='flex form-control'>
                                                                     <label className="label w-[100%]">
-                                                                        <span className="label-text">Adresas</span>
+                                                                        <span className="label-text">Užsakymo adresas</span>
                                                                     </label>
                                                                     <input type="text" placeholder='Adresas' onChange={handleAddress} value={address} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidAddress ? ' border-red' : 'border-gray-300'} ${isValidAddress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                 </div>
@@ -664,7 +664,7 @@ const CalcTable = () => {
                                                             <div className="w-full mb-2 mx-3 flex-1/2">
                                                                 <div className='flex form-control'>
                                                                     <label className="label w-[100%]">
-                                                                        <span className="label-text">Data</span>
+                                                                        <span className="label-text">Numatoma užsakymo vykdymo data </span>
                                                                     </label>
                                                                     <DatePicker
                                                                         dateFormat="yyyy-MM-d"
