@@ -28,3 +28,4 @@ route.ts
 index.ts
 server.ts
 .react-email/
+firebaseConfig.js

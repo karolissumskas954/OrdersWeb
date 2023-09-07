@@ -1,4 +1,22 @@
 import { dg } from "../assets"
+import { getDatabase, ref, set } from "firebase/database";
+import { database } from "../../firebase";
+
+function writeUserData() {
+  // const database = getDatabase();
+  set(ref(database, 'users/' + 3), {
+    username: "name",
+    email: "email",
+    profile_picture : "imageUrl"
+  }).then(() => {
+    // Data saved successfully!
+    console.log("Data saved successfully!")
+  })
+  .catch((error) => {
+    // The write failed...
+    onsole.log("The write failed...")
+  });;
+}
 const LoginForm = () => {
     return(
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -63,6 +81,18 @@ const LoginForm = () => {
                     px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm"
               >
                 Prisijungti
+              </button>
+            </div>
+
+            <div>
+              <button
+              onClick={() => {writeUserData()}}
+                type="submit"
+                className="flex w-full justify-center rounded-md
+                    transition-all duration-500 bg-gradient-to-r from-jaffa-400 via-tulip-300 to-purple-500  bg-size-200 bg-pos-0 hover:bg-pos-100
+                    px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm"
+              >
+                Database
               </button>
             </div>
           </form>

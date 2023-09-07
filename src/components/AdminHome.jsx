@@ -33,7 +33,7 @@ const AdminHome = () => {
               <h1 className="text-2xl font-semibold font-poppins text-center my-1 mt-10 text-black">Užsakymai</h1>
               <div className="h-full w-full mt-10 rounded  ">
                 <div className="overflow-x-auto border-2 border-black rounded-xl shadow-2xl">
-                  <table className="table border-2 border-black">
+                  <table className="table ">
                     {/* head */}
                     <thead>
                       <tr className="text-sm text-white border bg-blue1-600 border-black font-poppins">
@@ -45,6 +45,7 @@ const AdminHome = () => {
                         <th>Informacija</th>
                         <th>Job</th>
                         <th>Telefono numeris</th>
+                        <th>Data</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -75,6 +76,7 @@ const AdminHome = () => {
                           <span className="badge badge-ghost badge-sm text-black">Desktop Support Technician</span>
                         </td>
                         <td className="text-black">+96585123123</td>
+                        <td className="text-black">2002-02-25</td>
                         <th>
                           <button className="btn btn-ghost btn-xs text-black">details</button>
                         </th>
@@ -245,7 +247,7 @@ const SideNav = ({ handleClick }) => {
         <NavItem selected={selected === 4} id={4} setSelected={setSelected}>
           <div className="flex flex-row">
             <SiCss3 />
-            <p className="mx-2 text-sm">extra</p>
+            <p className="mx-2 text-sm">Kalendorius</p>
           </div>
         </NavItem>
         <NavItem selected={selected === 5} id={5} setSelected={setSelected}>
