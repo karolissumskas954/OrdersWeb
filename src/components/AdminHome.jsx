@@ -24,36 +24,36 @@ const AdminHome = () => {
 
 
   return (
-    <div className="text-white flex bg-white">
+    <div className="text-white flex bg-white1-50">
       <SideNav handleClick={handleClick} />
       <div className="w-full">
         {
           selected == 0 ?
-            <div className="h-[45px] m-4 rounded-xl border-2  ">
-              <h1 className="text-2xl font-semibold font-poppins text-center my-1 text-black">Užsakymai</h1>
+            <div className="h-[45px] m-4 rounded-xl">
+              <h1 className="text-2xl font-semibold font-poppins text-center my-1 mt-10 text-black">Užsakymai</h1>
               <div className="h-full w-full mt-10 rounded  ">
-                <div className="overflow-x-auto border-2 rounded-xl">
-                  <table className="table bg-white1-400 border-2">
+                <div className="overflow-x-auto border-2 border-black rounded-xl shadow-2xl">
+                  <table className="table border-2 border-black">
                     {/* head */}
                     <thead>
-                      <tr className="text-md text-black">
+                      <tr className="text-sm text-white border bg-blue1-600 border-black font-poppins">
                         <th >
-                          <label>
-                            <input type="checkbox" className="checkbox" />
-                          </label>
+                          {/* <label>
+                            <input type="checkbox" className="checkbox border-2 border-black" />
+                          </label> */}
                         </th>
                         <th>Informacija</th>
                         <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>Telefono numeris</th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       {/* row 1 */}
-                      <tr>
-                        <th>
+                      <tr className="border border-white1-300 hover:bg-white1-200">
+                        <th >
                           <label>
-                            <input type="checkbox" className="checkbox" />
+                            <input type="checkbox" className="checkbox border-2 border-white1-400" />
                           </label>
                         </th>
                         <td>
@@ -64,19 +64,19 @@ const AdminHome = () => {
                               </div>
                             </div> */}
                             <div>
-                              <div className="font-bold">Hart Hagerty</div>
-                              <div className="text-sm opacity-50">Vilnius, zaibo g. 52 A</div>
+                              <div className="font-bold text-black">Hart Hagerty</div>
+                              <div className="text-sm opacity-50 text-black">Vilnius, zaibo g. 52 A</div>
                             </div>
                           </div>
                         </td>
-                        <td>
+                        <td className="text-black">
                           Zemlak, Daniel and Leannon
                           <br />
-                          <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                          <span className="badge badge-ghost badge-sm text-black">Desktop Support Technician</span>
                         </td>
-                        <td>Purple</td>
+                        <td className="text-black">+96585123123</td>
                         <th>
-                          <button className="btn btn-ghost btn-xs">details</button>
+                          <button className="btn btn-ghost btn-xs text-black">details</button>
                         </th>
                       </tr>
                       {/* row 2 */}
@@ -262,7 +262,7 @@ const SideNav = ({ handleClick }) => {
 const NavItem = ({ children, selected, id, setSelected }) => {
   return (
     <motion.button
-      className="p-3 text-xl w-[100%] bg-zinc-800 hover:bg-tulip-600 rounded-md transition-colors relative"
+      className="p-3 text-xl w-[100%] bg-zinc-800 hover:bg-shark-900 rounded-md transition-colors relative"
       onClick={() => setSelected(id)}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -271,7 +271,7 @@ const NavItem = ({ children, selected, id, setSelected }) => {
       <AnimatePresence>
         {selected && (
           <motion.span
-            className="absolute inset-0 rounded-md bg-jaffa-600  z-0 "
+            className="absolute inset-0 rounded-md bg-blue1-800  z-0 "
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
