@@ -40,8 +40,8 @@ app.listen(port, () => {
 async function sendEmail() {
     try {
       const data = await resend.emails.send({
-        from: 'xg@x.dev', //need change
-        to: 'x@x.com', //change this
+        from: process.env.VITE_RESEND_FROM_EMAIL , //need change
+        to: process.env.VITE_RESEND_TO_EMAIL, //change this
         subject: 'Deimantinis gręžimas', //change
         react: Email(),
       });

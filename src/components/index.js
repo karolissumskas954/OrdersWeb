@@ -12,6 +12,8 @@ import ModalStepper from "./ModalStepper";
 import ModalConfirm from "./ModalConfirm";
 import AdminHome from "./AdminHome";
 import LoginForm from "./LoginForm";
+import AdminOrders from "./AdminOrders";
+import AdminMessages from "./AdminMessages";
 export {
     Navbar,
     Footer,
@@ -26,5 +28,7 @@ export {
     ModalStepper,
     ModalConfirm,
     AdminHome,
-    LoginForm
+    LoginForm,
+    AdminOrders,
+    AdminMessages
 };

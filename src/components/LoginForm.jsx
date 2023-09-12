@@ -1,21 +1,9 @@
 import { dg } from "../assets"
-import { getDatabase, ref, set } from "firebase/database";
-import { database } from "../../firebase";
+import { addQuestionToDatabase } from "../../firebase";
 
 function writeUserData() {
-  // const database = getDatabase();
-  set(ref(database, 'users/' + 3), {
-    username: "name",
-    email: "email",
-    profile_picture : "imageUrl"
-  }).then(() => {
-    // Data saved successfully!
-    console.log("Data saved successfully!")
-  })
-  .catch((error) => {
-    // The write failed...
-    onsole.log("The write failed...")
-  });;
+
+  // addData("vardas", "email", "tekstas");
 }
 const LoginForm = () => {
     return(

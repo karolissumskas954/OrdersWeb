@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { questionLT } from '../constants'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { addQuestionToDatabase } from "../../firebase";
+import { ToastContainer} from 'react-toastify';
+import { ToastWarnEmail, ToastWarnInput, ToastSuccessQuestion } from './Toasts';
 
 const Questions = () => {
   const [name, setName] = useState('')
@@ -42,7 +43,7 @@ const Questions = () => {
     })
   }
   const handleOpen = () => {
-    if (name == '' || email == '' || text == '' || !emailCheck(email)) {
+    if (name === '' || email === '' || text === '' || !emailCheck(email)) {
       setIsValidName(true);
       setIsValidEmail(true);
       setIsValidText(true);
@@ -56,47 +57,21 @@ const Questions = () => {
         if (emailCheck(email)){
           setIsValidEmail(false);
         }else {
-          toast.warn('Neteisingas el. pašto formatas', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          ToastWarnEmail()
           return;
         }
       }
-      toast.warn('Užpildykite visus laukus', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      ToastWarnInput();
     } else {
-      sendEmail();
+      // sendEmail(); Turn on
+      addQuestionToDatabase(name, email, text);
       setIsValidName(false);
       setIsValidEmail(false);
       setIsValidText(false);
       setName("");
       setEmail("");
       setText("");
-      toast.success('Jūsų žinutė sėkmingai išsiųsta!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark", //colored
-      });
+      ToastSuccessQuestion();
     }
   }
   return (

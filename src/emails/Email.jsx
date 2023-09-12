@@ -34,7 +34,7 @@ export const Email = () => (
         </Heading>
         <Text style={paragraph}>Sveiki,</Text>
         <Text style={paragraph}>
-          Jūsų pranešimą gavome. <br />
+          Dėkojame už Jūsų pranešimą. <br />
           Netrukus su Jumis susisieksime.
         </Text>
         <Section style={btnContainer}>
