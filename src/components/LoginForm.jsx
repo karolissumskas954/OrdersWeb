@@ -1,9 +1,26 @@
 import { dg } from "../assets"
-import { addQuestionToDatabase } from "../../firebase";
+import { dbRef, getQuestionData } from "../../firebase";
+import { getDatabase, ref, set, get, child } from "firebase/database";
 
 function writeUserData() {
 
-  // addData("vardas", "email", "tekstas");
+  const dataArray = getQuestionData();
+
+  dataArray
+    .then((data) => {
+      const newdb = data.map((item) => {
+        console.log(item.email);
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+
+  
+
+
+
 }
 const LoginForm = () => {
     return(
