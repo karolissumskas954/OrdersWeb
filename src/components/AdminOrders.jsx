@@ -1,7 +1,7 @@
 
 const AdminOrders = () => {
   return (
-    <div className="h-[45px] m-4 rounded-xl">
+    <div className="h-[45px] m-4 rounded-xl mx-10">
     <h1 className="text-2xl font-semibold font-poppins text-center my-1 mt-10 text-black">Užsakymai</h1>
     <div className="h-full w-full mt-10 rounded  ">
       <div className="overflow-x-auto border-2 border-black rounded-xl shadow-2xl">

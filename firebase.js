@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, set, get, child } from "firebase/database";
+import { getDatabase, ref, set, get, child, onValue } from "firebase/database";
 import { firebaseConfig, databaseQuestionURL } from "./firebaseConfig";
 import uuid from 'react-uuid';
 
@@ -33,20 +33,28 @@ export function addQuestionToDatabase(name, email, question){
 
 export function getQuestionData() {
   return new Promise((resolve, reject) => {
-    get(child(dbRef, databaseQuestionURL))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const dbdata = snapshot.val();
+    // get(child(dbRef, databaseQuestionURL))
+    //   .then((snapshot) => {
+    //     if (snapshot.exists()) {
+    //       const dbdata = snapshot.val();
+    //       const dataArray = Object.values(dbdata);
+    //       // console.log(dbdata)
+    //       resolve(dataArray);
+    //     } else {
+    //       console.log('No data available');
+    //       resolve([]); // Resolve with an empty array if no data
+    //     }
+      // })
+    const dRef = ref(database, databaseQuestionURL + '/');
+    onValue(dRef, (snapshot) => {
+      const dbdata = snapshot.val();
           const dataArray = Object.values(dbdata);
+          console.log(dbdata)
           resolve(dataArray);
-        } else {
-          console.log('No data available');
-          resolve([]); // Resolve with an empty array if no data
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        reject(error);
-      });
+    })
+      // .catch((error) => {
+      //   console.error(error);
+      //   reject(error);
+      // });
   });
 }
