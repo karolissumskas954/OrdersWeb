@@ -68,12 +68,12 @@ const CalcTable = () => {
         validatePhone(phone);
         validateAddress(address);
         if (!isValidAddress && !isValidName && !isValidEmail && !isValidPhone && name !== '' && address !== '' && emailCheck(email) && phoneChech(phone)) {
-            setSelectedIndex(3)
+            setSelectedIndex(2)
         }
 
     };
 
-    let [selectedIndex, setSelectedIndex] = useState(1)
+    let [selectedIndex, setSelectedIndex] = useState(0)
 
     let [isOpen, setIsOpen] = useState(false)
 
@@ -82,10 +82,9 @@ const CalcTable = () => {
     }
 
     function openModal() {
-        setSelectedIndex(1);
+        setSelectedIndex(0);
         totalSum()
         checkModal();
-        console.log(isOpen)
 
     }
     function checkModal() {
@@ -603,106 +602,122 @@ const CalcTable = () => {
                                 >
                                     <Dialog.Panel className={`w-full md:w-[70%] transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all ${selectedIndex == 3 ? 'max-h-[480px]' : ''} ${selectedIndex == 2 ? 'max-h-[520px]' : ''} `}>
                                         <ModalStepper selectedIndex={selectedIndex} />
-                                        <div className="carousel w-full overflow-x-hidden">
-                                            <div id="item1" className={`carousel-item w-full flex flex-col ${selectedIndex == 2 ? 'invisible' : ''}`}>
-                                                <ModalTable data={data} />
-                                                <div className={`mt-8 flex justify-end`}>
-                                                    <button
-                                                        type="button"
-                                                        className="inline-flex justify-center rounded-md border border-gray-500 bg-white px-6 py-2 text-md font-poppins text-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
-                                                        onClick={closeModal}>
-                                                        Išeiti
-                                                    </button>
-                                                    <a
-                                                        href="#item2"
-                                                        onClick={() => { setSelectedIndex(2) }}
-                                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue1-600 px-6 py-2 text-md font-poppins text-white hover:bg-blue1-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
-                                                        Tęsti ➞
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div id="item2" className={`carousel-item w-full flex flex-col `}>
-                                                <div className='bg-white mt-10 flex items-center flex-col'>
-                                                    <form className='bg-white1-50 w-[70%] rounded-xl shadow-xl mb-5'>
-                                                        <div className="flex w-full ml-10 mt-3">
-                                                            <div className="mb-2 w-full flex-1/2 mx-3">
-                                                                <div className='flex form-control'>
-                                                                    <label className="label w-[100%]">
-                                                                        <span className="label-text">Vardas Pavardė</span>
-                                                                    </label>
-                                                                    <input type="text" placeholder='Vardas Pavardė' onChange={handleName} value={name} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0 ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-full mb-2 mx-3 flex-1/2">
-                                                                <div className='flex form-control'>
-                                                                    <label className="label w-[100%]">
-                                                                        <span className="label-text">Elektroninio pašto adresas</span>
-                                                                    </label>
-                                                                    <input type="text" placeholder='El. Paštas' onChange={handleEmail} value={email} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0  ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
-                                                                </div>
+                                        <div className="relative w-[100%]  mx-auto overflow-hidden">
+                                            <div className="flex transition-transform ease-in-out duration-300"
+                                                style={{ width: "100%", transform: `translateX(-${selectedIndex * 0}%)` }}>
+                                                {
+                                                    selectedIndex == 0 ?
+                                                        <div className={`carousel-item w-[100%] flex flex-col`}>
+                                                            <ModalTable data={data} />
+                                                            <div className={`mt-8 flex justify-end`}>
+                                                                <button
+                                                                    type="button"
+                                                                    className="inline-flex justify-center rounded-md border border-gray-500 bg-white px-6 py-2 text-md font-poppins text-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
+                                                                    onClick={closeModal}>
+                                                                    Išeiti
+                                                                </button>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => { setSelectedIndex(1) }}
+                                                                    className="inline-flex justify-center rounded-md border border-transparent bg-blue1-600 px-6 py-2 text-md font-poppins text-white hover:bg-blue1-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
+                                                                    Tęsti ➞
+                                                                </button>
                                                             </div>
                                                         </div>
-                                                        <div className="flex w-full ml-10">
-                                                            <div className="w-full mb-2 mx-3 flex-1/2 ">
-                                                                <div className='flex form-control'>
-                                                                    <label className="label w-[100%]">
-                                                                        <span className="label-text">Telefono numeris</span>
-                                                                    </label>
-                                                                    <input type="text" placeholder='+123 456 789 12' onChange={handlePhone} value={phone} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidPhone ? ' border-red' : 'border-gray-300'} ${isValidPhone ? ' placeholder-red' : 'placeholder-gray-400'}`} />
-                                                                </div>
+                                                        : ''
+                                                }
+                                                {
+                                                    selectedIndex == 1 ?
+                                                        <div className={`carousel-item w-[100%] flex flex-col`}>
+                                                            <div className='bg-white mt-10 flex items-center flex-col'>
+                                                                <form className='bg-white1-50 w-[70%] rounded-xl shadow-xl mb-5'>
+                                                                    <div className="flex w-full ml-10 mt-3">
+                                                                        <div className="mb-2 w-full flex-1/2 mx-3">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Vardas Pavardė</span>
+                                                                                </label>
+                                                                                <input type="text" placeholder='Vardas Pavardė' onChange={handleName} value={name} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0 ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Elektroninio pašto adresas</span>
+                                                                                </label>
+                                                                                <input type="text" placeholder='El. Paštas' onChange={handleEmail} value={email} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0  ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex w-full ml-10">
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2 ">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Telefono numeris</span>
+                                                                                </label>
+                                                                                <input type="text" placeholder='+123 456 789 12' onChange={handlePhone} value={phone} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidPhone ? ' border-red' : 'border-gray-300'} ${isValidPhone ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Užsakymo adresas</span>
+                                                                                </label>
+                                                                                <input type="text" placeholder='Adresas' onChange={handleAddress} value={address} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidAddress ? ' border-red' : 'border-gray-300'} ${isValidAddress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex w-full ml-10 mb-3">
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Numatoma užsakymo vykdymo data </span>
+                                                                                </label>
+                                                                                <DatePicker
+                                                                                    dateFormat="yyyy-MM-d"
+                                                                                    selected={startDate}
+                                                                                    onChange={(date) => setStartDate(date)}
+                                                                                    className="border border-gray-300 py-2.5 px-2 rounded-md text-sm w-[80%]"
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                            <div className='flex form-control'>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
-                                                            <div className="w-full mb-2 mx-3 flex-1/2">
-                                                                <div className='flex form-control'>
-                                                                    <label className="label w-[100%]">
-                                                                        <span className="label-text">Užsakymo adresas</span>
-                                                                    </label>
-                                                                    <input type="text" placeholder='Adresas' onChange={handleAddress} value={address} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidAddress ? ' border-red' : 'border-gray-300'} ${isValidAddress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
-                                                                </div>
+                                                            <div className="mt-4 w-[100%]  flex justify-end">
+                                                                <button
+                                                                    type="button"
+                                                                    className="inline-flex justify-center rounded-md border border-gray-500 bg-white px-6 py-2 text-md font-poppins text-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
+                                                                    onClick={() => { setSelectedIndex(0) }}>
+                                                                    ⬅ Grįžti
+                                                                </button>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => { validateForm() }}
+                                                                    className="inline-flex justify-center rounded-md border border-transparent bg-blue1-600 px-6 py-2 text-md font-poppins text-white hover:bg-blue1-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
+                                                                    Pateikti užsakymą ✓
+                                                                </button>
                                                             </div>
                                                         </div>
-                                                        <div className="flex w-full ml-10 mb-3">
-                                                            <div className="w-full mb-2 mx-3 flex-1/2">
-                                                                <div className='flex form-control'>
-                                                                    <label className="label w-[100%]">
-                                                                        <span className="label-text">Numatoma užsakymo vykdymo data </span>
-                                                                    </label>
-                                                                    <DatePicker
-                                                                        dateFormat="yyyy-MM-d"
-                                                                        selected={startDate}
-                                                                        onChange={(date) => setStartDate(date)}
-                                                                        className="border border-gray-300 py-2.5 px-2 rounded-md text-sm w-[80%]"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-full mb-2 mx-3 flex-1/2">
-                                                                <div className='flex form-control'>
-                                                                </div>
-                                                            </div>
+                                                        : ''
+                                                }
+                                                {
+                                                    selectedIndex == 2 ?
+                                                        <div className={`carousel-item flex flex-col items-center w-full `}>
+                                                            <ModalConfirm />
+                                                            <button
+                                                                type="button"
+                                                                onClick={closeModal}
+                                                                className="rounded-md border border-white bg-blue1-600 text-white px-6 py-2 font-semibold font-poppins transition-all duration-300 hover:shadow-[4px_4px_0px_black] hover:translate-x-[-4px] hover:translate-y-[-4px] active:translate-x-[-0px] active:translate-y-[-0px] active:rounded-2xl active:shadow-[0px_0px_0px_black]">
+                                                                Grįžti į puslapį
+                                                            </button>
                                                         </div>
-                                                    </form>
-                                                </div>
-                                                <div className="mt-4  flex justify-end">
-                                                    <a
-                                                        href="#item1"
-                                                        className="inline-flex justify-center rounded-md border border-gray-500 bg-white px-6 py-2 text-md font-poppins text-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
-                                                        onClick={() => { setSelectedIndex(1) }}>
-                                                        ⬅ Grįžti
-                                                    </a>
-                                                    <a
-                                                        href={`${selectedIndex === 3 ? '#item3' : '#item2'}`}
-                                                        onClick={() => { validateForm() }}
-                                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue1-600 px-6 py-2 text-md font-poppins text-white hover:bg-blue1-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
-                                                        Pateikti užsakymą ✓
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div id="item3" className={`carousel-item flex flex-col items-center w-full `}>
-                                                <ModalConfirm />
-                                                <button
-                                                    onClick={closeModal}
-                                                    className="rounded-md border border-white bg-blue1-600 text-white px-6 py-2 font-semibold font-poppins transition-all duration-300 hover:shadow-[4px_4px_0px_black] hover:translate-x-[-4px] hover:translate-y-[-4px] active:translate-x-[-0px] active:translate-y-[-0px] active:rounded-2xl active:shadow-[0px_0px_0px_black]">
-                                                    Grįžti į puslapį
-                                                </button>
+                                                        : ''
+                                                }
                                             </div>
                                         </div>
                                     </Dialog.Panel>

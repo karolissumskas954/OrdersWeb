@@ -20,18 +20,18 @@ const AdminMessages = () => {
             setIsChecked(!isChecked)
         }
         return (
-            <tr className={`border border-gray-300 text-center ${isChecked? 'bg-shark-50' : ''}`}>
+            <tr className={`border border-gray-300 text-center ${isChecked ? 'bg-shark-50' : ''}`}>
                 <th className="w-1/12 ">
                 </th>
                 <td className="w-1/12">
-                    <div className={`flex items-center space-x-3 ${isChecked? 'opacity-50' : ''}`}>
+                    <div className={`flex items-center space-x-3 ${isChecked ? 'opacity-50' : ''}`}>
                         <div>
                             <div className="font-bold text-black">{item.username}</div>
                             <div className="text-sm font-medium  text-gray-600">{item.email}</div>
                         </div>
                     </div>
                 </td>
-                <td className={`w-4/12 text-black ${isChecked? 'opacity-50' : ''}`}>
+                <td className={`w-4/12 text-black ${isChecked ? 'opacity-50' : ''}`}>
                     {item.question}
                     <br />
                 </td>
@@ -43,16 +43,8 @@ const AdminMessages = () => {
                     }
                 </td>
                 <th className="w-1/12">
-                    <label className='themeSwitcherTwo relative inline-flex cursor-pointer select-none items-center'>
-                        <input
-                            type='checkbox'
-                            checked={isChecked}
-                            onChange={handleCheckboxChange}
-                            className='sr-only'
-                        />
-                        <span className={`slider flex h-6 w-[50px] items-center rounded-full p-1 duration-200 ${isChecked ? 'bg-salem-800' : 'bg-red1-700'}`}>
-                            <span className={`dot h-4 w-4 rounded-full bg-white duration-200 ${isChecked ? 'translate-x-[25px]' : ''}`}></span>
-                        </span>
+                    <label>
+                        <input type="checkbox" onClick={handleCheckboxChange} checked={isChecked} className="checkbox border-2 border-white1-400" />
                     </label>
                 </th>
                 <th className="w-1/12">
@@ -85,7 +77,7 @@ const AdminMessages = () => {
                 </div>
             </div>
         </div>
-    ) 
+    )
 }
 
 export default AdminMessages

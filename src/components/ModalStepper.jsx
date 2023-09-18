@@ -1,4 +1,4 @@
-const Steps = { INFO: 1, DATA: 2, CONFIRM: 3 };
+const Steps = { INFO: 0, DATA: 1, CONFIRM: 2 };
 
 const CheckSVG = ({ width, height, color }) => {
     return (
