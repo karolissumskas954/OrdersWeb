@@ -2,8 +2,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getDatabase, ref, set, get, child, onValue } from "firebase/database";
-import { firebaseConfig, databaseQuestionURL } from "./firebaseConfig";
+import { firebaseConfig, databaseQuestionURL, databaseOrderURL } from "./firebaseConfig";
 import uuid from 'react-uuid';
+import { format } from 'date-fns'
 
 
 
@@ -20,41 +21,64 @@ export function addQuestionToDatabase(name, email, question){
         username: name,
         email: email,
         question : question,
-        status: false
+        status: false,
+        date: format(new Date(), 'yyyy-MM-dd')
       }).then(() => {
-        // Data saved successfully!
         console.log("Data saved successfully!")
       })
       .catch((error) => {
-        // The write failed...
         onsole.log("The write failed...")
       });;
 }
 
 export function getQuestionData() {
   return new Promise((resolve, reject) => {
-    // get(child(dbRef, databaseQuestionURL))
-    //   .then((snapshot) => {
-    //     if (snapshot.exists()) {
-    //       const dbdata = snapshot.val();
-    //       const dataArray = Object.values(dbdata);
-    //       // console.log(dbdata)
-    //       resolve(dataArray);
-    //     } else {
-    //       console.log('No data available');
-    //       resolve([]); // Resolve with an empty array if no data
-    //     }
-      // })
     const dRef = ref(database, databaseQuestionURL + '/');
     onValue(dRef, (snapshot) => {
       const dbdata = snapshot.val();
           const dataArray = Object.values(dbdata);
-          console.log(dbdata)
+          const customSort = (dateStr1, dateStr2) => {
+            const date1 = new Date(dateStr1);
+            const date2 = new Date(dateStr2);
+            return date2 - date1;
+          };
+          dataArray.sort((a, b) => customSort(a.date, b.date));
           resolve(dataArray);
     })
-      // .catch((error) => {
-      //   console.error(error);
-      //   reject(error);
-      // });
+  });
+}
+
+export function addOrdersToDatabase(data, name, email, telephone, address, date){
+  set(ref(database, databaseOrderURL + '/' + uuid()), {
+      data: data,
+      name: name,
+      email: email,
+      telephone : telephone,
+      address: address,
+      date: date,
+      status: 1
+    }).then(() => {
+      console.log("Data saved successfully!")
+    })
+    .catch((error) => {
+      onsole.log("The write failed...")
+    });;
+}
+
+
+export function getOrderData() {
+  return new Promise((resolve, reject) => {
+    const dRef = ref(database, databaseOrderURL + '/');
+    onValue(dRef, (snapshot) => {
+      const dbdata = snapshot.val();
+          const dataArray = Object.values(dbdata);
+          const customSort = (dateStr1, dateStr2) => {
+            const date1 = new Date(dateStr1);
+            const date2 = new Date(dateStr2);
+            return date2 - date1;
+          };
+          dataArray.sort((a, b) => customSort(a.date, b.date));
+          resolve(dataArray);
+    })
   });
 }

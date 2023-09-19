@@ -7,6 +7,10 @@ import { ModalTable, ModalStepper, ModalConfirm } from '../components'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { addOrdersToDatabase } from "../../firebase";
+
+import { format } from 'date-fns'
+
 
 function emailCheck(str) {
     return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi.test(str);
@@ -69,6 +73,7 @@ const CalcTable = () => {
         validateAddress(address);
         if (!isValidAddress && !isValidName && !isValidEmail && !isValidPhone && name !== '' && address !== '' && emailCheck(email) && phoneChech(phone)) {
             setSelectedIndex(2)
+            addOrdersToDatabase(data,name,email,phone,address,format(startDate, 'yyyy-MM-dd'))
         }
 
     };

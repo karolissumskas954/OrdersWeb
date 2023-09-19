@@ -350,3 +350,15 @@ export const services = [
     title: 'Monolito gręžimas sausai'
   }
 ]
+
+export const adminMessagesDropdown = [
+  {
+    title: 'Visi'
+  },
+  {
+    title: 'Atsakyti'
+  },
+  {
+    title: 'Neatsakyti'
+  },
+]
