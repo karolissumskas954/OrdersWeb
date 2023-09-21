@@ -50,6 +50,7 @@ export function getQuestionData() {
 
 export function addOrdersToDatabase(data, name, email, telephone, address, date){
   set(ref(database, databaseOrderURL + '/' + uuid()), {
+      orderNumber: getRandomIntInclusive(1, 1000),
       data: data,
       name: name,
       email: email,
@@ -81,4 +82,10 @@ export function getOrderData() {
           resolve(dataArray);
     })
   });
+}
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
 }

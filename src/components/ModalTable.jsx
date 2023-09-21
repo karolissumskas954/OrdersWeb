@@ -76,9 +76,7 @@ const ModalTable = ({ data }) => {
             <div className='flex justify-end mr-2'>
                 <p className='text-md font-poppins text-black'>Suma su PVM: {(priceWithoutPVM + ((priceWithoutPVM) / 100) * 21).toFixed(2)} €</p>
             </div>
-            <p className="text-[16px] text-gray-700 mt-4">
-                * Į šią sumą nėra įskaičiuotas transportavimas ir darbo vietos paruošimas.
-            </p>
+
         </div>
     )
 }

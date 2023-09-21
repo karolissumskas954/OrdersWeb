@@ -73,7 +73,7 @@ const CalcTable = () => {
         validateAddress(address);
         if (!isValidAddress && !isValidName && !isValidEmail && !isValidPhone && name !== '' && address !== '' && emailCheck(email) && phoneChech(phone)) {
             setSelectedIndex(2)
-            addOrdersToDatabase(data,name,email,phone,address,format(startDate, 'yyyy-MM-dd'))
+            addOrdersToDatabase(data, name, email, phone, address, format(startDate, 'yyyy-MM-dd'))
         }
 
     };
@@ -614,6 +614,9 @@ const CalcTable = () => {
                                                     selectedIndex == 0 ?
                                                         <div className={`carousel-item w-[100%] flex flex-col`}>
                                                             <ModalTable data={data} />
+                                                            <p className="text-[16px] text-gray-700 mt-4">
+                                                                * Į šią sumą nėra įskaičiuotas transportavimas ir darbo vietos paruošimas.
+                                                            </p>
                                                             <div className={`mt-8 flex justify-end`}>
                                                                 <button
                                                                     type="button"

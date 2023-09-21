@@ -20,6 +20,7 @@ const AdminHome = () => {
 
 
   return (
+    <section>
     <div className="text-white flex bg-white1-50">
       <SideNav handleClick={handleClick} />
       <div className="w-full">
@@ -36,6 +37,7 @@ const AdminHome = () => {
 
       </div>
     </div>
+    </section>
   );
 };
 
