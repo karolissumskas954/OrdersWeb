@@ -57,7 +57,8 @@ export function addOrdersToDatabase(data, name, email, telephone, address, date)
       telephone : telephone,
       address: address,
       date: date,
-      status: 1
+      status: 1,
+      transport: 0
     }).then(() => {
       console.log("Data saved successfully!")
     })

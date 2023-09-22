@@ -362,3 +362,15 @@ export const adminMessagesDropdown = [
     title: 'Neatsakyti'
   },
 ]
+
+export const adminOrderStatusDropdown = [
+  {
+    title: 'Atmestas'
+  },
+  {
+    title: 'Vykdomas'
+  },
+  {
+    title: 'Atliktas'
+  },
+]
