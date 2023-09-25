@@ -11,7 +11,7 @@ const Prices = () => (
 
     <div className={`${styles.paddingY}`}>
       <div>
-        <h1 className="text-center font-poppins text-[20px] sm:text-[30px]">Kainoraštis</h1>
+        <h1 className="text-center font-poppins text-black text-[20px] sm:text-[30px]">Kainoraštis</h1>
       </div>
     </div>
 

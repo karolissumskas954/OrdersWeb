@@ -65,8 +65,8 @@ const PriceDetails = () => {
                 </div>
 
                 <div className='w-full flex flex-col justify-start items-start mt-5 sm:ml-0 ml-2'>
-                    <a href={kainorastis} download="Deimantinis_Grezimas_Kainorastis" target='_blank' rel='noreferrer'><p className='max-w-[95%] font-poppins font-regular underline text-greyDarker text-[16px] cursor-pointer sm:mb-0 mb-2'>Siųstis</p></a>
-                    <p onClick={() => {onResumeClick()}} className='max-w-[95%] font-poppins font-regular underline text-greyDarker text-[16px] cursor-pointer'>Žiūrėti internete</p>
+                    <a href={kainorastis} download="Deimantinis_Grezimas_Kainorastis" target='_blank' rel='noreferrer'><p className='max-w-[95%] font-poppins mx-2 font-regular underline text-greyDarker text-[16px] cursor-pointer sm:mb-0 mb-2'>Siųstis</p></a>
+                    <p onClick={() => {onResumeClick()}} className='max-w-[95%] font-poppins font-regular underline text-greyDarker text-[16px] cursor-pointer mx-2'>Žiūrėti internete</p>
                 </div>
             </div>
         </>

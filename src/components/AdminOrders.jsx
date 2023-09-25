@@ -155,7 +155,7 @@ const AdminOrders = () => {
                 <div className='w-[450px] text-center flex flex-row mb-8'>
                   <div className='text-black text-[16px] font-poppins'>Transportavimo išlaidos:
                   </div>
-                  <input value={transportcost} onChange={handleTransportCost} className='mx-5 border w-[10%] text-[16px] border-black rounded-md text-center'></input>
+                  <input value={transportcost} onChange={handleTransportCost} className='mx-5 border w-[10%] text-[16px] border-black rounded-md text-center bg-white1-50 text-black'></input>
                 </div>
                 <div className='w-full text-center justify-center flex flex-row my-2'>
                   <button className="mx-5 text-white bg-greyDarker hover:bg-gradient-to-r from-blue1-800 to-blue1-600 font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-[95px]" type="button">

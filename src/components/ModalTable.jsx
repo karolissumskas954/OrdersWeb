@@ -39,7 +39,7 @@ const ModalTable = ({ data }) => {
         const service2 = getService2(item);
         if (totalPrice == 0) return;
         return (
-            <tr {...props}>
+            <tr {...props} className="text-gray-500">
                 <td className='border-y-2'>{type}</td>
                 <td className='border-y-2'>{service1} <br /> {service2}</td>
                 <td className='border-y-2'>{diameter}</td>
@@ -55,7 +55,7 @@ const ModalTable = ({ data }) => {
                 <div className="overflow-x-auto mb-10 w-full border-2 rounded-xl">
                     <table className="table table-xl border-2 w-full ">
                         <thead>
-                            <tr  className='font-bold text-sm bg-white1-100'>
+                            <tr  className='font-bold text-sm bg-white1-100 text-gray-600'>
                                 <th>Medžiaga</th>
                                 <th>Paslaugos</th>
                                 <th>Diametras (mm)</th>

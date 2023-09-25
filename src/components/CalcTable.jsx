@@ -81,6 +81,7 @@ const CalcTable = () => {
     let [selectedIndex, setSelectedIndex] = useState(0)
 
     let [isOpen, setIsOpen] = useState(false)
+    const cancelButtonRef = useRef(null);
 
     function closeModal() {
         setIsOpen(false)
@@ -385,7 +386,7 @@ const CalcTable = () => {
                         placeholder=""
                         onChange={handleAmount}
                         value={amount}
-                        className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidAmount ? 'text-black' : 'text-red'}`}
+                        className={`bg-white1-50 whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidAmount ? 'text-black' : 'text-red'}`}
                     />
                 </td>
                 <td className="min-w-[160px]">
@@ -394,10 +395,10 @@ const CalcTable = () => {
                         placeholder=""
                         onChange={handleDiameter}
                         value={diameter}
-                        className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'}`}
+                        className={`bg-white1-50 whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDiameter ? 'text-black' : 'text-red'}`}
                     />
                 </td>
-                <td className="min-w-[300px]">
+                <td className="min-w-[300px] bg-white1-50">
                     <button onClick={() => setToggle((prev) => !prev)} className="text-white bg-greyDarker hover:bg-gradient-to-r from-darkGreen to-mediumGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full" type="button">
                         {type}
                         <svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -422,10 +423,10 @@ const CalcTable = () => {
                         placeholder=""
                         onChange={handleDepth}
                         value={depth}
-                        className={`whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`}
+                        className={`bg-white1-50 whitespace-nowrap border-r font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-4 sm:py-2 w-full ${isValidDepth ? 'text-black' : 'text-red'}`}
                     />
                 </td>
-                <td className="min-w-[220px]">
+                <td className="min-w-[220px] bg-white1-50">
                     <button
                         onClick={() => setToggleBox((prev) => !prev)}
                         className={`text-white hover:bg-gradient-to-r from-darkGreen to-mediumGreen font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full ${box1 || box2 || box3 || box4 ? 'bg-black ' : 'bg-greyDarker'}`}
@@ -488,7 +489,7 @@ const CalcTable = () => {
                         </ul>
                     </div>
                 </td>
-                <td className="min-w-[150px]">
+                <td className="min-w-[150px] bg-white1-50">
                     <p className="whitespace-nowrap border-l font-poppins text-sm sm:text-[18px] px-2 py-1 sm:px-8 sm:py-2 w-full text-black">
                         {total.toFixed(2)} €
                     </p>
@@ -498,29 +499,29 @@ const CalcTable = () => {
     }
     return (
         <>
-            <div className=" sm:-mx-6 mx-8 lg:-mx-8 items-center ">
+            <div className=" items-center ">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                    <div className="shadow-md sm:rounded-lg ">
-                        <div className='overflow-x-auto'>
+                    <div className="">
+                        <div className='overflow-x-auto mx-2 shadow-md sm:rounded-lg'>
                             <table className="w-full text-sm text-left text-blue-100 min-w-full">
                                 <thead className="text-sm text-white  bg-black border-b">
-                                    <tr>
-                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                    <tr className='w-full'>
+                                        <th scope="col" className="px-2 py-3 font-poppins w-1/12">
                                             Kiekis
                                         </th>
-                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                        <th scope="col" className="px-2 py-3 font-poppins w-1/12">
                                             Diametras(ø mm)
                                         </th>
-                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                        <th scope="col" className="px-2 py-3 font-poppins w-2/12">
                                             Tipas
                                         </th>
-                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                        <th scope="col" className="px-2 py-3 font-poppins w-1/12">
                                             Gylis(cm)
                                         </th>
-                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                        <th scope="col" className="px-2 py-3 font-poppins w-2/12">
                                             Papildomos paslaugos
                                         </th>
-                                        <th scope="col" className="px-2 py-3 font-poppins">
+                                        <th scope="col" className="px-2 py-3 font-poppins w-1/12">
                                             Suma
                                         </th>
                                     </tr>
@@ -579,7 +580,198 @@ const CalcTable = () => {
                 <ToastContainer />
 
 
-                <Transition appear show={isOpen} as={Fragment}>
+                <Transition.Root show={isOpen} as={Fragment}>
+                    <Dialog
+                        as="div"
+                        className="fixed z-10 inset-0 overflow-y-auto text-center w-full"
+                        initialFocus={cancelButtonRef}
+                        onClose={closeModal}
+                    >
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <Dialog.Backdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                        </Transition.Child>
+
+                        {/* This element is to trick the browser into centering the modal contents. */}
+                        <span
+                            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                            aria-hidden="true"
+                        >
+                            &#8203;
+                        </span>
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            enterTo="opacity-100 translate-y-0 sm:scale-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        >
+                            <Dialog.Panel className="inline-block mt-[5%] bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all w-[75%]">
+                                <div className="relative mx-5 my-5 overflow-hidden scroll-smooth">
+                                    <div className=''>
+                                        <ModalStepper selectedIndex={selectedIndex} />
+                                        <div className="relative w-[100%]  mx-auto overflow-hidden">
+                                            <div className="flex transition-transform ease-in-out duration-300"
+                                                style={{ width: "100%", transform: `translateX(-${selectedIndex * 0}%)` }}>
+                                                {
+                                                    selectedIndex == 0 ?
+                                                        <div className={`carousel-item w-[100%] flex flex-col`}>
+                                                            <ModalTable data={data} />
+                                                            <p className="text-[16px] text-gray-700 mt-4">
+                                                                * Į šią sumą nėra įskaičiuotas transportavimas ir darbo vietos paruošimas.
+                                                            </p>
+                                                            <div className={`mt-8 flex justify-end`}>
+                                                                <button
+                                                                    type="button"
+                                                                    className="inline-flex justify-center rounded-md border border-gray-500 bg-white px-6 py-2 text-md font-poppins text-black hover:bg-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
+                                                                    onClick={closeModal}>
+                                                                    Išeiti
+                                                                </button>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => { setSelectedIndex(1) }}
+                                                                    className="inline-flex justify-center rounded-md border border-transparent bg-blue1-600 px-6 py-2 text-md font-poppins text-white hover:bg-blue1-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
+                                                                    Tęsti ➞
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        : ''
+                                                }
+                                                {
+                                                    selectedIndex == 1 ?
+                                                        <div className={`carousel-item w-[100%] flex flex-col`}>
+                                                            <div className='bg-white mt-10 flex items-center flex-col'>
+                                                                <form className='bg-white1-50 w-[70%] rounded-xl shadow-xl mb-5'>
+                                                                    <div className="flex w-full ml-10 mt-3">
+                                                                        <div className="mb-2 w-full flex-1/2 mx-3">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Vardas Pavardė</span>
+                                                                                </label>
+                                                                                <input type="text" placeholder='Vardas Pavardė' onChange={handleName} value={name} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0 ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Elektroninio pašto adresas</span>
+                                                                                </label>
+                                                                                <input type="text" placeholder='El. Paštas' onChange={handleEmail} value={email} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0  ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex w-full ml-10">
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2 ">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Telefono numeris</span>
+                                                                                </label>
+                                                                                <input type="text" placeholder='+123 456 789 12' onChange={handlePhone} value={phone} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidPhone ? ' border-red' : 'border-gray-300'} ${isValidPhone ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Užsakymo adresas</span>
+                                                                                </label>
+                                                                                <input type="text" placeholder='Adresas' onChange={handleAddress} value={address} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidAddress ? ' border-red' : 'border-gray-300'} ${isValidAddress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex w-full ml-10 mb-3">
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                            <div className='flex form-control'>
+                                                                                <label className="label w-[100%]">
+                                                                                    <span className="label-text">Numatoma užsakymo vykdymo data </span>
+                                                                                </label>
+                                                                                <DatePicker
+                                                                                    dateFormat="yyyy-MM-d"
+                                                                                    selected={startDate}
+                                                                                    onChange={(date) => setStartDate(date)}
+                                                                                    className="border border-gray-300 py-2.5 px-2 rounded-md text-sm w-[80%] bg-white1-50 text-black"
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                            <div className='flex form-control'>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div className="mt-4 w-[100%]  flex justify-end">
+                                                                <button
+                                                                    type="button"
+                                                                    className="inline-flex justify-center rounded-md border border-gray-500 bg-white px-6 py-2 text-md font-poppins text-black hover:bg-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2"
+                                                                    onClick={() => { setSelectedIndex(0) }}>
+                                                                    ⬅ Grįžti
+                                                                </button>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => { validateForm() }}
+                                                                    className="inline-flex justify-center rounded-md border border-transparent bg-blue1-600 px-6 py-2 text-md font-poppins text-white hover:bg-blue1-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mx-2">
+                                                                    Pateikti užsakymą ✓
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        : ''
+                                                }
+                                                {
+                                                    selectedIndex == 2 ?
+                                                        <div className={`carousel-item flex flex-col items-center w-full `}>
+                                                            <ModalConfirm />
+                                                            <button
+                                                                type="button"
+                                                                onClick={closeModal}
+                                                                className="rounded-md border border-white bg-blue1-600 text-white px-6 py-2 font-semibold font-poppins transition-all duration-300 hover:shadow-[4px_4px_0px_black] hover:translate-x-[-4px] hover:translate-y-[-4px] active:translate-x-[-0px] active:translate-y-[-0px] active:rounded-2xl active:shadow-[0px_0px_0px_black]">
+                                                                Grįžti į puslapį
+                                                            </button>
+                                                        </div>
+                                                        : ''
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Dialog.Panel>
+                        </Transition.Child>
+                    </Dialog>
+                </Transition.Root>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {/* <Transition appear show={isOpen} as={Fragment}>
                     <Dialog as="div" className="relative z-10" onClose={closeModal}>
                         <Transition.Child
                             as={Fragment}
@@ -593,7 +785,7 @@ const CalcTable = () => {
                             <div className="fixed inset-0 bg-black bg-opacity-50 " />
                         </Transition.Child>
                         <div className="fixed inset-0 ">
-                            <div className='flex items-center justify-center text-center mt-[8%]'>
+                            <div className='flex items-center justify-center text-center mt-[1%]'>
                             </div>
                             <div className="flex items-center justify-center p-4 text-center">
                                 <Transition.Child
@@ -645,7 +837,7 @@ const CalcTable = () => {
                                                                                 <label className="label w-[100%]">
                                                                                     <span className="label-text">Vardas Pavardė</span>
                                                                                 </label>
-                                                                                <input type="text" placeholder='Vardas Pavardė' onChange={handleName} value={name} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0 ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                <input type="text" placeholder='Vardas Pavardė' onChange={handleName} value={name} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0 ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                             </div>
                                                                         </div>
                                                                         <div className="w-full mb-2 mx-3 flex-1/2">
@@ -653,7 +845,7 @@ const CalcTable = () => {
                                                                                 <label className="label w-[100%]">
                                                                                     <span className="label-text">Elektroninio pašto adresas</span>
                                                                                 </label>
-                                                                                <input type="text" placeholder='El. Paštas' onChange={handleEmail} value={email} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0  ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                <input type="text" placeholder='El. Paštas' onChange={handleEmail} value={email} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0  ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -663,7 +855,7 @@ const CalcTable = () => {
                                                                                 <label className="label w-[100%]">
                                                                                     <span className="label-text">Telefono numeris</span>
                                                                                 </label>
-                                                                                <input type="text" placeholder='+123 456 789 12' onChange={handlePhone} value={phone} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidPhone ? ' border-red' : 'border-gray-300'} ${isValidPhone ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                <input type="text" placeholder='+123 456 789 12' onChange={handlePhone} value={phone} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidPhone ? ' border-red' : 'border-gray-300'} ${isValidPhone ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                             </div>
                                                                         </div>
                                                                         <div className="w-full mb-2 mx-3 flex-1/2">
@@ -671,7 +863,7 @@ const CalcTable = () => {
                                                                                 <label className="label w-[100%]">
                                                                                     <span className="label-text">Užsakymo adresas</span>
                                                                                 </label>
-                                                                                <input type="text" placeholder='Adresas' onChange={handleAddress} value={address} className={`w-[80%] py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidAddress ? ' border-red' : 'border-gray-300'} ${isValidAddress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                <input type="text" placeholder='Adresas' onChange={handleAddress} value={address} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidAddress ? ' border-red' : 'border-gray-300'} ${isValidAddress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -685,7 +877,7 @@ const CalcTable = () => {
                                                                                     dateFormat="yyyy-MM-d"
                                                                                     selected={startDate}
                                                                                     onChange={(date) => setStartDate(date)}
-                                                                                    className="border border-gray-300 py-2.5 px-2 rounded-md text-sm w-[80%]"
+                                                                                    className="border border-gray-300 py-2.5 px-2 rounded-md text-sm w-[80%] bg-white1-50"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -733,7 +925,7 @@ const CalcTable = () => {
                             </div>
                         </div>
                     </Dialog>
-                </Transition>
+                </Transition> */}
             </div>
         </>
     )

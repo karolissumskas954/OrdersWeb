@@ -84,13 +84,13 @@ const Questions = () => {
         <div className="w-1/2 text-center">
           <div className="flex justify-center items-center">
             <div className="w-1/2 text-right mx-1">
-              <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2  rounded-md w-[70%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+              <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2 bg-white1-50 rounded-md w-[70%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
             <div className="w-1/2 text-left mx-1">
-              <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 rounded-md w-[70%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+              <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 bg-white1-50 rounded-md w-[70%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
           </div>
-          <textarea onChange={handleText} value={text} className={`my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
+          <textarea onChange={handleText} value={text} className={`my-5 mx-[15%] block w-[70%] px-4 py-2 bg-white1-50 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
           <div className='flex'>
           <a onClick={handleOpen} className='p-4 font-poppins cursor-pointer underline text-white text-[20px] text-left mx-[13%] mt-[-25px] hover:text-gray-300'>Siųsti</a>
           </div>
@@ -105,13 +105,13 @@ const Questions = () => {
           <div className="flex justify-center items-center">
             <div className="w-1/2 text-right mx-1">
 
-              <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2 rounded-md w-[70%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+              <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`border-2 p-2 bg-white1-50 rounded-md w-[70%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
             <div className="w-1/2 text-left mx-1">
-              <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 rounded-md w-[70%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+              <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 bg-white1-50 rounded-md w-[70%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
             </div>
           </div>
-          <textarea onChange={handleText} value={text} className={`my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
+          <textarea onChange={handleText} value={text} className={`my-5 mx-[15%] block w-[70%] px-4 py-2 leading-tight border-2 bg-white1-50 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
           <div className='flex'>
           <a onClick={handleOpen} className='p-4 font-poppins cursor-pointer underline text-white text-[16px] text-left mx-[12%] mt-[-25px] hover:text-gray-300'>Siųsti</a>
           </div>
@@ -121,9 +121,9 @@ const Questions = () => {
         <h1 className='p-4 font-poppins font-bold text-white text-[30px]'>{questionLT[0].title}</h1>
         <p className='p-4 font-poppins font-regular text-white text-[18px] mt-[-30px]'>{questionLT[1].title}</p>
         <div className='flex flex-col items-center mx-3 w-[85%]'>
-          <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`my-2 border-2 p-2 rounded-md w-[95%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
-          <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 rounded-md w-[95%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
-          <textarea onChange={handleText} value={text} className={`my-2 block w-[95%]  px-2 py-2 leading-tight border-2 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
+          <input type="text" placeholder="Vardas Pavardė" onChange={handleName} value={name} className={`my-2 border-2 p-2 bg-white1-50 rounded-md w-[95%] ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+          <input type="text" placeholder="El. Paštas" onChange={handleEmail} value={email} className={`border-2 p-2 bg-white1-50 rounded-md w-[95%] ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+          <textarea onChange={handleText} value={text} className={`my-2 block w-[95%]  px-2 py-2 leading-tight border-2 bg-white1-50 rounded appearance-none focus:outline-blue focus:bg-white ${isValidText ? ' border-red' : 'border-gray-300'} ${isValidText ? ' placeholder-red' : 'placeholder-gray-400'}`} rows="3" placeholder="Tekstas"></textarea>
           <p onClick={handleOpen} className=' p-4 font-poppins cursor-pointer underline text-white text-[16px] mx-[12%] mt-[-16px] mb-8 hover:text-gray-900'>Siųsti</p>
         </div>
       </div>

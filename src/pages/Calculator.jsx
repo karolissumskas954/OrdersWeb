@@ -11,7 +11,7 @@ const Calculator = () => (
 
     <div className={`${styles.paddingY}`}>
       <div>
-        <h1 className="text-center font-poppins text-[20px] sm:text-[30px]">Skaičiuoklė</h1>
+        <h1 className="text-center font-poppins text-[20px] text-black sm:text-[30px]">Skaičiuoklė</h1>
       </div>
     </div>
 
