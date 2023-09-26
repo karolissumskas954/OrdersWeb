@@ -39,8 +39,8 @@ const AdminOrders = () => {
     const [toggle, setToggle] = useState(false)
     const [type, setType] = useState()
     function setDropdown(type) {
-        setToggle((prev) => !prev);
-        setType(type);
+      setToggle((prev) => !prev);
+      setType(type);
     }
 
     const cancelButtonRef = useRef(null);
@@ -81,35 +81,40 @@ const AdminOrders = () => {
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <Dialog.Panel className="inline-block mt-[5%] bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all w-[75%]">
-              <div className="relative mx-5 my-5 overflow-hidden scroll-smooth">
-                <div className='text-center w-full text-black font-poppins text-[18px]'>
+              <div className="relative mx-5 mb-5 overflow-hidden scroll-smooth mt-[-15px]">
+              <div className=' w-[20%]'>
+                  <button type='button' onClick={closeModal} className='mt-10 text-white text-[22px] bg-greyDarker hover:bg-gradient-to-r from-blue1-800 to-blue1-600 font-poppins rounded-lg px-3 text-center inline-flex items-center '>
+                  ←
+                  </button>
+                </div>
+                <div className='text-center w-full text-black font-poppins text-[18px] '>
                   Užsakymas Nr.: Dei-{item.orderNumber}
                 </div>
-                <div className=''>
-                  <table className="text-left font-light mt-3 rounded-xl">
+                <div className='flex flex-col lg:flex-row'>
+                  <table className="text-left font-light mt-3 rounded-xl border-2 bg-white1-50 ">
                     <tbody className=" text-black text-[18px]">
                       <tr
-                        className="">
+                        className="border-2">
                         <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Vardas, Pavardė:</td>
                         <td className="whitespace-nowrap font-poppins px-2 py-1">{item.name}</td>
                       </tr>
                       <tr
-                        className="">
+                        className="border-2">
                         <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Adresas:</td>
                         <td className="whitespace-nowrap font-poppins px-2 py-1">{item.address}</td>
                       </tr>
                       <tr
-                        className="">
+                        className="border-2">
                         <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Telefono numeris:</td>
                         <td className="whitespace-nowrap font-poppins px-2 py-1">{item.telephone}</td>
                       </tr>
                       <tr
-                        className="">
+                        className="border-2">
                         <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Elektroninis paštas:</td>
                         <td className="whitespace-nowrap font-poppins px-2 py-1">{item.email}</td>
                       </tr>
                       <tr
-                        className="">
+                        className="border-2">
                         <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Darbų atlikimo data:</td>
                         <td className="whitespace-nowrap font-poppins px-2 py-1">{item.date}</td>
                       </tr>
@@ -118,7 +123,6 @@ const AdminOrders = () => {
                         <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Statusas:</td>
                         <td className="whitespace-nowrap font-poppins px-2 py-1">
                           <div>
-
                             <button onClick={() => setToggle((prev) => !prev)} className={`
                             ${item.status == 1 ? 'bg-yellow-100 text-yellow-600 hover:bg-gradient-to-r from-yellow-100 to-tulip-200 border border-yellow-600' : ''} 
                             ${item.status == 0 ? 'bg-valencia-100 text-red hover:bg-gradient-to-r from-valencia-100 to-valencia-300 border border-red' : ''} 
@@ -142,12 +146,39 @@ const AdminOrders = () => {
                               </ul>
                             </div>
                           </div>
-
-
                         </td>
                       </tr>
                     </tbody>
                   </table>
+                  {item.company == true ?
+                    <table className="text-left font-light mt-3 rounded-xl lg:ml-10 border-2 bg-white1-50">
+                      <tbody className=" text-black text-[18px] ">
+                        <tr
+                          className="border-2">
+                          <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Įmonės pavadinimas:</td>
+                          <td className="whitespace-nowrap font-poppins px-2 py-1">{item.companyName}</td>
+                        </tr>
+                        <tr
+                          className="border-2">
+                          <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Įmonės kodas:</td>
+                          <td className="whitespace-nowrap font-poppins px-2 py-1">{item.companyCode}</td>
+                        </tr>
+                        <tr
+                          className="border-2">
+                          <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">PVM mokėtojo kodas:</td>
+                          <td className="whitespace-nowrap font-poppins px-2 py-1">{item.vatCode}</td>
+                        </tr>
+                        <tr
+                          className="border-2">
+                          <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Registracijos adresas:</td>
+                          <td className="whitespace-nowrap font-poppins px-2 py-1">{item.registrationAddress}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    : ''}
+
+
                 </div>
                 <div className='mt-[-3%]'>
                   <ModalTable data={item.data} />
@@ -203,7 +234,7 @@ const AdminOrders = () => {
           <td className={`w-1/12 ${isChecked == 1 ? '' : 'opacity-50'} `}>
             <div className="flex items-center space-x-3">
               <div className='items-center w-full'>
-                <div className="font-bold text-black my-1">{item.name}</div>
+                <div className="font-bold text-black my-1">{item.company == true ? item.companyName : item.name}</div>
                 <div className="text-[14px] text-gray-600">{item.address}</div>
               </div>
             </div>

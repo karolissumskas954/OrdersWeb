@@ -58,7 +58,33 @@ export function addOrdersToDatabase(data, name, email, telephone, address, date)
       address: address,
       date: date,
       status: 1,
-      transport: 0
+      transport: 0,
+      company: false
+    }).then(() => {
+      console.log("Data saved successfully!")
+    })
+    .catch((error) => {
+      onsole.log("The write failed...")
+    });;
+}
+
+export function addOrdersToDatabaseCompany(data, name, email, telephone, address, date, companyName, companyCode, vatCode, registrationAddress){
+  set(ref(database, databaseOrderURL + '/' + uuid()), {
+      orderNumber: getRandomIntInclusive(1, 1000),
+      data: data,
+      name: name,
+      email: email,
+      telephone : telephone,
+      address: address,
+      date: date,
+      status: 1,
+      transport: 0,
+      company: true,
+      companyName: companyName,
+      companyCode: companyCode,
+      vatCode: vatCode,
+      registrationAddress: registrationAddress
+
     }).then(() => {
       console.log("Data saved successfully!")
     })

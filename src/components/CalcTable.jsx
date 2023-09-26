@@ -7,7 +7,7 @@ import { ModalTable, ModalStepper, ModalConfirm } from '../components'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { addOrdersToDatabase } from "../../firebase";
+import { addOrdersToDatabase, addOrdersToDatabaseCompany } from "../../firebase";
 
 import { format } from 'date-fns'
 
@@ -21,16 +21,29 @@ function phoneChech(str) {
 }
 
 const CalcTable = () => {
+    const [isChecked, setIsChecked] = useState(false)
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked)
+    }
     const [startDate, setStartDate] = useState(new Date());
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [address, setAddress] = useState('');
+    const [companyName, setCompanyName] = useState('');
+    const [companyCode, setCompanyCode] = useState('');
+    const [VATCode, setVATCode] = useState('');
+    const [registrationAdress, setRegistrationAdress] = useState('');
+
 
     const [isValidName, setIsValidName] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(false);
     const [isValidPhone, setIsValidPhone] = useState(false);
     const [isValidAddress, setIsValidAddress] = useState(false);
+    const [isValidCompanyName, setIsValidCompanyName] = useState(false);
+    const [isValidCompanyCode, setIsValidCompanyCode] = useState(false);
+    const [isValidVATCode, setIsValidVATCode] = useState(false);
+    const [isValidRegistrationAdress, setIsValidRegistrationAdress] = useState(false);
 
 
     const handleName = event => {
@@ -49,34 +62,80 @@ const CalcTable = () => {
         setAddress(event.target.value);
         setIsValidAddress(false);
     };
+    const handleCompanyName = event => {
+        setCompanyName(event.target.value)
+        setIsValidCompanyName(false);
+    }
+    const handleCompanyCode = event => {
+        setCompanyCode(event.target.value)
+        setIsValidCompanyCode(false);
+    }
+    const handleVATCode = event => {
+        setVATCode(event.target.value)
+        setIsValidVATCode(false);
+    }
+    const handleRegistrationAdress = event => {
+        setRegistrationAdress(event.target.value)
+        setIsValidRegistrationAdress(false);
+    }
 
     const validateName = (name) => {
         setIsValidName(name === '');
     };
-
     const validateEmail = (email) => {
         setIsValidEmail(!emailCheck(email));
     };
-
     const validatePhone = (phone) => {
         setIsValidPhone(!phoneChech(phone));
     };
-
     const validateAddress = (address) => {
         setIsValidAddress(address === '');
     };
+    const validateCompanyName = (companyName) => {
+        setIsValidCompanyName(companyName === '');
+    }
+    const validateCompanyCode = (companyCode) => {
+        setIsValidCompanyCode(companyCode === '');
+    }
+    const validateVATCode = (VATCode) => {
+        setIsValidVATCode(VATCode === '');
+    }
+    const validateRegistrationAdress = (registrationAdress) => {
+        setIsValidRegistrationAdress(registrationAdress === '');
+    }
+
 
     const validateForm = () => {
-        validateName(name);
-        validateEmail(email);
-        validatePhone(phone);
-        validateAddress(address);
-        if (!isValidAddress && !isValidName && !isValidEmail && !isValidPhone && name !== '' && address !== '' && emailCheck(email) && phoneChech(phone)) {
-            setSelectedIndex(2)
-            addOrdersToDatabase(data, name, email, phone, address, format(startDate, 'yyyy-MM-dd'))
+        if (isChecked == false){
+            validateName(name);
+            validateEmail(email);
+            validatePhone(phone);
+            validateAddress(address);
+            if (!isValidAddress && !isValidName && !isValidEmail && !isValidPhone && name !== '' && address !== '' && emailCheck(email) && phoneChech(phone)) {
+                setSelectedIndex(2)
+                addOrdersToDatabase(data, name, email, phone, address, format(startDate, 'yyyy-MM-dd'))
+            }
         }
 
+        if (isChecked == true){
+            validateName(name);
+            validateEmail(email);
+            validatePhone(phone);
+            validateAddress(address);
+            validateCompanyName(companyName);
+            validateCompanyCode(companyCode);
+            validateVATCode(VATCode);
+            validateRegistrationAdress(registrationAdress);
+            if (!isValidAddress && !isValidName && !isValidEmail && !isValidPhone && !isValidCompanyName && !isValidCompanyCode && !isValidVATCode && !isValidRegistrationAdress && name !== '' && address !== '' && emailCheck(email) && phoneChech(phone) && companyName !== '' && companyCode !== '' && VATCode !== '' && registrationAdress !== '') {
+                setSelectedIndex(2)
+                addOrdersToDatabaseCompany(data, name, email, phone, address, format(startDate, 'yyyy-MM-dd'),companyName, companyCode, VATCode, registrationAdress);
+            }
+        }
+        
+
     };
+
+
 
     let [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -657,7 +716,7 @@ const CalcTable = () => {
                                                                                 <label className="label w-[100%]">
                                                                                     <span className="label-text">Vardas Pavardė</span>
                                                                                 </label>
-                                                                                <input type="text" placeholder='Vardas Pavardė' onChange={handleName} value={name} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0 ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                <input type="text" onChange={handleName} value={name} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0 ${isValidName ? ' border-red' : 'border-gray-300'} ${isValidName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                             </div>
                                                                         </div>
                                                                         <div className="w-full mb-2 mx-3 flex-1/2">
@@ -665,7 +724,7 @@ const CalcTable = () => {
                                                                                 <label className="label w-[100%]">
                                                                                     <span className="label-text">Elektroninio pašto adresas</span>
                                                                                 </label>
-                                                                                <input type="text" placeholder='El. Paštas' onChange={handleEmail} value={email} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0  ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                <input type="text" onChange={handleEmail} value={email} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border rounded-md  focus:ring-0  ${isValidEmail ? ' border-red' : 'border-gray-300'} ${isValidEmail ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -683,7 +742,7 @@ const CalcTable = () => {
                                                                                 <label className="label w-[100%]">
                                                                                     <span className="label-text">Užsakymo adresas</span>
                                                                                 </label>
-                                                                                <input type="text" placeholder='Adresas' onChange={handleAddress} value={address} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidAddress ? ' border-red' : 'border-gray-300'} ${isValidAddress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                <input type="text" onChange={handleAddress} value={address} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidAddress ? ' border-red' : 'border-gray-300'} ${isValidAddress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -706,6 +765,54 @@ const CalcTable = () => {
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div className='flex w-full ml-10 mb-3'>
+                                                                        <label>
+                                                                            <input type="checkbox" onChange={handleCheckboxChange} checked={isChecked} className="checkbox border-2 border-white1-400 ml-3" />
+                                                                        </label>
+                                                                        <button type='button' onClick={handleCheckboxChange} className='text-black font-poppins text-[16px] mx-2 underline'>Pirkėjas yra juridinis asmuo</button>
+                                                                    </div>
+                                                                    {
+                                                                        isChecked == true ?
+                                                                            <>
+                                                                                <div className="flex w-full ml-10">
+                                                                                    <div className="w-full mb-2 mx-3 flex-1/2 ">
+                                                                                        <div className='flex form-control'>
+                                                                                            <label className="label w-[100%]">
+                                                                                                <span className="label-text">Įmonės pavadinimas</span>
+                                                                                            </label>
+                                                                                            <input type="text" onChange={handleCompanyName} value={companyName} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidCompanyName ? ' border-red' : 'border-gray-300'} ${isValidCompanyName ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div className="w-full mb-2 mx-3 flex-1/2">
+                                                                                        <div className='flex form-control'>
+                                                                                            <label className="label w-[100%]">
+                                                                                                <span className="label-text">Įmonės kodas</span>
+                                                                                            </label>
+                                                                                            <input type="text" onChange={handleCompanyCode} value={companyCode} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidCompanyCode ? ' border-red' : 'border-gray-300'} ${isValidCompanyCode ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className="flex w-full ml-10">
+                                                                                    <div className="w-full mb-2 mx-3 flex-1/2 ">
+                                                                                        <div className='flex form-control'>
+                                                                                            <label className="label w-[100%]">
+                                                                                                <span className="label-text">PVM mokėtojo kodas</span>
+                                                                                            </label>
+                                                                                            <input type="text" onChange={handleVATCode} value={VATCode} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidVATCode ? ' border-red' : 'border-gray-300'} ${isValidVATCode ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div className="w-full mb-3 mx-3 flex-1/2">
+                                                                                        <div className='flex form-control'>
+                                                                                            <label className="label w-[100%]">
+                                                                                                <span className="label-text">Registracijos adresas</span>
+                                                                                            </label>
+                                                                                            <input type="text" onChange={handleRegistrationAdress} value={registrationAdress} className={`w-[80%] bg-white1-50 py-2.5 px-2 text-sm text-gray-900  border   rounded-md  focus:ring-0  ${isValidRegistrationAdress ? ' border-red' : 'border-gray-300'} ${isValidRegistrationAdress ? ' placeholder-red' : 'placeholder-gray-400'}`} />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </>
+                                                                            : ''
+                                                                    }
                                                                 </form>
                                                             </div>
                                                             <div className="mt-4 w-[100%]  flex justify-end">
