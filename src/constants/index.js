@@ -374,3 +374,19 @@ export const adminOrderStatusDropdown = [
     title: 'Atliktas'
   },
 ]
+export const adminOrderDropdown = [
+  {
+    title: 'Visi'
+  },
+  {
+    title: 'Atmesti'
+  },
+  {
+    title: 'Vykdomi'
+  },
+  {
+    title: 'Atlikti'
+  },
+]
+
+
