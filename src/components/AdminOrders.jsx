@@ -23,7 +23,7 @@ const AdminOrders = () => {
       });
   }, []);
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState('')
   const [selectedItem, setSelectedItem] = useState(null)
   function closeModal() {
     setIsOpen(false)
@@ -267,7 +267,7 @@ const AdminOrders = () => {
             <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
               {adminOrderDropdown.map((message, index) => (
                 <li key={index}>
-                  <a href="#" onClick={() => setDropdown(message.title)} className="block text-black px-4 py-2 font-poppins text-sm hover:bg-gray-300">
+                  <a onClick={() => setDropdown(message.title)} className="block text-black px-4 py-2 font-poppins text-sm hover:bg-gray-300">
                     {message.title}
                   </a>
                 </li>

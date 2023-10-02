@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, set, get, child, onValue } from "firebase/database";
+import { getDatabase, ref, set, get, child, onValue, remove } from "firebase/database";
 import { firebaseConfig, databaseQuestionURL, databaseOrderURL } from "./firebaseConfig";
 import uuid from 'react-uuid';
 import { format } from 'date-fns'
@@ -36,15 +36,44 @@ export function getQuestionData() {
     const dRef = ref(database, databaseQuestionURL + '/');
     onValue(dRef, (snapshot) => {
       const dbdata = snapshot.val();
-          const dataArray = Object.values(dbdata);
-          const customSort = (dateStr1, dateStr2) => {
-            const date1 = new Date(dateStr1);
-            const date2 = new Date(dateStr2);
-            return date2 - date1;
-          };
-          dataArray.sort((a, b) => customSort(a.date, b.date));
-          resolve(dataArray);
-    })
+      const dataArray = Object.entries(dbdata).map(([key, value]) => {
+        return { key, ...value }; // Include the key in the data object
+      });
+
+      const customSort = (dateStr1, dateStr2) => {
+        const date1 = new Date(dateStr1);
+        const date2 = new Date(dateStr2);
+        return date2 - date1;
+      };
+
+      dataArray.sort((a, b) => customSort(a.date, b.date));
+      resolve(dataArray);
+    });
+  });
+}
+
+export function deleteQuestionItem(questionKeyToDelete, name, email, question, status, date) {
+  return new Promise((resolve, reject) => {
+    const dRef = ref(database, databaseQuestionURL+ '/' + questionKeyToDelete);
+    // Use the 'remove' method to delete the specific question
+    remove(dRef)
+      .then(() => {
+        set(ref(database, databaseQuestionURL + '/' + questionKeyToDelete), {
+          username: name,
+          email: email,
+          question : question,
+          status: status,
+          date: date
+        }).then(() => {
+          console.log("Data saved successfully!")
+        })
+        .catch((error) => {
+          onsole.log("The write failed...")
+        });;
+      })
+      .catch((error) => {
+        reject("Error deleting question: " + error.message);
+      });
   });
 }
 

@@ -1,4 +1,4 @@
-import { getQuestionData } from "../../firebase";
+import { getQuestionData, deleteQuestionItem } from "../../firebase";
 import React, { useEffect, useState } from 'react';
 import { adminMessagesDropdown } from "../constants";
 
@@ -19,12 +19,12 @@ const AdminMessages = () => {
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
+    }, [toggle]);
 
     const MessageRow = ({ item }) => {
         const [isChecked, setIsChecked] = useState(item.status)
         const handleCheckboxChange = () => {
-            
+            deleteQuestionItem(item.key,item.username,item.email,item.question, !isChecked, item.date)
             setIsChecked(!isChecked)
         }
         return (
@@ -75,7 +75,7 @@ const AdminMessages = () => {
                         <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
                             {adminMessagesDropdown.map((message, index) => (
                                 <li key={index}>
-                                    <a href="#" onClick={() => setDropdown(message.title)} className="block text-black px-4 py-2 font-poppins text-sm hover:bg-gray-300">
+                                    <a onClick={() => setDropdown(message.title)} className="block text-black px-4 py-2 font-poppins text-sm hover:bg-gray-300">
                                         {message.title}
                                     </a>
                                 </li>
@@ -83,9 +83,6 @@ const AdminMessages = () => {
                         </ul>
                     </div>
                 </div>
-                <button className="mx-5 text-white bg-greyDarker hover:bg-gradient-to-r from-blue1-800 to-blue1-600 font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-full" type="button">
-                    Išsaugoti
-                </button>
             </div>
             <div className="h-full w-full mt-5 rounded  ">
                 <div className="overflow-x-auto border-2 border-black rounded-xl shadow-2xl">
