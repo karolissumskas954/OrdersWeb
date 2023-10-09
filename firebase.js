@@ -122,13 +122,15 @@ export function addOrdersToDatabaseCompany(data, name, email, telephone, address
     });;
 }
 
-
 export function getOrderData() {
   return new Promise((resolve, reject) => {
     const dRef = ref(database, databaseOrderURL + '/');
     onValue(dRef, (snapshot) => {
       const dbdata = snapshot.val();
-          const dataArray = Object.values(dbdata);
+      const dataArray = Object.entries(dbdata).map(([key, value]) => {
+        return { key, ...value }; // Include the key in the data object
+      });
+
           const customSort = (dateStr1, dateStr2) => {
             const date1 = new Date(dateStr1);
             const date2 = new Date(dateStr2);
@@ -137,6 +139,70 @@ export function getOrderData() {
           dataArray.sort((a, b) => customSort(a.date, b.date));
           resolve(dataArray);
     })
+  });
+}
+
+export function deleteCompanyOrderItem(orderKeyToDelete, name, email, data, status, date, telephone, address, companyName, companyCode, vatCode, registrationAddress, orderNumber, transport) {
+  return new Promise((resolve, reject) => {
+    const dRef = ref(database, databaseOrderURL+ '/' + orderKeyToDelete);
+    // Use the 'remove' method to delete the specific question
+    remove(dRef)
+      .then(() => {
+        set(ref(database, databaseOrderURL + '/' + orderKeyToDelete), {
+          orderNumber: orderNumber,
+          data: data,
+          name: name,
+          email: email,
+          telephone : telephone,
+          address: address,
+          date: date,
+          status: status,
+          transport: transport,
+          company: true,
+          companyName: companyName,
+          companyCode: companyCode,
+          vatCode: vatCode,
+          registrationAddress: registrationAddress
+    
+        }).then(() => {
+          console.log("Data saved successfully!")
+        })
+        .catch((error) => {
+          onsole.log("The write failed...")
+        });;
+      })
+      .catch((error) => {
+        reject("Error deleting question: " + error.message);
+      });
+  });
+}
+export function deleteOrderItem(orderKeyToDelete, name, email, data, status, date, telephone, address, transport, orderNumber) {
+  return new Promise((resolve, reject) => {
+    const dRef = ref(database, databaseOrderURL+ '/' + orderKeyToDelete);
+    // Use the 'remove' method to delete the specific question
+    remove(dRef)
+      .then(() => {
+        set(ref(database, databaseOrderURL + '/' + orderKeyToDelete), {
+          orderNumber: orderNumber,
+          data: data,
+          name: name,
+          email: email,
+          telephone : telephone,
+          address: address,
+          date: date,
+          status: status,
+          transport: transport,
+          company: false,
+        }).then(() => {
+          console.log("Data saved successfully!")
+        })
+        .catch((error) => {
+          onsole.log("The write failed...")
+        });;
+      })
+      .catch((error) => {
+        reject("Error deleting question: " + error.message);
+      });
   });
 }
 

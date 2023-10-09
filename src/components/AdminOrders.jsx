@@ -1,8 +1,10 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react';
-import { getOrderData } from '../../firebase';
+import { getOrderData, deleteCompanyOrderItem, deleteOrderItem } from '../../firebase';
 import { Dialog, Transition, Tab } from '@headlessui/react'
 import { ModalTable } from '../components'
 import { adminOrderDropdown, adminOrderStatusDropdown } from '../constants';
+import { ToastContainer} from 'react-toastify';
+import { ToastSuccessAdminOrderUpdate } from './Toasts';
 const AdminOrders = () => {
 
   const [toggle, setToggle] = useState(false)
@@ -13,15 +15,7 @@ const AdminOrders = () => {
   }
 
   const [data, setData] = useState([]);
-  useEffect(() => {
-    getOrderData()
-      .then((responseData) => {
-        setData(responseData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+
 
   const [isOpen, setIsOpen] = useState('')
   const [selectedItem, setSelectedItem] = useState(null)
@@ -34,6 +28,28 @@ const AdminOrders = () => {
     setSelectedItem(item)
   }
 
+  useEffect(() => {
+    getOrderData()
+      .then((responseData) => {
+        setData(responseData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [isOpen, saveDataToDatabase()]);
+
+  function saveDataToDatabase(key, address, company, data, date, email, name, orderNumber, status, telephone, transportcost, companyCode, companyName, registrationAddress, vatCode){
+    if (company == true){
+      deleteCompanyOrderItem(key,name,email,data,status,date,telephone,address,companyName,companyCode, vatCode, registrationAddress, orderNumber, transportcost)
+      ToastSuccessAdminOrderUpdate()
+    }
+    if (company == false){
+      deleteOrderItem(key,name,email,data,status,date,telephone, address, transportcost, orderNumber)
+      ToastSuccessAdminOrderUpdate()
+    }
+    
+  }
+
   const ItemModal = ({ item }) => {
     if (selectedItem == null) {
       return
@@ -43,6 +59,19 @@ const AdminOrders = () => {
       setTransportCost(event.target.value);
     };
     const [status, setStatus] = useState(item.status)
+    const [toggleStatus, setToggleStatus] = useState(false)
+    function setToggleDropdown(type) {
+      setToggleStatus((prev) => !prev);
+      if (type == adminOrderStatusDropdown[0].title){
+        setStatus(0)
+      }
+      if (type == adminOrderStatusDropdown[1].title){
+        setStatus(1)
+      }
+      if (type == adminOrderStatusDropdown[2].title){
+        setStatus(2)
+      }
+    }
 
     const cancelButtonRef = useRef(null);
     return (
@@ -124,14 +153,32 @@ const AdminOrders = () => {
                         <td className="whitespace-nowrap font-poppins font-medium px-2 py-1">Statusas:</td>
                         <td className="whitespace-nowrap font-poppins px-2 py-1">
                           <div>
-                            <div className={`
-                            ${item.status == 1 ? 'bg-yellow-100 text-yellow-600 hover:bg-gradient-to-r from-yellow-100 to-tulip-200 border border-yellow-600' : ''} 
-                            ${item.status == 0 ? 'bg-valencia-100 text-red hover:bg-gradient-to-r from-valencia-100 to-valencia-300 border border-red' : ''} 
-                            ${item.status == 2 ? 'bg-salem-100 text-salem-800 hover:bg-gradient-to-r from-salem-100 to-salem-300 border border-salem-800' : ''} 
-                            min-w-[100px]  font-poppins rounded-lg text-sm px-4 py-1.5 text-center inline-flex items-center w-full`} type="button">
-                              {status == 0 ? adminOrderStatusDropdown[0].title : '' }
-                              {status == 1 ? adminOrderStatusDropdown[1].title : '' }
-                              {status == 2 ? adminOrderStatusDropdown[2].title : '' }
+
+                            <div>
+                              <button onClick={() => setToggleStatus((prev) => !prev)} 
+                              className={`
+                              ${status == 1 ? 'bg-yellow-100 text-yellow-600 hover:bg-gradient-to-r from-yellow-100 to-tulip-400 border border-yellow-600' : ''} 
+                              ${status == 0 ? 'bg-valencia-100 text-red hover:bg-gradient-to-r from-valencia-100 to-valencia-500 border border-red' : ''} 
+                              ${status == 2 ? 'bg-salem-100 text-salem-800 hover:bg-gradient-to-r from-salem-100 to-salem-500 border border-salem-800' : ''} 
+                              min-w-[100px]  font-poppins rounded-lg text-sm px-4 py-1.5 text-center inline-flex items-center w-full`} type="button">
+                                {status == 0 ? adminOrderStatusDropdown[0].title : ''}
+                                {status == 1 ? adminOrderStatusDropdown[1].title : ''}
+                                {status == 2 ? adminOrderStatusDropdown[2].title : ''}
+                                <svg className="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                              </button>
+                              <div className={`${toggleStatus ? 'flex' : 'hidden'} z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow `}>
+                                <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
+                                  {adminOrderStatusDropdown.map((message, index) => (
+                                    <li key={index}>
+                                      <a onClick={() => setToggleDropdown(message.title)} className="block text-black px-4 py-2 font-poppins text-sm hover:bg-gray-300">
+                                        {message.title}
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
                             </div>
                           </div>
                         </td>
@@ -174,7 +221,9 @@ const AdminOrders = () => {
                   <input value={transportcost} onChange={handleTransportCost} className='mx-5 border w-[10%] text-[16px] border-black rounded-md text-center bg-white1-50 text-black'></input>
                 </div>
                 <div className='w-full text-center justify-center flex flex-row my-2'>
-                  <button className="mx-5 text-white bg-greyDarker hover:bg-gradient-to-r from-blue1-800 to-blue1-600 font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-[95px]" type="button">
+                  <button 
+                  onClick={() => saveDataToDatabase(item.key, item.address, item.company, item.data, item.date, item.email, item.name, item.orderNumber, status, item.telephone, transportcost, item.companyCode, item.companyName, item.registrationAddress, item.vatCode)} 
+                  className="mx-5 text-white bg-greyDarker hover:bg-gradient-to-r from-blue1-800 to-blue1-600 font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-[95px]" type="button">
                     Išsaugoti
                   </button>
                   <button className="mx-5 text-white bg-greyDarker hover:bg-gradient-to-r from-blue1-800 to-blue1-600 font-poppins rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-[130px]" type="button">
@@ -199,14 +248,6 @@ const AdminOrders = () => {
 
   const OrderRow = ({ item }) => {
     const [isChecked, setIsChecked] = useState(item.status)
-    const handleCheckboxChange = () => {
-      if (isChecked == 1) {
-        setIsChecked(2)
-      }
-      if (isChecked == 2) {
-        setIsChecked(1)
-      }
-    }
     return (
       <>
         <tr className={`border  border-gray-300 text-center ${isChecked == 1 ? '' : 'bg-shark-50'}`}>
@@ -310,20 +351,21 @@ const AdminOrders = () => {
                       <OrderRow key={index} item={item} />
                     )
                   }
-                }   
+                }
                 if (type == adminOrderDropdown[3].title) {
                   if (item.status == 2) {
                     return (
                       <OrderRow key={index} item={item} />
                     )
                   }
-                }         
-})}
+                }
+              })}
             </tbody>
           </table>
         </div>
       </div>
       <ItemModal item={selectedItem} />
+      <ToastContainer />
     </div>
   )
 }
